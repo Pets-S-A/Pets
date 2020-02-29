@@ -16,8 +16,8 @@ function validateToken(req, res, next) {
     const token = getTokenFromHeaders(req)
 
     if (token) {
-        jwt.verify(token, config.JWTSecret, (err, decoded) => {
-            if (err) {
+        jwt.verify(token, config.JWTSecret, (error, decoded) => {
+            if (error) {
                 return res.json({
                     success: false,
                     message: 'Failed to authenticate token.',

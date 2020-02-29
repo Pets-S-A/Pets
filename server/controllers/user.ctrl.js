@@ -9,28 +9,31 @@ const config = require('../config')
 const EXPIRES_IN_MINUTES = '1440m' // expires in 24 hours
 
 module.exports = {
-    insertUser: async (req, res) => {
+    insertUser: async (req, res, next) => {
         const body = req.body
 
         if (!body) {
-            return res.status(HttpStatus.unauthorized).json({
-                success: false,
-                error: 'You must provide an user',
-            })
+            let error = new Error()
+            error.message = 'You must provide an user'
+            error.status = HttpStatus.unauthorized     
+            next(error)
         }
         
-        UserModel.find({ login: body.login }, (err, docs) => {
+        UserModel.find({ login: body.login }, (error, docs) => {
             if (docs.length) {
-                return res
-                    .status(HttpStatus.badRequest)
-                    .json({ success: false, error: 'User Already exist' })
+                let error = new Error()
+                error.status(HttpStatus.badRequest).json({
+                    success: false,
+                    message: 'User Already exist',
+                })            
+                next(error)
             } else {
                 const user = new UserModel(body)
 
                 if (!user) {
                     return res
                         .status(HttpStatus.badRequest)
-                        .json({ success: false, error: err })
+                        .json({ success: false, error: error })
                 }
 
                 user
@@ -42,12 +45,8 @@ module.exports = {
                             message: 'User created!',
                         })
                     })
-                    .catch(error => {
-                        res.status(HttpStatus.badRequest).json({
-                            success: false,
-                            error,
-                            message: 'User not created!',
-                        })
+                    .catch(error => {            
+                        next(error)
                     })
             }
         })
@@ -68,11 +67,11 @@ module.exports = {
         } catch (error) {
             next(error)
         }
-        UserModel.findOne({ login }).then((user, err) => {
-            if (err) {
+        UserModel.findOne({ login }).then((user, error) => {
+            if (error) {
                 return res
                     .status(HttpStatus.badRequest)
-                    .json({ success: false, error: err })
+                    .json({ success: false, error: error })
             }
 
             if (!user) {
@@ -82,7 +81,7 @@ module.exports = {
                 })
             }
 
-            bcrypt.compare(password, user.password, function(err, result) {
+            bcrypt.compare(password, user.password, function(error, result) {
                 if (result === true) {
                     const payload = { user: user._id }
                     const token = jwt.sign(payload, config.JWTSecret, {

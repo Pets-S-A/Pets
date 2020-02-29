@@ -3,16 +3,17 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const hbs = require('hbs')
 const path = require('path')
+const helmet = require('helmet')
 
-const app = express()
-const helmet = require('helmet') 
 const db = require('./db')
+const { ErrorModel } = require('./models')
 const validateToken = require('./middleware/validate-token')
-
+const app = express()
 
 //ROUTE
 const { userRouterProtected, 
-        userRouterUnprotected } = require('./route')
+        userRouterUnprotected,
+        errorRouterUnprotected } = require('./route')
 
 
 app.use(helmet())
@@ -29,7 +30,7 @@ app.use(
     }),
 )
 
-//VIEW
+//VIEWS
 app.set('views', path.join(__dirname, 'views'));
 hbs.registerPartials(path.join(__dirname, 'views/partials'))
 app.set('view engine', 'hbs');
@@ -43,10 +44,22 @@ app.get('/', (req, res) => {
 })
 
 
-
+app.use('/api', errorRouterUnprotected)
 app.use('/api', userRouterUnprotected)
-app.use('/api', validateToken, userRouterProtected)
+app.use('/api', userRouterProtected)
 
+//Error Handler
+app.use(async (error, req, res, next) => {
+    res.locals.message = error.message;
+    res.locals.error = req.app.get('env') === 'development' ? error : {};
+    res.status(error.status || 500);
+    
+    let err = error
+    err.error = JSON.stringify(err.errors)
+    await ErrorModel.create(err)
+
+    res.render('error');
+});
 
 app.set('PORT', process.env.PORT || 3000)
 app.listen(app.get('PORT'), () =>

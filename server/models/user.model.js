@@ -15,14 +15,13 @@ const User = new Schema(
 
 User.pre('save', function(next) {
     const user = this
-
-    bcrypt.genSalt(10, function(err, salt) {
-        if (err) {
-            res.json({ success: false, msg: err.message })
+    bcrypt.genSalt(10, function(error, salt) {
+        if (error) {
+            return next(error)
         } else {
-            bcrypt.hash(user.password, salt, function(err, hashed) {
-                if (err) {
-                    return next(err)
+            bcrypt.hash(user.password, salt, function(error, hashed) {
+                if (error) {
+                    return next(error)
                 }
                 user.password = hashed
                 next()
