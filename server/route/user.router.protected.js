@@ -1,7 +1,7 @@
 const express = require('express')
-const { AdminCtrl } = require('../controllers')
+const { UserCtrl } = require('../controllers')
 const router = express.Router()
 
-router.post('/admin', AdminCtrl.insertAdmin)
+router.post('/user', UserCtrl.insertUser)
 
 module.exports = router

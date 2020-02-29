@@ -1,7 +1,7 @@
-const adminRouterProtected = require('./admin.router.protected')
-const adminRouterUnprotected = require('./admin.router.unprotected')
+const userRouterProtected = require('./user.router.protected')
+const userRouterUnprotected = require('./user.router.unprotected')
 
 module.exports = {
-    adminRouterProtected,
-    adminRouterUnprotected,
+    userRouterProtected,
+    userRouterUnprotected,
 }

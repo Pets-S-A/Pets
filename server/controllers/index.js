@@ -1,5 +1,5 @@
-const AdminCtrl = require('./admin.ctrl')
+const UserCtrl = require('./user.ctrl')
 
 module.exports = {
-    AdminCtrl,
+    UserCtrl,
 }

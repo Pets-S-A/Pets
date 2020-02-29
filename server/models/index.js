@@ -1,3 +1,3 @@
-const AdminModel = require('./admin.model')
+const UserModel = require('./user.model')
 
-module.exports = { AdminModel }
+module.exports = { UserModel }
