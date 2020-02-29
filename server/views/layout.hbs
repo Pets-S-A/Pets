@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{#if title}}{{title}}{{else}}Admin | AcampaIPP{{/if}}</title>
+  <link rel='stylesheet' href='/assets/css/bare.min.css' />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+
+<body>
+  {{> nav}}
+  <section style="max-width: auto">
+    <br>
+    {{#if msg}}
+    <card>
+      <p txt="c" id="nao-pago">{{msg}}</p>
+    </card>
+    {{/if}}
+    {{#if err}}
+    <card>
+      <p txt="c" id="pago">{{err}}</p>
+    </card>
+    {{/if}}
+    <br>
+    {{{body}}}
+  </section>
+  {{> footer}}
+</body>
+
+</html>
