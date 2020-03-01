@@ -1,7 +1,7 @@
-const UserCtrl = require('./user.ctrl')
-const ErrorCtrl = require('./error.ctrl')
+const UserCtrl = require('./user.ctrl');
+const ErrorCtrl = require('./error.ctrl');
 
 module.exports = {
-    UserCtrl,
-    ErrorCtrl
-}
+  UserCtrl,
+  ErrorCtrl,
+};

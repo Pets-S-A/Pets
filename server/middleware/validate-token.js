@@ -1,38 +1,39 @@
-const jwt = require('jsonwebtoken')
+/* eslint-disable require-jsdoc */
+const jwt = require('jsonwebtoken');
 
-const HttpStatus = require('../HttpStatus')
-const config = require('../config')
+const HttpStatus = require('../HttpStatus');
+const config = require('../config');
 
 function getTokenFromHeaders(req) {
-    const token =
-        req.body.token || req.query.token || req.headers['master-token']
+  const token =
+        req.body.token || req.query.token || req.headers['master-token'];
 
-    if (!token) return token
+  if (!token) return token;
 
-    return token
+  return token;
 }
 
 function validateToken(req, res, next) {
-    const token = getTokenFromHeaders(req)
+  const token = getTokenFromHeaders(req);
 
-    if (token) {
-        jwt.verify(token, config.JWTSecret, (error, decoded) => {
-            if (error) {
-                return res.json({
-                    success: false,
-                    message: 'Failed to authenticate token.',
-                })
-            } else {
-                req.decoded = decoded
-                next()
-            }
-        })
-    } else {
-        return res.status(HttpStatus.forbidden).send({
-            success: false,
-            message: 'No token provided.',
-        })
-    }
+  if (token) {
+    jwt.verify(token, config.JWTSecret, (error, decoded) => {
+      if (error) {
+        return res.json({
+          success: false,
+          message: 'Failed to authenticate token.',
+        });
+      } else {
+        req.decoded = decoded;
+        next();
+      }
+    });
+  } else {
+    return res.status(HttpStatus.forbidden).send({
+      success: false,
+      message: 'No token provided.',
+    });
+  }
 }
 
-module.exports = validateToken
+module.exports = validateToken;
