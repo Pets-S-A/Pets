@@ -11,7 +11,7 @@ import Foundation
 struct Pet: Codable {
     let id: String
     var name: String
-    var age: Date
+    var age: String
     var gender: String
     var agressive: Bool
     var image: String

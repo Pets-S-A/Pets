@@ -10,12 +10,12 @@ import Foundation
 
 enum PetLoadResponse: Error {
     case success(pets: Pets)
-    case error(description: String)
+    case error(description: Error)
 }
 
 enum PetUpdateResponse: Error {
     case success(pet: Pet)
-    case error(description: String)
+    case error(description: Error)
 }
 
 class PetHandler {
@@ -24,7 +24,7 @@ class PetHandler {
             try PetDAO.shared.create(newEntity: pet)
             completion(PetUpdateResponse.success(pet: pet))
         } catch {
-            completion(PetUpdateResponse.error(description: error.localizedDescription))
+            completion(PetUpdateResponse.error(description: error))
         }
     }
     static func getAll(completion: @escaping (PetLoadResponse) -> Void) {
@@ -32,7 +32,7 @@ class PetHandler {
             let pets = try PetDAO.shared.read()
             completion(PetLoadResponse.success(pets: pets))
         } catch {
-            completion(PetLoadResponse.error(description: error.localizedDescription))
+            completion(PetLoadResponse.error(description: error))
         }
     }
     static func getOne(id: String, withCompletion
@@ -41,7 +41,7 @@ class PetHandler {
             let pet = try PetDAO.shared.readOne(id: id)
             completion(PetUpdateResponse.success(pet: pet))
         } catch {
-            completion(PetUpdateResponse.error(description: error.localizedDescription))
+            completion(PetUpdateResponse.error(description: error))
         }
     }
     static func update(pet: Pet, withCompletion completion: (PetUpdateResponse) -> Void) {
@@ -49,7 +49,7 @@ class PetHandler {
             try PetDAO.shared.update(entity: pet)
             completion(PetUpdateResponse.success(pet: pet))
         } catch {
-            completion(PetUpdateResponse.error(description: error.localizedDescription))
+            completion(PetUpdateResponse.error(description: error))
         }
     }
     static func delete(pet: Pet, withCompletion
@@ -58,7 +58,7 @@ class PetHandler {
             try PetDAO.shared.delete(id: pet.id)
             completion(PetUpdateResponse.success(pet: pet))
         } catch {
-            completion(PetUpdateResponse.error(description: error.localizedDescription))
+            completion(PetUpdateResponse.error(description: error))
         }
     }
     static private func saveLocally(_ pets: Pets) {

@@ -21,6 +21,10 @@
 		82B8386D240C92EA00E82929 /* PetHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8386C240C92EA00E82929 /* PetHandler.swift */; };
 		82B8386F240C956300E82929 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8386E240C956300E82929 /* CoreDataManager.swift */; };
 		82B83874240C9AB800E82929 /* PetCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B83873240C9AB800E82929 /* PetCreateViewController.swift */; };
+		82B8387A240CA43B00E82929 /* GenderDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B83879240CA43B00E82929 /* GenderDataSource.swift */; };
+		82B8387C240CA44700E82929 /* GenderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8387B240CA44700E82929 /* GenderDelegate.swift */; };
+		82B8387E240CA45200E82929 /* AgeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8387D240CA45200E82929 /* AgeDataSource.swift */; };
+		82B83880240CA45B00E82929 /* AgeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8387F240CA45B00E82929 /* AgeDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +56,10 @@
 		82B8386C240C92EA00E82929 /* PetHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetHandler.swift; sourceTree = "<group>"; };
 		82B8386E240C956300E82929 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		82B83873240C9AB800E82929 /* PetCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCreateViewController.swift; sourceTree = "<group>"; };
+		82B83879240CA43B00E82929 /* GenderDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderDataSource.swift; sourceTree = "<group>"; };
+		82B8387B240CA44700E82929 /* GenderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderDelegate.swift; sourceTree = "<group>"; };
+		82B8387D240CA45200E82929 /* AgeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeDataSource.swift; sourceTree = "<group>"; };
+		82B8387F240CA45B00E82929 /* AgeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +101,8 @@
 		82B83837240C8FB900E82929 /* pets */ = {
 			isa = PBXGroup;
 			children = (
-				82B8385E240C902300E82929 /* Model */,
 				82B8385A240C8FC500E82929 /* Delegate */,
+				82B8385E240C902300E82929 /* Model */,
 				82B8385D240C8FDE00E82929 /* Controller */,
 				82B8385C240C8FD800E82929 /* View */,
 				82B83841240C8FBD00E82929 /* Assets.xcassets */,
@@ -141,6 +149,7 @@
 		82B8385D240C8FDE00E82929 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				82B83876240CA41300E82929 /* Components */,
 				82B83871240C9A9B00E82929 /* Pets */,
 				82B83875240C9AF600E82929 /* Main */,
 			);
@@ -150,9 +159,9 @@
 		82B8385E240C902300E82929 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				82B83869240C92D200E82929 /* Pet */,
-				82B8385F240C912000E82929 /* Persistence */,
 				82B83861240C914D00E82929 /* Data */,
+				82B8385F240C912000E82929 /* Persistence */,
+				82B83869240C92D200E82929 /* Pet */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,6 +231,33 @@
 				82B8383C240C8FB900E82929 /* MainViewController.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		82B83876240CA41300E82929 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				82B83878240CA42000E82929 /* Gender */,
+				82B83877240CA41B00E82929 /* Age */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		82B83877240CA41B00E82929 /* Age */ = {
+			isa = PBXGroup;
+			children = (
+				82B8387D240CA45200E82929 /* AgeDataSource.swift */,
+				82B8387F240CA45B00E82929 /* AgeDelegate.swift */,
+			);
+			path = Age;
+			sourceTree = "<group>";
+		};
+		82B83878240CA42000E82929 /* Gender */ = {
+			isa = PBXGroup;
+			children = (
+				82B83879240CA43B00E82929 /* GenderDataSource.swift */,
+				82B8387B240CA44700E82929 /* GenderDelegate.swift */,
+			);
+			path = Gender;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,14 +362,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				82B83874240C9AB800E82929 /* PetCreateViewController.swift in Sources */,
+				82B8387E240CA45200E82929 /* AgeDataSource.swift in Sources */,
 				82B8386B240C92DF00E82929 /* Pet.swift in Sources */,
 				82B8383D240C8FB900E82929 /* MainViewController.swift in Sources */,
 				82B8386D240C92EA00E82929 /* PetHandler.swift in Sources */,
 				82B83864240C918E00E82929 /* Pets.xcdatamodeld in Sources */,
 				82B83839240C8FB900E82929 /* AppDelegate.swift in Sources */,
 				82B83866240C928000E82929 /* GenericDAO.swift in Sources */,
+				82B8387C240CA44700E82929 /* GenderDelegate.swift in Sources */,
+				82B8387A240CA43B00E82929 /* GenderDataSource.swift in Sources */,
 				82B8386F240C956300E82929 /* CoreDataManager.swift in Sources */,
 				82B83868240C92A300E82929 /* PetDAO.swift in Sources */,
+				82B83880240CA45B00E82929 /* AgeDelegate.swift in Sources */,
 				82B8383B240C8FB900E82929 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

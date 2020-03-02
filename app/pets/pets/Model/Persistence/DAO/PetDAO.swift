@@ -13,7 +13,7 @@ import CoreData
 class PetDAO: GenericDAO {
     typealias T = Pet
     let managedContext = CoreDataManager.shared.persistentContainer.viewContext
-    private let entityName = "PrayEntity"
+    private let entityName = "PetEntity"
     static let shared: PetDAO = PetDAO()
     private init() {}
     func create(newEntity: Pet) throws {
@@ -45,7 +45,7 @@ class PetDAO: GenericDAO {
             var pets: Pets = []
             for data in prayData {
                 pets.append(
-                    Pet(id: data.id ?? "", name: data.name ?? "", age: data.age ?? Date(), gender: data.gender ?? "", agressive: data.agressive, image: data.image ?? "", breed: data.breed ?? "")
+                    Pet(id: data.id ?? "", name: data.name ?? "", age: data.age ?? "", gender: data.gender ?? "", agressive: data.agressive, image: data.image ?? "", breed: data.breed ?? "")
                 )
             }
             return pets
@@ -69,7 +69,7 @@ class PetDAO: GenericDAO {
                 guard let name: String = pet.value(forKey: "name") as? String else {
                     throw DAOError.internalError(description: "Error to take name")
                 }
-                guard let age: Date = pet.value(forKey: "age") as? Date else {
+                guard let age: String = pet.value(forKey: "age") as? String else {
                     throw DAOError.internalError(description: "Error to take age")
                 }
                 guard let image: String = pet.value(forKey: "image") as? String else {
