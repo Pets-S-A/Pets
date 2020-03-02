@@ -1,10 +1,14 @@
-const mongoose = require('mongoose')
-const config = require('../config')
+const mongoose = require('mongoose');
+const config = require('../config');
 
-mongoose.connect(config.serverDb, { useNewUrlParser: true, useUnifiedTopology: true }).catch(e => {
-    console.error(config.serverDb, e.message)
-})
+const options = {useNewUrlParser: true, useUnifiedTopology: true};
 
-const db = mongoose.connection
+mongoose
+    .connect(config.serverDb, options)
+    .catch((e) => {
+      console.error(config.serverDb, e.message);
+    });
 
-module.exports = db
+const db = mongoose.connection;
+
+module.exports = db;
