@@ -1,10 +1,10 @@
-const {UserModel} = require('../models');
-const HttpStatus = require('../HttpStatus');
+const {UserModel} = require('../../models');
+const HttpStatus = require('../../HttpStatus');
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const config = require('../config');
+const config = require('../../config');
 
 const EXPIRES_IN_MINUTES = '1440m'; // expires in 24 hours
 

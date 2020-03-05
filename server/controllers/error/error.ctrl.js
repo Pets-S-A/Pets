@@ -1,5 +1,5 @@
-const {ErrorModel} = require('../models');
-const HttpStatus = require('../HttpStatus');
+const {ErrorModel} = require('../../models');
+const HttpStatus = require('../../HttpStatus');
 
 module.exports = {
   getAll: async (req, res, next) => {
