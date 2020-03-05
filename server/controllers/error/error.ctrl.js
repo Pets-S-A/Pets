@@ -7,7 +7,7 @@ module.exports = {
       res.status(HttpStatus.OK).json({
         success: true,
         data: await ErrorModel.find(),
-        message: 'User created!',
+        message: 'Errors founded!',
       });
     } catch (error) {
       next(error);

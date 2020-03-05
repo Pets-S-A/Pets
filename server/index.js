@@ -11,9 +11,9 @@ const validateToken = require('./middleware/validate-token');
 const app = express();
 
 // ROUTE
-const {userRouterProtected,
-  userRouterUnprotected,
-  errorRouterUnprotected} = require('./route');
+const {
+  petRouterProtected,
+} = require('./route');
 
 
 app.use(helmet());
@@ -44,9 +44,10 @@ app.get('/', (req, res) => {
 });
 
 
-app.use('/api', errorRouterUnprotected);
-app.use('/api', userRouterUnprotected);
-app.use('/api', validateToken, userRouterProtected);
+// app.use('/api', errorRouterUnprotected);
+// app.use('/api', userRouterUnprotected);
+// app.use('/api', validateToken, userRouterProtected);
+app.use('/api', petRouterProtected);
 
 // Error Handler
 app.use(async (error, req, res, next) => {

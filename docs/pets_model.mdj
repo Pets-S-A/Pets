@@ -169,7 +169,7 @@
 											"top": 316,
 											"width": 159,
 											"height": 13,
-											"text": "+age: Date",
+											"text": "+age: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -203,7 +203,7 @@
 											"top": 346,
 											"width": 159,
 											"height": 13,
-											"text": "+image: Image",
+											"text": "+image: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1368,7 +1368,7 @@
 								"$ref": "AAAAAAFwiVx2KRvrEto="
 							},
 							"name": "age",
-							"type": "Date"
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1386,7 +1386,7 @@
 								"$ref": "AAAAAAFwiVx2KRvrEto="
 							},
 							"name": "image",
-							"type": "Image"
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1781,7 +1781,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwiWH70SWZfUM="
 							},
-							"name": "email ; String"
+							"name": "email ; String",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
