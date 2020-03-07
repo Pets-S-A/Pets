@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-const {PersonModel} = require('../index');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -11,17 +10,19 @@ const PetModel = new Schema(
       breed: {type: String, require: true},
       image: {type: String, require: false},
       agressive: {type: Boolean, require: true},
+      email: {type: String, require: true},
       vaccines: [{type: mongoose.Schema.Types.ObjectId, ref: 'vaccine', autopopulate: true}],
     },
     {timestamps: true},
 );
 
-PetModel.pre('save', async (next) => {
+PetModel.pre('save', async function(next) {
+  const {PersonModel} = require('../index');
   const pet = this;
+
   try {
-    const person = await PersonModel.findOne({email: boby.email});
-    person = person.addPet(person, pet);
-    person.save();
+    const person = await PersonModel.findOne({email: pet.email});
+    await person.addPet(pet, next);
     next();
   } catch (error) {
     return next(error);

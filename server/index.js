@@ -14,13 +14,10 @@ const app = express();
 const {
   apiPetRouterProtected,
   apiPersonRouterProtected,
+  apiVaccineRouterProtected,
 } = require('./route');
 
 
-app.use(helmet());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-app.use(express.static('public'));
 app.use(
     cors({
       allowedHeaders: ['sessionId', 'Content-Type', 'master-token'],
@@ -30,6 +27,10 @@ app.use(
       preflightContinue: false,
     }),
 );
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(express.static('public'));
+app.use(helmet());
 
 // VIEWS
 app.set('views', path.join(__dirname, 'views'));
@@ -47,9 +48,10 @@ app.get('/', (req, res) => {
 
 app.use('/api', apiPetRouterProtected);
 app.use('/api', apiPersonRouterProtected);
-// app.use('/api', errorRouterUnprotected);
-// app.use('/api', userRouterUnprotected);
-// app.use('/api', validateToken, userRouterProtected);
+app.use('/api', apiVaccineRouterProtected);
+// app.use('/admin', errorRouterUnprotected);
+// app.use('/admin', userRouterUnprotected);
+// app.use('/admin', validateToken, userRouterProtected);
 
 // Error Handler
 app.use(async (error, req, res, next) => {

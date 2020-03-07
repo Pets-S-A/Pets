@@ -15,7 +15,7 @@ const Vaccine = new Schema(
 Vaccine.pre('save', async (next) => {
   const vaccine = this;
   try {
-    const pet = await PetModel.findById({email: vaccine.petID});
+    const pet = await PetModel.findById({vaccine: vaccine.petID});
     pet = pet.addPet(pet, vaccine);
     pet.save();
     next();

@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 const {PetModel} = require('../../models');
+const {validateBody} = require('../../utils');
 const HttpStatus = require('../../HttpStatus');
+
 
 module.exports = {
   getAll: async (req, res, next) => {
@@ -16,16 +18,17 @@ module.exports = {
   },
   create: async (req, res, next) => {
     try {
-      const boby = req.boby;
-      if (!boby) {
+      const body = req.body;
+      if (validateBody(body)) {
         throw new Error('Boby not found');
       }
-      if (!boby.email) {
-        throw new Error('E-mail not found');
+      if (!body.email) {
+        throw new Error('User e-mail is required');
       }
+
       res.json({
         success: true,
-        data: await PetModel.create({boby}),
+        data: await PetModel.create(body),
       });
     } catch (error) {
       res.json({

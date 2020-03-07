@@ -1,4 +1,5 @@
 const {PersonModel} = require('../../models');
+const {validateBody} = require('../../utils');
 const HttpStatus = require('../../HttpStatus');
 
 module.exports = {
@@ -15,15 +16,13 @@ module.exports = {
   },
   create: async (req, res, next) => {
     try {
-      const boby = req.boby;
-      if (!boby) {
+      const body = req.body;
+      if (validateBody(body)) {
         throw new Error('Boby not found');
       }
-      const person = await PersonModel.create({boby});
-
       res.json({
         success: true,
-        data: person,
+        data: await PersonModel.create(body),
       });
     } catch (error) {
       res.json({

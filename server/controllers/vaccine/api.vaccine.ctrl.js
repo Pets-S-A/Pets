@@ -1,4 +1,5 @@
-const {PersonModel} = require('../../models');
+const {VaccineModel} = require('../../models');
+const {validateBody} = require('../../utils');
 const HttpStatus = require('../../HttpStatus');
 
 module.exports = {
@@ -6,8 +7,8 @@ module.exports = {
     try {
       res.status(HttpStatus.OK).json({
         success: true,
-        data: await PersonModel.find(),
-        message: 'Persons founded!',
+        data: await VaccineModel.find(),
+        message: 'Vaccines founded!',
       });
     } catch (error) {
       next(error);
@@ -15,15 +16,18 @@ module.exports = {
   },
   create: async (req, res, next) => {
     try {
-      const boby = req.boby;
-      if (!boby) {
+      const body = req.body;
+      if (validateBody(body)) {
         throw new Error('Boby not found');
       }
-      const person = await PersonModel.create({boby});
+      if (!body.petID) {
+        throw new Error('petID is required');
+      }
+      const vaccine = await VaccineModel.create(body);
 
       res.json({
         success: true,
-        data: person,
+        data: vaccine,
       });
     } catch (error) {
       res.json({
