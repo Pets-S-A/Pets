@@ -1,5 +1,4 @@
-/* eslint-disable max-len */
-const {PetModel} = require('../../models');
+const {PersonModel} = require('../../models');
 const HttpStatus = require('../../HttpStatus');
 
 module.exports = {
@@ -7,11 +6,11 @@ module.exports = {
     try {
       res.status(HttpStatus.OK).json({
         success: true,
-        data: await PetModel.find(),
-        message: 'Pets found!',
+        data: await PersonModel.find(),
+        message: 'Persons founded!',
       });
     } catch (error) {
-      return next(error);
+      next(error);
     }
   },
   create: async (req, res, next) => {
@@ -20,12 +19,11 @@ module.exports = {
       if (!boby) {
         throw new Error('Boby not found');
       }
-      if (!boby.email) {
-        throw new Error('E-mail not found');
-      }
+      const person = await PersonModel.create({boby});
+
       res.json({
         success: true,
-        data: await PetModel.create({boby}),
+        data: person,
       });
     } catch (error) {
       res.json({
