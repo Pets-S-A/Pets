@@ -1,9 +1,11 @@
 const UserCtrl = require('./user/user.ctrl');
 const ErrorCtrl = require('./error/error.ctrl');
-const PetCtrl = require('./pet/api.pet.ctrl');
+const ApiPetCtrl = require('./pet/api.pet.ctrl');
+const ApiPersonCtrl = require('./person/api.person.ctrl');
 
 module.exports = {
   UserCtrl,
   ErrorCtrl,
-  PetCtrl,
+  ApiPetCtrl,
+  ApiPersonCtrl,
 };

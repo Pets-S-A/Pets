@@ -12,7 +12,8 @@ const app = express();
 
 // ROUTE
 const {
-  petRouterProtected,
+  apiPetRouterProtected,
+  apiPersonRouterProtected,
 } = require('./route');
 
 
@@ -44,10 +45,11 @@ app.get('/', (req, res) => {
 });
 
 
+app.use('/api', apiPetRouterProtected);
+app.use('/api', apiPersonRouterProtected);
 // app.use('/api', errorRouterUnprotected);
 // app.use('/api', userRouterUnprotected);
 // app.use('/api', validateToken, userRouterProtected);
-app.use('/api', petRouterProtected);
 
 // Error Handler
 app.use(async (error, req, res, next) => {
