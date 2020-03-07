@@ -1,8 +1,7 @@
 /* eslint-disable max-len */
-const {PetModel} = require('../../models');
+const {PetModel, PersonModel} = require('../../models');
 const {validateBody} = require('../../utils');
 const HttpStatus = require('../../HttpStatus');
-
 
 module.exports = {
   getAll: async (req, res, next) => {
@@ -18,17 +17,33 @@ module.exports = {
   },
   create: async (req, res, next) => {
     try {
-      const body = req.body;
+      const body = req.body || {};
       if (validateBody(body)) {
-        throw new Error('Boby not found');
+        throw new Error('Boby is required');
       }
       if (!body.email) {
-        throw new Error('User e-mail is required');
+        throw new Error('E-mail is required');
       }
+      const pet = await PetModel.create(body);
+      const person = await PersonModel.findOne({email: body.email});
+      await person.addPet(pet, next);
 
       res.json({
         success: true,
-        data: await PetModel.create(body),
+        data: pet,
+      });
+    } catch (error) {
+      res.json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+  delete: async (req, res, next) => {
+    try {
+      res.json({
+        success: true,
+        data: await PetModel.deleteMany({}),
       });
     } catch (error) {
       res.json({

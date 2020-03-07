@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const PetModel = new Schema(
+const Pet = new Schema(
     {
       name: {type: String, required: true},
       gender: {type: String, require: true},
@@ -10,34 +10,25 @@ const PetModel = new Schema(
       breed: {type: String, require: true},
       image: {type: String, require: false},
       agressive: {type: Boolean, require: true},
-      email: {type: String, require: true},
-      vaccines: [{type: mongoose.Schema.Types.ObjectId, ref: 'vaccine', autopopulate: true}],
+      vaccines: [{type: mongoose.Schema.Types.ObjectId, ref: 'vaccine', autopopulate: false}],
     },
     {timestamps: true},
 );
 
-PetModel.pre('save', async function(next) {
-  const {PersonModel} = require('../index');
-  const pet = this;
-
+Pet.methods.addVaccine = async function(vaccine, next) {
   try {
-    const person = await PersonModel.findOne({email: pet.email});
-    await person.addPet(pet, next);
+    const pet = this;
+    if (pet.vaccines) {
+      pet.vaccines.push(vaccine.id);
+    } else {
+      pet.vaccines = vaccine.id;
+    }
+    await pet.save();
     next();
   } catch (error) {
     return next(error);
   }
-});
-
-PetModel.methods.addVaccine = async (pet, vaccine) => {
-  const petReturn = pet;
-  if (petReturn.vaccine) {
-    petReturn.vaccine += vaccine.id;
-  } else {
-    petReturn.vaccine = vaccine.id;
-  }
-  return petReturn;
 };
 
-
-module.exports = mongoose.model('pet', PetModel);
+Pet.plugin(require('mongoose-autopopulate'));
+module.exports = mongoose.model('pet', Pet);

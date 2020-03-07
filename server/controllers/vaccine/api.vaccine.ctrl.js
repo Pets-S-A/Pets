@@ -16,18 +16,29 @@ module.exports = {
   },
   create: async (req, res, next) => {
     try {
-      const body = req.body;
+      const body = req.body || {};
       if (validateBody(body)) {
         throw new Error('Boby not found');
       }
       if (!body.petID) {
         throw new Error('petID is required');
       }
-      const vaccine = await VaccineModel.create(body);
-
       res.json({
         success: true,
-        data: vaccine,
+        data: await VaccineModel.create(body),
+      });
+    } catch (error) {
+      res.json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+  delete: async (req, res, next) => {
+    try {
+      res.json({
+        success: true,
+        data: await VaccineModel.deleteMany({}),
       });
     } catch (error) {
       res.json({
