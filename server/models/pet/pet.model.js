@@ -10,7 +10,7 @@ const Pet = new Schema(
       breed: {type: String, require: true},
       image: {type: String, require: false},
       agressive: {type: Boolean, require: true},
-      vaccines: [{type: mongoose.Schema.Types.ObjectId, ref: 'vaccine', autopopulate: false}],
+      vaccines: [{type: mongoose.Schema.Types.ObjectId, ref: 'vaccine', autopopulate: true}],
     },
     {timestamps: true},
 );
@@ -21,7 +21,7 @@ Pet.methods.addVaccine = async function(vaccine, next) {
     if (pet.vaccines) {
       pet.vaccines.push(vaccine.id);
     } else {
-      pet.vaccines = vaccine.id;
+      pet.vaccines = [vaccine.id];
     }
     await pet.save();
     next();

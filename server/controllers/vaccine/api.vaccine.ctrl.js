@@ -1,4 +1,4 @@
-const {VaccineModel} = require('../../models');
+const {VaccineModel, PetModel} = require('../../models');
 const {validateBody} = require('../../utils');
 const HttpStatus = require('../../HttpStatus');
 
@@ -23,9 +23,12 @@ module.exports = {
       if (!body.petID) {
         throw new Error('petID is required');
       }
+      const vaccine = await VaccineModel.create(body);
+      const pet = await PetModel.findById(body.petID);
+      await pet.addVaccine(vaccine, next);
       res.json({
         success: true,
-        data: await VaccineModel.create(body),
+        data: vaccine,
       });
     } catch (error) {
       res.json({

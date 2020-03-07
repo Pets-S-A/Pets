@@ -16,11 +16,9 @@ Person.methods.addPet = async function(pet, next) {
   try {
     const person = this;
     if (person.pets) {
-      console.log('add');
       person.pets.push(pet.id);
     } else {
-      console.log('created');
-      person.pets = pet.id;
+      person.pets = [pet.id];
     }
     await person.save();
     next();
