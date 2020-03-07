@@ -31,6 +31,26 @@ module.exports = {
       });
     }
   },
+  deleteByID: async (req, res, next) => {
+    const body = req.body || {};
+    if (validateBody(body)) {
+      throw new Error('Boby not found');
+    }
+    if (!body.id) {
+      throw new Error('Id is required');
+    }
+    try {
+      res.json({
+        success: true,
+        data: await PersonModel.deleteByID(req.body.id),
+      });
+    } catch (error) {
+      res.json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
   delete: async (req, res, next) => {
     try {
       res.json({
