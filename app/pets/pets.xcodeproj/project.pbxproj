@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82359EF12417E84200FBC086 /* ServerAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359EF02417E84200FBC086 /* ServerAnswer.swift */; };
+		82359EF42417E85C00FBC086 /* APIRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359EF32417E85C00FBC086 /* APIRequests.swift */; };
+		82359EF62417E87C00FBC086 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359EF52417E87C00FBC086 /* Extensions.swift */; };
+		82359EF82417E8A900FBC086 /* NotURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359EF72417E8A900FBC086 /* NotURLProtocol.swift */; };
+		82359EFA2417E8C400FBC086 /* ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359EF92417E8C400FBC086 /* ENV.swift */; };
+		82359F022417F5B100FBC086 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F012417F5B100FBC086 /* Person.swift */; };
+		82359F042417F5BC00FBC086 /* PersonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F032417F5BC00FBC086 /* PersonHandler.swift */; };
 		82B83839240C8FB900E82929 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B83838240C8FB900E82929 /* AppDelegate.swift */; };
 		82B8383B240C8FB900E82929 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8383A240C8FB900E82929 /* SceneDelegate.swift */; };
 		82B8383D240C8FB900E82929 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8383C240C8FB900E82929 /* MainViewController.swift */; };
@@ -38,6 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		82359EF02417E84200FBC086 /* ServerAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAnswer.swift; sourceTree = "<group>"; };
+		82359EF32417E85C00FBC086 /* APIRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequests.swift; sourceTree = "<group>"; };
+		82359EF52417E87C00FBC086 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		82359EF72417E8A900FBC086 /* NotURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotURLProtocol.swift; sourceTree = "<group>"; };
+		82359EF92417E8C400FBC086 /* ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENV.swift; sourceTree = "<group>"; };
+		82359F012417F5B100FBC086 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		82359F032417F5BC00FBC086 /* PersonHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonHandler.swift; sourceTree = "<group>"; };
 		82B83835240C8FB900E82929 /* pets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82B83838240C8FB900E82929 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82B8383A240C8FB900E82929 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +94,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82359EEE2417E81F00FBC086 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				82359EF22417E84F00FBC086 /* API */,
+				82359EEF2417E83900FBC086 /* ServerAnswer */,
+			);
+			path = Server;
+			sourceTree = "<group>";
+		};
+		82359EEF2417E83900FBC086 /* ServerAnswer */ = {
+			isa = PBXGroup;
+			children = (
+				82359EF02417E84200FBC086 /* ServerAnswer.swift */,
+			);
+			path = ServerAnswer;
+			sourceTree = "<group>";
+		};
+		82359EF22417E84F00FBC086 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				82359EF32417E85C00FBC086 /* APIRequests.swift */,
+				82359EF52417E87C00FBC086 /* Extensions.swift */,
+				82359EF72417E8A900FBC086 /* NotURLProtocol.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		82359EFB2417E8F000FBC086 /* ENV */ = {
+			isa = PBXGroup;
+			children = (
+				82359EF92417E8C400FBC086 /* ENV.swift */,
+			);
+			path = ENV;
+			sourceTree = "<group>";
+		};
+		82359EFC2417EA8E00FBC086 /* Pet */ = {
+			isa = PBXGroup;
+			children = (
+				82B83867240C92A300E82929 /* PetDAO.swift */,
+			);
+			path = Pet;
+			sourceTree = "<group>";
+		};
+		82359F002417F59E00FBC086 /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				82359F012417F5B100FBC086 /* Person.swift */,
+				82359F032417F5BC00FBC086 /* PersonHandler.swift */,
+			);
+			path = Person;
+			sourceTree = "<group>";
+		};
 		82B8382C240C8FB900E82929 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +225,9 @@
 		82B8385E240C902300E82929 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				82359F002417F59E00FBC086 /* Person */,
+				82359EFB2417E8F000FBC086 /* ENV */,
+				82359EEE2417E81F00FBC086 /* Server */,
 				82B83861240C914D00E82929 /* Data */,
 				82B8385F240C912000E82929 /* Persistence */,
 				82B83869240C92D200E82929 /* Pet */,
@@ -179,7 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				82B83865240C928000E82929 /* GenericDAO.swift */,
-				82B83867240C92A300E82929 /* PetDAO.swift */,
+				82359EFC2417EA8E00FBC086 /* Pet */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -363,17 +432,24 @@
 			files = (
 				82B83874240C9AB800E82929 /* PetCreateViewController.swift in Sources */,
 				82B8387E240CA45200E82929 /* AgeDataSource.swift in Sources */,
+				82359EF42417E85C00FBC086 /* APIRequests.swift in Sources */,
 				82B8386B240C92DF00E82929 /* Pet.swift in Sources */,
 				82B8383D240C8FB900E82929 /* MainViewController.swift in Sources */,
 				82B8386D240C92EA00E82929 /* PetHandler.swift in Sources */,
 				82B83864240C918E00E82929 /* Pets.xcdatamodeld in Sources */,
 				82B83839240C8FB900E82929 /* AppDelegate.swift in Sources */,
+				82359F022417F5B100FBC086 /* Person.swift in Sources */,
 				82B83866240C928000E82929 /* GenericDAO.swift in Sources */,
 				82B8387C240CA44700E82929 /* GenderDelegate.swift in Sources */,
 				82B8387A240CA43B00E82929 /* GenderDataSource.swift in Sources */,
+				82359EF82417E8A900FBC086 /* NotURLProtocol.swift in Sources */,
+				82359EFA2417E8C400FBC086 /* ENV.swift in Sources */,
 				82B8386F240C956300E82929 /* CoreDataManager.swift in Sources */,
 				82B83868240C92A300E82929 /* PetDAO.swift in Sources */,
+				82359F042417F5BC00FBC086 /* PersonHandler.swift in Sources */,
 				82B83880240CA45B00E82929 /* AgeDelegate.swift in Sources */,
+				82359EF62417E87C00FBC086 /* Extensions.swift in Sources */,
+				82359EF12417E84200FBC086 /* ServerAnswer.swift in Sources */,
 				82B8383B240C8FB900E82929 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

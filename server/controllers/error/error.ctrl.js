@@ -6,7 +6,7 @@ module.exports = {
     try {
       res.status(HttpStatus.OK).json({
         success: true,
-        data: await ErrorModel.find(),
+        content: await ErrorModel.find(),
         message: 'Errors founded!',
       });
     } catch (error) {

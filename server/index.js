@@ -15,6 +15,8 @@ const {
   apiPetRouterProtected,
   apiPersonRouterProtected,
   apiVaccineRouterProtected,
+  userRouterUnprotected,
+  userRouterProtected,
 } = require('./route');
 
 
@@ -46,12 +48,12 @@ app.get('/', (req, res) => {
 });
 
 
+app.use('/', userRouterUnprotected);
 app.use('/api', apiPetRouterProtected);
 app.use('/api', apiPersonRouterProtected);
 app.use('/api', apiVaccineRouterProtected);
+app.use('/', userRouterProtected);
 // app.use('/admin', errorRouterUnprotected);
-// app.use('/admin', userRouterUnprotected);
-// app.use('/admin', validateToken, userRouterProtected);
 
 // Error Handler
 app.use(async (error, req, res, next) => {

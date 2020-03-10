@@ -1,14 +1,14 @@
 //
-//  Pet.swift
+//  User.swift
 //  pets
 //
-//  Created by Matheus Silva on 01/03/20.
+//  Created by Matheus Silva on 10/03/20.
 //  Copyright © 2020 Matheus Gois. All rights reserved.
 //
 
 import Foundation
 
-struct Pet: Codable {
+struct User: Codable {
     let id: String
     var name: String
     var age: String
@@ -29,5 +29,3 @@ struct Pet: Codable {
         ]
     }
 }
-
-typealias Pets = [Pet]

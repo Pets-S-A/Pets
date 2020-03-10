@@ -8,7 +8,7 @@ module.exports = {
     try {
       res.status(HttpStatus.OK).json({
         success: true,
-        data: await PetModel.find(),
+        content: await PetModel.find(),
         message: 'Pets found!',
       });
     } catch (error) {
@@ -30,7 +30,7 @@ module.exports = {
 
       res.json({
         success: true,
-        data: pet,
+        content: pet,
       });
     } catch (error) {
       res.json({
@@ -50,7 +50,7 @@ module.exports = {
     try {
       res.json({
         success: true,
-        data: await PetModel.deleteByID(req.body.id),
+        content: await PetModel.deleteByID(req.body.id),
       });
     } catch (error) {
       res.json({
@@ -63,7 +63,7 @@ module.exports = {
     try {
       res.json({
         success: true,
-        data: await PetModel.deleteMany({}),
+        content: await PetModel.deleteMany({}),
       });
     } catch (error) {
       res.json({

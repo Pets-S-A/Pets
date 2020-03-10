@@ -1,4 +1,4 @@
-const {PersonModel} = require('../../models');
+const {PersonModel, UserModel} = require('../../models');
 const {validateBody} = require('../../utils');
 const HttpStatus = require('../../HttpStatus');
 
@@ -7,7 +7,7 @@ module.exports = {
     try {
       res.status(HttpStatus.OK).json({
         success: true,
-        data: await PersonModel.find(),
+        content: await PersonModel.find(),
         message: 'Persons founded!',
       });
     } catch (error) {
@@ -20,9 +20,20 @@ module.exports = {
       if (validateBody(body)) {
         throw new Error('Boby not found');
       }
+      if (!body.userID) {
+        throw new Error('UserID is required');
+      }
+      const user = await UserModel.findById(body.userID);
+      if (!user) {
+        throw new Error('User not found');
+      }
+      const person = await PersonModel.create(body);
+      user.person = person.id;
+      await user.save();
+
       res.json({
         success: true,
-        data: await PersonModel.create(body),
+        content: person,
       });
     } catch (error) {
       res.json({
@@ -42,7 +53,7 @@ module.exports = {
     try {
       res.json({
         success: true,
-        data: await PersonModel.deleteByID(req.body.id),
+        content: await PersonModel.deleteByID(req.body.id),
       });
     } catch (error) {
       res.json({
@@ -55,7 +66,7 @@ module.exports = {
     try {
       res.json({
         success: true,
-        data: await PersonModel.deleteMany({}),
+        content: await PersonModel.deleteMany({}),
       });
     } catch (error) {
       res.json({

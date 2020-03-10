@@ -7,7 +7,7 @@ module.exports = {
     try {
       res.status(HttpStatus.OK).json({
         success: true,
-        data: await VaccineModel.find(),
+        content: await VaccineModel.find(),
         message: 'Vaccines founded!',
       });
     } catch (error) {
@@ -28,7 +28,7 @@ module.exports = {
       await pet.addVaccine(vaccine, next);
       res.json({
         success: true,
-        data: vaccine,
+        content: vaccine,
       });
     } catch (error) {
       res.json({
@@ -48,7 +48,7 @@ module.exports = {
     try {
       res.json({
         success: true,
-        data: await VaccineModel.deleteByID(req.body.id),
+        content: await VaccineModel.deleteByID(req.body.id),
       });
     } catch (error) {
       res.json({
@@ -61,7 +61,7 @@ module.exports = {
     try {
       res.json({
         success: true,
-        data: await VaccineModel.deleteMany({}),
+        content: await VaccineModel.deleteMany({}),
       });
     } catch (error) {
       res.json({

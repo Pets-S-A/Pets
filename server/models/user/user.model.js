@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const bcrypt = require('bcrypt');
 
 const mongoose = require('mongoose');
@@ -9,6 +10,7 @@ const User = new Schema(
       name: {type: String, required: true},
       password: {type: String, required: true},
       access: {type: [String], required: true},
+      person: {type: mongoose.Schema.Types.ObjectId, ref: 'person', autopopulate: true},
     },
     {timestamps: true},
 );
