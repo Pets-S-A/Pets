@@ -27,8 +27,9 @@ class PetCreateViewController: UIViewController {
     lazy var ageSelected  = ageDataSource.options[0]
     
     var agressive = false
-    
     var imageName = ""
+    
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,14 +53,24 @@ class PetCreateViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func create() {
-        PetHandler.create(pet: formatPet()) { (response) in
+        self.showSpinner(onView: self.view)
+        PetHandler.create(params: formatPet().dictionaryRepresentation) { (response) in
             switch response {
             case .error(let description):
-                print(description)
-            case .success(let pet):
-                print(pet)
+                DispatchQueue.main.async {
+                    UIAlert.show(controller: self, title: "Não foi possível cadastrar o pet, tente novamente!", message: description) { (_) in }
+                    self.removeSpinner()
+                }
+            case .success(_):
+                DispatchQueue.main.async {
+                    UIAlert.show(controller: self, title: "Pet cadastrado com sucesso!", message: "") { (_) in
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    self.removeSpinner()
+                }
             }
         }
+        
     }
     @IBAction func changeStatusAgressive(_ sender: UISwitch) {
         agressive = sender.isOn
@@ -68,7 +79,7 @@ class PetCreateViewController: UIViewController {
     
     // MARK: - Ultils
     func formatPet() -> Pet {
-        let pet = Pet(id: UUID().uuidString,
+        let pet = Pet(_id: "",
                       name: petName.text ?? "",
                       age: ageSelected,
                       gender: genderSelected,

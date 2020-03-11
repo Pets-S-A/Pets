@@ -21,21 +21,20 @@ enum PetOneResponse: Error {
 class PetHandler {
     public static let BASE_URL:String = "\(ENV.server)/pet"
     
-    static func create(pet: Pet, withCompletion completion: @escaping (PetOneResponse) -> Void) {
-        APIRequests.postRequest(url: BASE_URL, params: pet.dictionaryRepresentation, decodableType: ServerAnswer<Pets>.self) {
+    static func create(params: [String: Any], withCompletion completion: @escaping (PetOneResponse) -> Void) {
+        APIRequests.postRequest(url: "\(BASE_URL)/create", params: params, decodableType: ServerAnswer<Pet>.self) {
             (response) in
             switch response {
             case .result(let answer as ServerAnswer<Pet>):
-                if (answer.success ?? false) {
-                    if let pet = answer.content {
-                        completion(PetOneResponse.success(answer: pet))
-                    } else {
-                        completion(PetOneResponse.error(description: (String(describing: "Not have pet"))))
-                    }
-                    
-                } else {
-                    completion(PetOneResponse.error(description: (String(describing: answer.message))))
+                print(answer)
+                guard let result = answer.success,
+                    let pet = answer.content,
+                                   result
+                                   else {
+                    completion(PetOneResponse.error(description: "Answer is false"))
+                    return
                 }
+                completion(PetOneResponse.success(answer: pet))
             case .error(let error):
                 completion(PetOneResponse.error(description: error.localizedDescription))
             default:

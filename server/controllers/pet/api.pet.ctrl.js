@@ -21,11 +21,11 @@ module.exports = {
       if (validateBody(body)) {
         throw new Error('Boby is required');
       }
-      if (!body.email) {
-        throw new Error('E-mail is required');
+      if (!body.personID) {
+        throw new Error('personID is required');
       }
       const pet = await PetModel.create(body);
-      const person = await PersonModel.findOne({email: body.email});
+      const person = await PersonModel.findById(body.personID);
       await person.addPet(pet, next);
 
       res.json({

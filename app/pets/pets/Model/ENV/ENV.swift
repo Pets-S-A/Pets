@@ -10,11 +10,13 @@ import Foundation
 
 struct ENV {
     public static let production = false
-    
+    public static let IMAGE_URL_SERVER = ""
+    public static let IMAGE_ACCESS_CODE = "qrH9hy1SFind9iGLhEkykCH7Rp7jpRDq"
     public static var server: String {
-        return ENV.production ? "" : "http://localhost/api"
+        return ENV.production ? "" : "http://localhost:3000/api"
     }
     public static var token: [String: String] {
         return ["master-token": "token"]
     }
+    
 }

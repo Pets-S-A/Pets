@@ -9,23 +9,23 @@
 import Foundation
 
 struct Pet: Codable {
-    let id: String
+    let _id: String
     var name: String
     var age: String
     var gender: String
     var agressive: Bool
-    var image: String
+    var image: String?
     var breed: String
     
     var dictionaryRepresentation: [String: Any] {
         return [
-            "id" : id,
             "name" : name,
             "age" : age,
             "gender" : gender,
             "agressive" : agressive,
-            "image" : image,
-            "breed" : breed
+            "image" : image ?? "",
+            "breed" : breed,
+            "personID": CommonData.shared.user.person?._id ?? ""
         ]
     }
 }

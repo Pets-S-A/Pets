@@ -1,10 +1,9 @@
 const {UserModel} = require('../../models');
-const HttpStatus = require('../../HttpStatus');
+// const HttpStatus = require('../../HttpStatus');
 const {validateBody} = require('../../utils');
 
-
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const config = require('../../config');
 
@@ -20,10 +19,13 @@ module.exports = {
       if (!body.application) {
         throw new Error('Aplication is required');
       }
+
+      const user = await UserModel.create(body);
+      await user.hash();
       if (body.application == 'json') {
         res.json({
           success: true,
-          content: await UserModel.create(body),
+          content: user,
         });
       } else {
         res.json({
@@ -59,26 +61,31 @@ module.exports = {
     }
   },
   authenticate: async (req, res, next) => {
-    const login = req.body.login;
+    const email = req.body.email;
     const password = req.body.password;
 
 
     try {
-      const user = await UserModel.findOne({login});
+      const user = await UserModel.findOne({email});
 
       if (!user) {
         return res.json({
           success: false,
-          content: 'User not found',
+          message: 'Usuário não encontrado!',
         });
       }
-
+      if (!user.person) {
+        return res.json({
+          success: false,
+          message: 'Pessoa não encontrada!',
+        });
+      }
       const compare = await bcrypt.compare(password, user.password);
 
       if (!compare) {
         return res.json({
           success: false,
-          content: 'Password doesn\'t match',
+          message: 'Senha não confere!',
         });
       }
 
@@ -88,9 +95,11 @@ module.exports = {
       });
 
       if (req.body.application && req.body.application == 'json') {
+        console.log(user);
         return res.json({
           success: true,
-          content: token,
+          content: user,
+          message: token,
         });
       } else {
         res.cookie('auth', token);
@@ -112,12 +121,12 @@ module.exports = {
 // TODO - FIX
 // eslint-disable-next-line require-jsdoc
 async function createAdmin() {
-  const user = await UserModel.findOne({login: 'admin'});
+  const user = await UserModel.findOne({email: 'admin'});
 
   if (!user) {
     const password = 'admin123!@#';
     const body = {
-      login: 'admin',
+      email: 'admin',
       name: 'Admin',
       password,
       access: ['master'],

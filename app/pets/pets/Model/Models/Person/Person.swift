@@ -8,24 +8,16 @@
 
 import Foundation
 
-struct User: Codable {
-    let id: String
+struct Person: Codable {
+    let _id: String
     var name: String
-    var age: String
-    var gender: String
-    var agressive: Bool
     var image: String
-    var breed: String
+    var pets: Pets?
     
     var dictionaryRepresentation: [String: Any] {
         return [
-            "id" : id,
             "name" : name,
-            "age" : age,
-            "gender" : gender,
-            "agressive" : agressive,
             "image" : image,
-            "breed" : breed
         ]
     }
 }
