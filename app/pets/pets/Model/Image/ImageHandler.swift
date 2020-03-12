@@ -34,7 +34,7 @@ struct ImageHandler {
         let boundary = ImageHandler().generateBoundaryString()
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
-        guard let imageData = imagemT.jpegData(compressionQuality: 0.3) else {
+        guard let imageData = imagemT.jpegData(compressionQuality: 0.1) else {
             completion(ImageUploadResponse.error(description: "Error: Impossível carregar a imagem."))
             return
         }

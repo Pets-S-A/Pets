@@ -12,9 +12,16 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var login: UITextField!
     @IBOutlet weak var password: UITextField!
     
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        config()
+    }
+    
+    func config() {
+        setupKeyboard()
     }
 
     @IBAction func doLogin() {
@@ -50,5 +57,29 @@ class LoginViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    // MARK: - Keyboard
+    var tap: UITapGestureRecognizer!
+    func setupKeyboard() {
+        tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    @objc
+    private func keyboardWillShow(sender: NSNotification) {
+        view.frame.origin.y = -150
+    }
+    @objc
+    private func keyboardWillHide(sender: NSNotification) {
+        view.frame.origin.y = 0
+    }
+    @objc
+    private func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

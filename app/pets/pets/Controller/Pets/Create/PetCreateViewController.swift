@@ -39,6 +39,7 @@ class PetCreateViewController: UIViewController {
     func config() {
         configGender()
         configAge()
+        setupKeyboard()
     }
     
     func configGender() {
@@ -54,6 +55,30 @@ class PetCreateViewController: UIViewController {
     // MARK: - Actions
     @IBAction func create() {
         self.showSpinner(onView: self.view)
+        
+        let date = Date().description.getFirst()
+        let nameImage = "pet_\(Int.random(in: 0...100000000))_\(date).png"
+        imageName = ImageHandler.url + nameImage
+        
+        ImageHandler.uploadRequest(imagemT: petImage.image, name: nameImage) { (response) in
+            switch response {
+            case .success(let result):
+                if result {
+                    self.uploadPet()
+                } else {
+                    self.showAlert(title: "Erro ao subir a imagem", message: "Sem descrição!")
+                    self.removeSpinner()
+                }
+                
+            case .error(let description):
+                self.showAlert(title: "Erro ao subir a imagem", message: description)
+                self.removeSpinner()
+            }
+        }
+        
+    }
+    
+    func uploadPet() {
         PetHandler.create(params: formatPet().dictionaryRepresentation) { (response) in
             switch response {
             case .error(let description):
@@ -70,7 +95,6 @@ class PetCreateViewController: UIViewController {
                 }
             }
         }
-        
     }
     @IBAction func changeStatusAgressive(_ sender: UISwitch) {
         agressive = sender.isOn
@@ -90,4 +114,34 @@ class PetCreateViewController: UIViewController {
         return pet
     }
     
+    // MARK: - Keyboard
+    var tap: UITapGestureRecognizer!
+    func setupKeyboard() {
+        tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    @objc
+    private func keyboardWillShow(sender: NSNotification) {
+        view.frame.origin.y = -150
+    }
+    @objc
+    private func keyboardWillHide(sender: NSNotification) {
+        view.frame.origin.y = 0
+    }
+    @objc
+    private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    //MARK: - IMAGE
+    @IBAction func loadImage() {
+        ImagePickerManager().pickImage(self){ image in
+            self.petImage.image = image
+        }
+    }
 }

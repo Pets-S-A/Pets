@@ -57,7 +57,12 @@ class UserHandler {
             switch response {
             case .result(let answer as ServerAnswer<User>):
                 guard let token = answer.message, let user = answer.content else {
-                    completion(UserTokenResponse.error(description: "Error to convert datas"))
+                    if let message = answer.message {
+                        completion(UserTokenResponse.error(description: message))
+                    } else {
+                        completion(UserTokenResponse.error(description: "Error to convert datas"))
+                    }
+
                     return
                 }
                 completion(UserTokenResponse.success(answer: user, token: token))
