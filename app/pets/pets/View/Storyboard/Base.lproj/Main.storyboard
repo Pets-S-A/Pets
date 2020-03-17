@@ -75,7 +75,7 @@
         <!--Pet Create View Controller-->
         <scene sceneID="Ndn-jX-05F">
             <objects>
-                <viewController id="ygD-zD-Pmy" customClass="PetCreateViewController" customModule="pets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PetCreateViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ygD-zD-Pmy" customClass="PetCreateViewController" customModule="pets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5FL-dC-yee">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
