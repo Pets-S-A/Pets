@@ -75,16 +75,20 @@ class UserHandler {
     }
     
     static func getAll(userID: String, withCompletion completion: @escaping (UserLoadResponse) -> Void) {
-        UserLoadResponse.error(description: "Not implementation")
+        completion(UserLoadResponse.error(description: "Not implementation"))
+        
     }
     static func getOne(id: String, withCompletion
         completion: (UserOneResponse) -> Void) {
-        UserOneResponse.error(description: "Not implementation")
+        completion(UserOneResponse.error(description: "Not implementation"))
+        
     }
     static func update(user: User, withCompletion completion: (UserOneResponse) -> Void) {
-        UserOneResponse.error(description: "Not implementation")
+        completion(UserOneResponse.error(description: "Not implementation"))
+        
     }
     public static func delete(id: Int, completion: @escaping (UserOneResponse) -> Void) {
-        UserOneResponse.error(description: "Not implementation")
+        completion(UserOneResponse.error(description: "Not implementation"))
+        
     }
 }

@@ -66,12 +66,13 @@ class PetHandler {
     }
     static func getOne(id: String, withCompletion
         completion: (PetOneResponse) -> Void) {
-        PetOneResponse.error(description: "Not implementation")
+        completion(PetOneResponse.error(description: "Not implementation"))
     }
     static func update(pet: Pet, withCompletion completion: (PetOneResponse) -> Void) {
-        PetOneResponse.error(description: "Not implementation")
+        completion(PetOneResponse.error(description: "Not implementation"))
     }
     public static func delete(id: Int, completion: @escaping (PetOneResponse) -> Void) {
-        PetOneResponse.error(description: "Not implementation")
+        completion(PetOneResponse.error(description: "Not implementation"))
+        
     }
 }
