@@ -12,13 +12,12 @@ jobs:
     runs-on: macOS-latest
     strategy:
         matrix:
-          destination: ['platform=iOS Simulator,OS=12.2,name=iPhone 11 Pro Max']
+          destination: ['platform=iOS Simulator,OS=13.3,name=iPhone 11 Pro Max']
     steps:
       - name: Checkout
         uses: actions/checkout@master
       - name: Build and test
-        run: cd app && cd pets && xcodebuild test -project pets.xcodeproj -scheme pets -destination "${destination}" test | xcpretty
+        run: cd app && cd pets && xcodebuild test -project pets.xcodeproj -scheme pets -destination "platform=iOS Simulator,OS=13.3,name=iPhone 11 Pro Max" test | xcpretty
         env: 
          destination: ${{ matrix.destination }}
 
-         
