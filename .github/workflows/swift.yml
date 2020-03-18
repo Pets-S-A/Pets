@@ -19,10 +19,6 @@ jobs:
       - name: cd app
         run: cd app && cd pets
       - name: Build and test
-        run:  xcodebuild test \
-              -project pets.xcodeproj \
-              -scheme pets \
-              -destination "${destination}" \
-              test | xcpretty
+        run:  xcodebuild test -project pets.xcodeproj -scheme pets -destination "${destination}" test | xcpretty
         env: 
          destination: ${{ matrix.destination }}
