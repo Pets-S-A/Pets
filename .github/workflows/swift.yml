@@ -22,7 +22,7 @@ jobs:
         run:  xcodebuild test \
               -project pets.xcodeproj \
               -scheme pets \
-              -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.3' \
+              -destination "${destination}" \
               test | xcpretty
         env: 
          destination: ${{ matrix.destination }}
