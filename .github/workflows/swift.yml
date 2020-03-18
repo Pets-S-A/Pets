@@ -26,15 +26,3 @@ jobs:
               test | xcpretty
         env: 
          destination: ${{ matrix.destination }}
-
-
-         xcodebuild test \
-          -project pets.xcodeproj \
-          -scheme pets \
-          -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.3' \
-          test | xcpretty
-
-          xcodebuild test \
-          -project PhotoApp.xcodeproj \
-          -scheme PhotoApp \
-          -destination 'platform=iOS Simulator,name=iPhone 8,OS=13.3'
