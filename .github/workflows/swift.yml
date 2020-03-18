@@ -18,9 +18,23 @@ jobs:
         uses: actions/checkout@master
       - name: cd app
         run: cd app && cd pets
-      - name: Build and test part 1
-        run:  xcodebuild clean test -project pets.xcodeproj -scheme pets -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-      - name: Build and test part 2
-        run:  bash <(curl -s https://codecov.io/bash)
+      - name: Build and test
+        run:  xcodebuild test \
+              -project pets.xcodeproj \
+              -scheme pets \
+              -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.3' \
+              test | xcpretty
         env: 
          destination: ${{ matrix.destination }}
+
+
+         xcodebuild test \
+          -project pets.xcodeproj \
+          -scheme pets \
+          -destination 'platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.3' \
+          test | xcpretty
+
+          xcodebuild test \
+          -project PhotoApp.xcodeproj \
+          -scheme PhotoApp \
+          -destination 'platform=iOS Simulator,name=iPhone 8,OS=13.3'
