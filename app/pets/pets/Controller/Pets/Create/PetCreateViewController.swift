@@ -27,8 +27,9 @@ class PetCreateViewController: UIViewController {
     lazy var ageSelected  = ageDataSource.options[0]
     
     var agressive = false
-    
     var imageName = ""
+    
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,7 @@ class PetCreateViewController: UIViewController {
     func config() {
         configGender()
         configAge()
+        setupKeyboard()
     }
     
     func configGender() {
@@ -52,12 +54,45 @@ class PetCreateViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func create() {
-        PetHandler.create(pet: formatPet()) { (response) in
+        self.showSpinner(onView: self.view)
+        
+        let date = Date().description.getFirst()
+        let nameImage = "pet_\(Int.random(in: 0...100000000))_\(date).png"
+        imageName = ImageHandler.url + nameImage
+        
+        ImageHandler.uploadRequest(imagemT: petImage.image, name: nameImage) { (response) in
+            switch response {
+            case .success(let result):
+                if result {
+                    self.uploadPet()
+                } else {
+                    self.showAlert(title: "Erro ao subir a imagem", message: "Sem descrição!")
+                    self.removeSpinner()
+                }
+                
+            case .error(let description):
+                self.showAlert(title: "Erro ao subir a imagem", message: description)
+                self.removeSpinner()
+            }
+        }
+        
+    }
+    
+    func uploadPet() {
+        PetHandler.create(params: formatPet().dictionaryRepresentation) { (response) in
             switch response {
             case .error(let description):
-                print(description)
-            case .success(let pet):
-                print(pet)
+                DispatchQueue.main.async {
+                    UIAlert.show(controller: self, title: "Não foi possível cadastrar o pet, tente novamente!", message: description) { (_) in }
+                    self.removeSpinner()
+                }
+            case .success(_):
+                DispatchQueue.main.async {
+                    UIAlert.show(controller: self, title: "Pet cadastrado com sucesso!", message: "") { (_) in
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    self.removeSpinner()
+                }
             }
         }
     }
@@ -68,7 +103,7 @@ class PetCreateViewController: UIViewController {
     
     // MARK: - Ultils
     func formatPet() -> Pet {
-        let pet = Pet(id: UUID().uuidString,
+        let pet = Pet(_id: "",
                       name: petName.text ?? "",
                       age: ageSelected,
                       gender: genderSelected,
@@ -79,4 +114,34 @@ class PetCreateViewController: UIViewController {
         return pet
     }
     
+    // MARK: - Keyboard
+    var tap: UITapGestureRecognizer!
+    func setupKeyboard() {
+        tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    @objc
+    private func keyboardWillShow(sender: NSNotification) {
+        view.frame.origin.y = -150
+    }
+    @objc
+    private func keyboardWillHide(sender: NSNotification) {
+        view.frame.origin.y = 0
+    }
+    @objc
+    private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    //MARK: - IMAGE
+    @IBAction func loadImage() {
+        ImagePickerManager().pickImage(self){ image in
+            self.petImage.image = image
+        }
+    }
 }

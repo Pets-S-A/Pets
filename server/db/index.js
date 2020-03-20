@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 const config = require('../config');
 
-const options = {useNewUrlParser: true, useUnifiedTopology: true};
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+};
 
 mongoose
     .connect(config.serverDb, options)
