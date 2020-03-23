@@ -33,6 +33,7 @@ module.exports = {
 
       res.json({
         success: true,
+        message: 'Pessoa criada com sucesso!',
         content: person,
       });
     } catch (error) {

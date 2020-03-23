@@ -25,7 +25,6 @@
 		82359F10241803B100FBC086 /* UIImageDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F0F241803B100FBC086 /* UIImageDownload.swift */; };
 		82359F122418041700FBC086 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F112418041700FBC086 /* Spinner.swift */; };
 		82359F152418049F00FBC086 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F142418049F00FBC086 /* LoginViewController.swift */; };
-		82359F17241804AF00FBC086 /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F16241804AF00FBC086 /* RegisterUserViewController.swift */; };
 		82359F1B241807C900FBC086 /* RegisterPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F1A241807C900FBC086 /* RegisterPersonViewController.swift */; };
 		82682EC724288847006908CB /* PersonNameComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82682EC624288847006908CB /* PersonNameComponents.swift */; };
 		8287FA0924183826005F69BF /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287FA0824183826005F69BF /* UserDefaults.swift */; };
@@ -92,7 +91,6 @@
 		82359F0F241803B100FBC086 /* UIImageDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageDownload.swift; sourceTree = "<group>"; };
 		82359F112418041700FBC086 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		82359F142418049F00FBC086 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		82359F16241804AF00FBC086 /* RegisterUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserViewController.swift; sourceTree = "<group>"; };
 		82359F1A241807C900FBC086 /* RegisterPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPersonViewController.swift; sourceTree = "<group>"; };
 		82682EC624288847006908CB /* PersonNameComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonNameComponents.swift; sourceTree = "<group>"; };
 		8287FA0824183826005F69BF /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -273,7 +271,6 @@
 		82359F19241804BF00FBC086 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				82359F16241804AF00FBC086 /* RegisterUserViewController.swift */,
 				82359F1A241807C900FBC086 /* RegisterPersonViewController.swift */,
 			);
 			path = Register;
@@ -668,7 +665,6 @@
 				82359F042417F5BC00FBC086 /* PersonHandler.swift in Sources */,
 				82B83880240CA45B00E82929 /* AgeDelegate.swift in Sources */,
 				8287FA0D241838C7005F69BF /* UIAlert.swift in Sources */,
-				82359F17241804AF00FBC086 /* RegisterUserViewController.swift in Sources */,
 				82359EF62417E87C00FBC086 /* Extensions.swift in Sources */,
 				8297A0FD2419AA8F00BE7733 /* String.swift in Sources */,
 				82359EF12417E84200FBC086 /* ServerAnswer.swift in Sources */,
