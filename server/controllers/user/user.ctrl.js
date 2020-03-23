@@ -1,5 +1,5 @@
 const {UserModel} = require('../../models');
-// const HttpStatus = require('../../HttpStatus');
+const HttpStatus = require('../../HttpStatus');
 const {validateBody} = require('../../utils');
 
 const jwt = require('jsonwebtoken');
@@ -10,21 +10,33 @@ const config = require('../../config');
 const EXPIRES_IN_MINUTES = '1440m'; // expires in 24 hours
 
 module.exports = {
+  getAll: async (req, res, next) => {
+    try {
+      res.status(HttpStatus.OK).json({
+        success: true,
+        content: await UserModel.find(),
+        message: 'Usuários encontrados!',
+      });
+    } catch (error) {
+      return next(error);
+    }
+  },
   create: async (req, res, next) => {
     try {
       const body = req.body || {};
       if (validateBody(body)) {
-        throw new Error('Body not found');
+        throw new Error('Body não encontrado');
       }
       if (!body.application) {
         throw new Error('Aplication is required');
       }
 
       const user = await UserModel.create(body);
-      await user.hash();
+      await user.hash(next);
       if (body.application == 'json') {
         res.json({
           success: true,
+          message: 'Pessoa criada com successo!',
           content: user,
         });
       } else {
@@ -110,6 +122,36 @@ module.exports = {
     }
 
     return;
+  },
+  deleteByID: async (req, res, next) => {
+    const params = req.params || {};
+    try {
+      if (!params.id) {
+        throw new Error('Id is required');
+      }
+      res.json({
+        success: true,
+        content: await UserModel.findByIdAndDelete(params.id),
+      });
+    } catch (error) {
+      res.json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+  delete: async (req, res, next) => {
+    try {
+      res.json({
+        success: true,
+        content: await UserModel.deleteMany({}),
+      });
+    } catch (error) {
+      res.json({
+        success: false,
+        message: error.message,
+      });
+    }
   },
   logout: async (req, res, next) => {
     res.clearCookie('auth');

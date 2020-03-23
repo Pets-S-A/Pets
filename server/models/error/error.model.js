@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const ErrorModel = new Schema(
     {
-      name: {type: String, required: true},
-      message: {type: String, required: true},
+      name: {type: String},
+      message: {type: String},
       error: {type: String},
     },
     {timestamps: true},

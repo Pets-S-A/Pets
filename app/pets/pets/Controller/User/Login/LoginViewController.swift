@@ -7,39 +7,36 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class LoginViewController: UIViewController {
-    @IBOutlet weak var login: UITextField!
-    @IBOutlet weak var password: UITextField!
     
+    @IBOutlet weak var authorizationButton: ASAuthorizationAppleIDButton!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         config()
+        setUpSignInAppleButton()
     }
     
     func config() {
-        setupKeyboard()
+        
     }
-
-    @IBAction func doLogin() {
-        guard let email = login.text, email != "" else {
-            UIAlert.show(controller: self, title: "Digite um email",
-                         message: "") { (_) in }
-            return
-        }
-        guard let password = password.text, password != "" else {
-            UIAlert.show(controller: self, title: "Digite uma senha",
-            message: "") { (_) in }
-            return
-        }
+    
+    func auth(appleIDCredential: ASAuthorizationAppleIDCredential) {
+        let password = appleIDCredential.user //appleID is the password
+        let name = appleIDCredential.fullName?.getFullName() ?? ""
+        let email = appleIDCredential.email ?? ""
+        
+        
         let params = [
             "email": email,
             "password": password,
+            "name": name,
             "application": "json"
         ]
+        
         self.showSpinner(onView: self.view)
         UserHandler.auth(params: params) { (response) in
             switch response {
@@ -52,34 +49,62 @@ class LoginViewController: UIViewController {
                 }
             case.error(let description):
                 DispatchQueue.main.async {
-                    UIAlert.show(controller: self, title: "Não foi possível fazer login!", message: description) { (_) in }
+                    print(description)
+                    if description == "Usuário não encontrado!" {
+                        self.create(user: self.formatterUser(email: email, name: name, password: password))
+                    } else {
+                        UIAlert.show(controller: self, title: "Não foi possível fazer login!", message: description) { (_) in }
+                        self.removeSpinner()
+                    }
+                }
+            }
+        }
+    }
+    func create(user: User) {
+        UserHandler.create(user: user) { (response) in
+            switch response {
+            case .success(let answer):
+                DispatchQueue.main.async {
+                    CommonData.shared.user = answer
+                    self.performSegue(withIdentifier: "toRegister", sender: nil)
+                    self.removeSpinner()
+                }
+            case .error(let description):
+                DispatchQueue.main.async {
+                    UIAlert.show(controller: self, title: "Não foi possível criar um Usuário!", message: description) { (_) in }
                     self.removeSpinner()
                 }
             }
         }
     }
     
-    // MARK: - Keyboard
-    var tap: UITapGestureRecognizer!
-    func setupKeyboard() {
-        tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification, object: nil)
+    func formatterUser(email: String, name: String, password: String) -> User {
+        return User(_id: nil, email: email, name: name, password: password, access: nil, person: nil)
     }
-    @objc
-    private func keyboardWillShow(sender: NSNotification) {
-        view.frame.origin.y = -150
+}
+
+
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    func setUpSignInAppleButton() {
+        authorizationButton.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
+        authorizationButton.cornerRadius = 10
     }
-    @objc
-    private func keyboardWillHide(sender: NSNotification) {
-        view.frame.origin.y = 0
+    @objc func handleAppleIdRequest() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.performRequests()
     }
-    @objc
-    private func dismissKeyboard() {
-        view.endEditing(true)
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
+            self.auth(appleIDCredential: appleIDCredential)
+        }
+        
+        func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+            print(error)
+        }
     }
 }

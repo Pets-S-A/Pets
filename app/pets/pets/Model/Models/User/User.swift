@@ -9,20 +9,19 @@
 import Foundation
 
 struct User: Codable {
-    let _id: String
+    let _id: String?
     var email: String
     var name: String
     var password: String
-    var access: [String]
+    var access: [String]?
     var person: Person?
     
     var dictionaryRepresentation: [String: Any] {
         return [
-            "login" : email,
+            "email" : email,
             "name" : name,
             "password" : password,
-            "access" : access,
-            "person" : person?.dictionaryRepresentation ?? ""
+            "application": "json"
         ]
     }
 }
