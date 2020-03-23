@@ -47,8 +47,6 @@ class PersonHandler {
             }
         }
     }
-    
-    
     static func getAll(personID: String, withCompletion completion: @escaping (PersonLoadResponse) -> Void) {
         completion(PersonLoadResponse.error(description: "Not implementation"))
         
@@ -58,8 +56,8 @@ class PersonHandler {
         completion(PersonOneResponse.error(description: "Not implementation"))
         
     }
-    static func update(person: Person, withCompletion completion: (PersonOneResponse) -> Void) {
-        APIRequests.postRequest(url: "\(BASE_URL)/update", params: person.dictionaryRepresentation, decodableType: ServerAnswer<Person>.self) {
+    static func update(person: Person, withCompletion completion: @escaping (PersonOneResponse) -> Void) {
+        APIRequests.postRequest(url: "\(BASE_URL)/update", params: person.dictionaryRepresentationUpdate, decodableType: ServerAnswer<Person>.self) {
             (response) in
             switch response {
             case .result(let answer as ServerAnswer<Person>):
@@ -79,7 +77,7 @@ class PersonHandler {
             }
         }
     }
-    public static func delete(id: Int, completion: @escaping (PersonOneResponse) -> Void) {
+    public static func delete(id: Int, withCompletion completion: @escaping (PersonOneResponse) -> Void) {
         completion(PersonOneResponse.error(description: "Not implementation"))
         
     }

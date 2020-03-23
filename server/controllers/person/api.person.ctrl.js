@@ -43,6 +43,36 @@ module.exports = {
       });
     }
   },
+  update: async (req, res, next) => {
+    try {
+      const body = req.body || {};
+      if (validateBody(body)) {
+        throw new Error('Boby not found');
+      }
+      if (!body.id) {
+        throw new Error('id is required');
+      }
+
+      const person = await PersonModel.findById(body.id);
+      if (!person) {
+        throw new Error('User not found');
+      }
+      person.name = body.name;
+      person.image = body.image;
+      await person.save();
+
+      res.json({
+        success: true,
+        message: 'Pessoa atualizada com sucesso!',
+        content: person,
+      });
+    } catch (error) {
+      res.json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
   deleteByID: async (req, res, next) => {
     const params = req.params || {};
     try {

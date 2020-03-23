@@ -18,12 +18,16 @@ class MainViewController: UIViewController {
         setUp()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print("here")
+    }
+    
     func setUp() {
         preLoad()
     }
     
     func preLoad() {
-        personName.text = CommonData.shared.user.name
+        personName.text = CommonData.shared.user.person?.name
         if let imageUrl = CommonData.shared.user.person?.image {
             DispatchQueue.main.async {
                 self.personImage.imageFromWeb(withURL: imageUrl)

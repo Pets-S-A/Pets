@@ -29,13 +29,13 @@ class RegisterPersonViewController: UIViewController {
     }
     
     private func loadPreview() {
-        if let user = CommonData.shared.user {
-            nameText.text = user.name
+        if let person = CommonData.shared.user.person {
+            nameText.text = person.name
         } else {
             print("User not defined")
         }
         if isProfileEdition {
-            button.setTitle("Atualiar", for: .normal)
+            button.setTitle("Atualizar", for: .normal)
             if let imageURL = CommonData.shared.user.person?.image {
                 DispatchQueue.main.async {
                     self.imageView.imageFromWeb(withURL: imageURL)
@@ -45,9 +45,21 @@ class RegisterPersonViewController: UIViewController {
     }
     
     func formartPerson() -> Person {
+        if isProfileEdition  {
+            if var person = CommonData.shared.user.person {
+                if let nameText = nameText.text {
+                    person.name = nameText
+                }
+                if imageName != "" {
+                    person.image = imageName
+                }
+                return person
+            }
+        }
         return Person(_id: nil,
-                      name: nameText.text ?? "",
-                      image: imageName, pets: nil)
+                name: nameText.text ?? "",
+                image: imageName, pets: nil)
+        
     }
     
     
