@@ -181,6 +181,7 @@
                     </view>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="button" destination="9I7-P0-cKs" id="zPK-m0-kIa"/>
                         <outlet property="imageView" destination="e61-kD-FkP" id="UeC-6z-dIM"/>
                         <outlet property="nameText" destination="878-zX-IEV" id="quP-9O-YZ2"/>
                         <segue destination="rvj-9C-FrB" kind="presentation" identifier="toMain" modalPresentationStyle="fullScreen" id="HlO-NM-NT6"/>
@@ -215,23 +216,47 @@
                                     <segue destination="ygD-zD-Pmy" kind="presentation" id="L1u-jS-Pcv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VacciPet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5WD-LF-7vw">
-                                <rect key="frame" x="31" y="92" width="131" height="42"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VacciPets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5WD-LF-7vw">
+                                <rect key="frame" x="31" y="82" width="147" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eTg-Ub-t6Q">
+                                <rect key="frame" x="31" y="132" width="58" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4PQ-Nf-GOI">
+                                <rect key="frame" x="31" y="197" width="196" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="42V-pE-peO">
+                                <rect key="frame" x="304" y="82" width="36" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Perfil"/>
+                                <connections>
+                                    <action selector="toProfile" destination="rvj-9C-FrB" eventType="touchUpInside" id="2B6-cq-Mbz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="dH4-Hf-fcm"/>
                     </view>
                     <navigationItem key="navigationItem" id="d06-CS-Bf0"/>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="personImage" destination="eTg-Ub-t6Q" id="OBt-Jo-rwM"/>
+                        <outlet property="personName" destination="4PQ-Nf-GOI" id="mEd-Pc-TJj"/>
+                        <segue destination="gFU-Aj-UC1" kind="presentation" identifier="toProfile" id="S1H-9h-KRL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TFE-Kh-Rxh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1460.8695652173915" y="126.5625"/>
+            <point key="canvasLocation" x="1228" y="98"/>
         </scene>
     </scenes>
     <resources>
@@ -239,5 +264,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="HlO-NM-NT6"/>
+        <segue reference="S1H-9h-KRL"/>
     </inferredMetricsTieBreakers>
 </document>

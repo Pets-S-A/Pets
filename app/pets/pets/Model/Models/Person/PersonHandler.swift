@@ -59,8 +59,25 @@ class PersonHandler {
         
     }
     static func update(person: Person, withCompletion completion: (PersonOneResponse) -> Void) {
-        completion(PersonOneResponse.error(description: "Not implementation"))
-        
+        APIRequests.postRequest(url: "\(BASE_URL)/update", params: person.dictionaryRepresentation, decodableType: ServerAnswer<Person>.self) {
+            (response) in
+            switch response {
+            case .result(let answer as ServerAnswer<Person>):
+                if (answer.success ?? false) {
+                    if let person = answer.content {
+                        completion(PersonOneResponse.success(answer: person))
+                    } else {
+                        completion(PersonOneResponse.error(description: (String(describing: "Not have person"))))
+                    }
+                } else {
+                    completion(PersonOneResponse.error(description: (String(describing: answer.message))))
+                }
+            case .error(let error):
+                completion(PersonOneResponse.error(description: error.localizedDescription))
+            default:
+                completion(PersonOneResponse.error(description: "Error to convert data"))
+            }
+        }
     }
     public static func delete(id: Int, completion: @escaping (PersonOneResponse) -> Void) {
         completion(PersonOneResponse.error(description: "Not implementation"))

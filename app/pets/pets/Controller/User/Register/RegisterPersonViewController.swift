@@ -13,12 +13,16 @@ class RegisterPersonViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameText: UITextField!
-    var imageName = ""
+    @IBOutlet weak var button: UIButton!
+    private var imageName = ""
+    public var isProfileEdition = false
+    private var imageHasChange = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
     }
+
     
     func setUp() {
         loadPreview()
@@ -30,15 +34,22 @@ class RegisterPersonViewController: UIViewController {
         } else {
             print("User not defined")
         }
+        if isProfileEdition {
+            button.setTitle("Atualiar", for: .normal)
+            if let imageURL = CommonData.shared.user.person?.image {
+                DispatchQueue.main.async {
+                    self.imageView.imageFromWeb(withURL: imageURL)
+                }
+            }
+        }
     }
     
     func formartPerson() -> Person {
-        
         return Person(_id: nil,
                       name: nameText.text ?? "",
                       image: imageName, pets: nil)
     }
-        
+    
     
     func createPerson() {
         let person = formartPerson()
@@ -58,18 +69,27 @@ class RegisterPersonViewController: UIViewController {
             }
         }
     }
-    
-    
-    // MARK: - Actions
-    @IBAction func loadImage() {
-        ImagePickerManager().pickImage(self){ image in
-            self.imageView.image = image
+    func updatePerson() {
+        let person = formartPerson()
+        PersonHandler.update(person: person) { (response) in
+            switch response {
+            case .success(let answer):
+                DispatchQueue.main.async {
+                    CommonData.shared.user.person = answer
+                    self.performSegue(withIdentifier: "toMain", sender: nil)
+                    self.removeSpinner()
+                }
+            case .error(let description):
+                DispatchQueue.main.async {
+                    UIAlert.show(controller: self, title: "Não foi possível fazer atualizar o usuário!", message: description) { (_) in }
+                    self.removeSpinner()
+                }
+            }
         }
     }
     
-    @IBAction func finishRegister() {
-        self.showSpinner(onView: self.view)
-        
+    
+    func uploadImage() {
         let date = Date().description.getFirst()
         let nameImage = "person_\(Int.random(in: 0...100000000))_\(date).png"
         imageName = ImageHandler.url + nameImage
@@ -78,7 +98,11 @@ class RegisterPersonViewController: UIViewController {
             switch response {
             case .success(let result):
                 if result {
-                    self.createPerson()
+                    if self.isProfileEdition {
+                        self.updatePerson()
+                    } else {
+                        self.createPerson()
+                    }
                 } else {
                     self.showAlert(title: "Erro ao subir a imagem", message: "Sem descrição!")
                     self.removeSpinner()
@@ -88,6 +112,25 @@ class RegisterPersonViewController: UIViewController {
                 self.showAlert(title: "Erro ao subir a imagem", message: description)
                 self.removeSpinner()
             }
+        }
+    }
+    
+    
+    
+    // MARK: - Actions
+    @IBAction func loadImage() {
+        ImagePickerManager().pickImage(self){ image in
+            self.imageView.image = image
+            self.imageHasChange = true
+        }
+    }
+    
+    @IBAction func finishRegister() {
+        showSpinner(onView: view)
+        if imageHasChange && isProfileEdition {
+            uploadImage()
+        } else {
+            updatePerson()
         }
     }
 }
