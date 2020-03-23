@@ -7,7 +7,7 @@ const helmet = require('helmet');
 
 const db = require('./db');
 const {ErrorModel} = require('./models');
-const validateToken = require('./middleware/validate-token');
+// const validateToken = require('./middleware/validate-token');
 const app = express();
 
 // ROUTE
@@ -47,12 +47,14 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-
+// Unprotected
 app.use('/', userRouterUnprotected);
+
+// Protected
+app.use('/', userRouterProtected);
 app.use('/api', apiPetRouterProtected);
 app.use('/api', apiPersonRouterProtected);
 app.use('/api', apiVaccineRouterProtected);
-app.use('/', userRouterProtected);
 // app.use('/admin', errorRouterUnprotected);
 
 // Error Handler

@@ -11,6 +11,7 @@
 		82005A1624217B2700768D46 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82005A1524217B2700768D46 /* SnapshotHelper.swift */; };
 		82005A1724217BB700768D46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82B8383E240C8FB900E82929 /* Main.storyboard */; };
 		82005A1824217BB800768D46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82B8383E240C8FB900E82929 /* Main.storyboard */; };
+		823471C324287D1B001617FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823471C224287D1B001617FC /* ViewController.swift */; };
 		82359EF12417E84200FBC086 /* ServerAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359EF02417E84200FBC086 /* ServerAnswer.swift */; };
 		82359EF42417E85C00FBC086 /* APIRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359EF32417E85C00FBC086 /* APIRequests.swift */; };
 		82359EF62417E87C00FBC086 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359EF52417E87C00FBC086 /* Extensions.swift */; };
@@ -24,8 +25,8 @@
 		82359F10241803B100FBC086 /* UIImageDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F0F241803B100FBC086 /* UIImageDownload.swift */; };
 		82359F122418041700FBC086 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F112418041700FBC086 /* Spinner.swift */; };
 		82359F152418049F00FBC086 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F142418049F00FBC086 /* LoginViewController.swift */; };
-		82359F17241804AF00FBC086 /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F16241804AF00FBC086 /* RegisterUserViewController.swift */; };
 		82359F1B241807C900FBC086 /* RegisterPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F1A241807C900FBC086 /* RegisterPersonViewController.swift */; };
+		82682EC724288847006908CB /* PersonNameComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82682EC624288847006908CB /* PersonNameComponents.swift */; };
 		8287FA0924183826005F69BF /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287FA0824183826005F69BF /* UserDefaults.swift */; };
 		8287FA0D241838C7005F69BF /* UIAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287FA0C241838C7005F69BF /* UIAlert.swift */; };
 		8287FA10241869CC005F69BF /* CommonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287FA0F241869CC005F69BF /* CommonData.swift */; };
@@ -75,6 +76,8 @@
 		82005A0D24217ACE00768D46 /* petsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = petsUITests.swift; sourceTree = "<group>"; };
 		82005A0F24217ACE00768D46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82005A1524217B2700768D46 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		823471C224287D1B001617FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		823471C424287DB4001617FC /* pets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pets.entitlements; sourceTree = "<group>"; };
 		82359EF02417E84200FBC086 /* ServerAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAnswer.swift; sourceTree = "<group>"; };
 		82359EF32417E85C00FBC086 /* APIRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequests.swift; sourceTree = "<group>"; };
 		82359EF52417E87C00FBC086 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -88,8 +91,8 @@
 		82359F0F241803B100FBC086 /* UIImageDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageDownload.swift; sourceTree = "<group>"; };
 		82359F112418041700FBC086 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		82359F142418049F00FBC086 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		82359F16241804AF00FBC086 /* RegisterUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserViewController.swift; sourceTree = "<group>"; };
 		82359F1A241807C900FBC086 /* RegisterPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPersonViewController.swift; sourceTree = "<group>"; };
+		82682EC624288847006908CB /* PersonNameComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonNameComponents.swift; sourceTree = "<group>"; };
 		8287FA0824183826005F69BF /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		8287FA0C241838C7005F69BF /* UIAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlert.swift; sourceTree = "<group>"; };
 		8287FA0F241869CC005F69BF /* CommonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonData.swift; sourceTree = "<group>"; };
@@ -242,6 +245,8 @@
 				82359F112418041700FBC086 /* Spinner.swift */,
 				8297A0FA2419A81800BE7733 /* UIView.swift */,
 				8297A0FC2419AA8F00BE7733 /* String.swift */,
+				823471C224287D1B001617FC /* ViewController.swift */,
+				82682EC624288847006908CB /* PersonNameComponents.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -266,7 +271,6 @@
 		82359F19241804BF00FBC086 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				82359F16241804AF00FBC086 /* RegisterUserViewController.swift */,
 				82359F1A241807C900FBC086 /* RegisterPersonViewController.swift */,
 			);
 			path = Register;
@@ -321,6 +325,7 @@
 		82B83837240C8FB900E82929 /* pets */ = {
 			isa = PBXGroup;
 			children = (
+				823471C424287DB4001617FC /* pets.entitlements */,
 				8297A0F52419A43900BE7733 /* Helpers */,
 				8287FA0E241869B7005F69BF /* Manager */,
 				8287FA0724183818005F69BF /* Ultils */,
@@ -649,6 +654,7 @@
 				82359F07241800EE00FBC086 /* User.swift in Sources */,
 				82B8387C240CA44700E82929 /* GenderDelegate.swift in Sources */,
 				8287FA10241869CC005F69BF /* CommonData.swift in Sources */,
+				823471C324287D1B001617FC /* ViewController.swift in Sources */,
 				82B8387A240CA43B00E82929 /* GenderDataSource.swift in Sources */,
 				82359F09241800F700FBC086 /* UserHandler.swift in Sources */,
 				82359EF82417E8A900FBC086 /* NotURLProtocol.swift in Sources */,
@@ -659,7 +665,6 @@
 				82359F042417F5BC00FBC086 /* PersonHandler.swift in Sources */,
 				82B83880240CA45B00E82929 /* AgeDelegate.swift in Sources */,
 				8287FA0D241838C7005F69BF /* UIAlert.swift in Sources */,
-				82359F17241804AF00FBC086 /* RegisterUserViewController.swift in Sources */,
 				82359EF62417E87C00FBC086 /* Extensions.swift in Sources */,
 				8297A0FD2419AA8F00BE7733 /* String.swift in Sources */,
 				82359EF12417E84200FBC086 /* ServerAnswer.swift in Sources */,
@@ -667,6 +672,7 @@
 				82359F1B241807C900FBC086 /* RegisterPersonViewController.swift in Sources */,
 				82359F0D2418030600FBC086 /* ImageHandler.swift in Sources */,
 				82B8383B240C8FB900E82929 /* SceneDelegate.swift in Sources */,
+				82682EC724288847006908CB /* PersonNameComponents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -871,6 +877,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = pets/pets.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 22;
@@ -892,6 +899,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = pets/pets.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 22;

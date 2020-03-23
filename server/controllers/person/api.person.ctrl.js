@@ -33,6 +33,7 @@ module.exports = {
 
       res.json({
         success: true,
+        message: 'Pessoa criada com sucesso!',
         content: person,
       });
     } catch (error) {
@@ -43,17 +44,14 @@ module.exports = {
     }
   },
   deleteByID: async (req, res, next) => {
-    const body = req.body || {};
-    if (validateBody(body)) {
-      throw new Error('Boby not found');
-    }
-    if (!body.id) {
-      throw new Error('Id is required');
-    }
+    const params = req.params || {};
     try {
+      if (!params.id) {
+        throw new Error('Id is required');
+      }
       res.json({
         success: true,
-        content: await PersonModel.deleteByID(req.body.id),
+        content: await PersonModel.findByIdAndDelete(params.id),
       });
     } catch (error) {
       res.json({

@@ -40,17 +40,17 @@ module.exports = {
     }
   },
   deleteByID: async (req, res, next) => {
-    const body = req.body || {};
-    if (validateBody(body)) {
-      throw new Error('Boby not found');
-    }
-    if (!body.id) {
-      throw new Error('Id is required');
-    }
     try {
+      const params = req.params || {};
+      if (validateBody(params)) {
+        throw new Error('Boby not found');
+      }
+      if (!params.id) {
+        throw new Error('Id is required');
+      }
       res.json({
         success: true,
-        content: await PetModel.deleteByID(req.body.id),
+        content: await PetModel.findByIdAndDelete(req.params.id),
       });
     } catch (error) {
       res.json({

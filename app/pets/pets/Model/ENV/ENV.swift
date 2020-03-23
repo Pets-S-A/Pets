@@ -9,8 +9,8 @@
 import Foundation
 
 struct ENV {
-    public static let production = true
-    public static let IMAGE_URL_SERVER = "http://52.87.177.201:3000/"
+    public static let production = false
+    public static let IMAGE_URL_SERVER = "https://br-upload-image-pets.herokuapp.com/"
     public static let IMAGE_ACCESS_CODE = "qrH9hy1SFind9iGLhEkykCH7Rp7jpRDq"
     public static var server: String {
         return ENV.production ? "https://br-vacci-pet.herokuapp.com/api" : "http://localhost:3000/api"

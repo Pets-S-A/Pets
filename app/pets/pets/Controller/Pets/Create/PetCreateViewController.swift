@@ -114,30 +114,6 @@ class PetCreateViewController: UIViewController {
         return pet
     }
     
-    // MARK: - Keyboard
-    var tap: UITapGestureRecognizer!
-    func setupKeyboard() {
-        tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    @objc
-    private func keyboardWillShow(sender: NSNotification) {
-        view.frame.origin.y = -150
-    }
-    @objc
-    private func keyboardWillHide(sender: NSNotification) {
-        view.frame.origin.y = 0
-    }
-    @objc
-    private func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
     //MARK: - IMAGE
     @IBAction func loadImage() {
         ImagePickerManager().pickImage(self){ image in
