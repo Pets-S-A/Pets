@@ -21,6 +21,14 @@ struct Person: Codable {
             "userID" : CommonData.shared.user._id ?? ""
         ]
     }
+    
+    var dictionaryRepresentationUpdate: [String: Any] {
+        return [
+            "name" : name,
+            "image" : image,
+            "id" : _id ?? ""
+        ]
+    }
 }
 
 typealias Persons = [Person]
