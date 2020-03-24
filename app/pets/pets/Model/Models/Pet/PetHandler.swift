@@ -42,7 +42,12 @@ class PetHandler {
             }
         }
     }
-    static func getAll(userID: String, withCompletion completion: @escaping (PetLoadResponse) -> Void) {
+    static func getAll(withCompletion completion: @escaping (PetLoadResponse) -> Void) {
+        
+        guard let userID = CommonData.shared.user._id else {
+            fatalError("Cadê o userID?")
+        }
+        
         APIRequests
             .getRequest(
                 url: "\(BASE_URL)/all/user/\(userID)",

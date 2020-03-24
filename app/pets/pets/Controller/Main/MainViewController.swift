@@ -11,15 +11,12 @@ import UIKit
 class MainViewController: UIViewController {
     @IBOutlet weak var personName: UILabel!
     @IBOutlet weak var personImage: UIImageView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setUp()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        print("here")
     }
     
     func setUp() {
@@ -36,7 +33,6 @@ class MainViewController: UIViewController {
         
     }
     
-    
     // MARK:- Actions
     @IBAction func toProfile() {
         performSegue(withIdentifier: "toProfile", sender: nil)
@@ -49,3 +45,13 @@ class MainViewController: UIViewController {
     }
 }
 
+
+extension MainViewController: PetsProtocolDataSource {
+    func setUpCollectionView() -> UICollectionView {
+        return collectionView
+    }
+    
+    func getPets(pets: Pets) {
+        
+    }
+}

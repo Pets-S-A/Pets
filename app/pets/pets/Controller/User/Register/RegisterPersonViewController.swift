@@ -47,14 +47,17 @@ class RegisterPersonViewController: UIViewController {
     func formartPerson() -> Person {
         if isProfileEdition  {
             if var person = CommonData.shared.user.person {
-                if let nameText = nameText.text {
-                    person.name = nameText
+                DispatchQueue.main.async {
+                    if let nameText = self.nameText.text {
+                        person.name = nameText
+                    }
                 }
-                if imageName != "" {
-                    person.image = imageName
+                if self.imageName != "" {
+                    person.image = self.imageName
                 }
                 return person
             }
+
         }
         return Person(_id: nil,
                 name: nameText.text ?? "",
