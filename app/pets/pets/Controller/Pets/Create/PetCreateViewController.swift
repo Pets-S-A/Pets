@@ -31,6 +31,8 @@ class PetCreateViewController: UIViewController {
     
     var user: User!
     
+    var mainDelegate: MainProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         config()
@@ -88,6 +90,7 @@ class PetCreateViewController: UIViewController {
                 }
             case .success(_):
                 DispatchQueue.main.async {
+                    self.mainDelegate?.reloadData()
                     UIAlert.show(controller: self, title: "Pet cadastrado com sucesso!", message: "") { (_) in
                         self.dismiss(animated: true, completion: nil)
                     }

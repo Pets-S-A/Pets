@@ -50,7 +50,7 @@ class PetHandler {
         
         APIRequests
             .getRequest(
-                url: "\(BASE_URL)/all/user/\(userID)",
+                url: "\(BASE_URL)/allByUserID/\(userID)",
                 decodableType: ServerAnswer<Pets>.self,
                 header: ENV.token
             ) { (response) in

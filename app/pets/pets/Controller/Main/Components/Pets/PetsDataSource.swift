@@ -8,44 +8,61 @@
 
 import UIKit
 
-protocol PetsProtocolDataSource {
-    func getPets(pets: Pets)
-    func setUpCollectionView() -> UICollectionView
-}
 
-class PetsDataSource: NSObject, UICollectionViewDataSource, PetsProtocolDelegate {
-    var delegate: PetsProtocolDataSource?
+
+class PetsDataSource: NSObject, UICollectionViewDataSource {
     var pets = Pets()
     
-    override init() {
-        register()
-        fetch()
+    weak var viewController: UIViewController?
+    
+    func setup(collectionView: UICollectionView, viewController: UIViewController) {
+        self.viewController = viewController
+        collectionView.dataSource = self
+        register(collectionView: collectionView)
     }
 
-    func fetch() {
+    func fetch(delegate: PetsDelegate) {
         PetHandler.getAll { (response) in
             switch response {
             case .error(let description):
-                print(description)
-            case .success(let answer):
+                NSLog(description)
+            case .success(let pets):
                 DispatchQueue.main.async {
-                    self.delegate?.getPets(pets: answer)
+                    self.pets = pets
+                    delegate.pets = pets
+                    if let view = self.viewController as? MainViewController {
+                        view.collectionView.reloadData()
+                    }
                 }
             }
         }
     }
     
-    func register() {
-        let collectionView = delegate?.setUpCollectionView()
+    internal func register(collectionView: UICollectionView) {
         let cell = UINib(nibName: "PetCell", bundle: nil)
-        collectionView?.register(cell, forCellWithReuseIdentifier: "PetCell")
+        collectionView.register(cell, forCellWithReuseIdentifier: "PetCell")
     }
     
     internal func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return pets.count
     }
     
     internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PetCell",
+                                                         for: indexPath) as? PetCell {
+            let pet = pets[indexPath.row]
+            DispatchQueue.main.async {
+                cell.petImage.imageFromWeb(withURL: pet.image ?? "")
+            }
+            
+            cell.petName.text = pet.name
+            return cell
+        }
         return UICollectionViewCell()
+    }
+    @objc
+    func toDetail() {
+        self.viewController?.performSegue(withIdentifier: "toDetail",
+                                          sender: nil)
     }
 }

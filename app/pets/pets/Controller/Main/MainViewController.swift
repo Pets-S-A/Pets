@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol MainProtocol {
+    func reloadData()
+}
+
 class MainViewController: UIViewController {
     @IBOutlet weak var personName: UILabel!
     @IBOutlet weak var personImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
+    var petsDelegate = PetsDelegate()
+    var petsDataSource = PetsDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +27,7 @@ class MainViewController: UIViewController {
     
     func setUp() {
         preLoad()
+        setUpCollection()
     }
     
     func preLoad() {
@@ -33,6 +40,20 @@ class MainViewController: UIViewController {
         
     }
     
+    // MARK:- Collection
+    @IBAction 
+    func setUpCollection() {
+        petsDataSource.setup(collectionView: collectionView,
+                             viewController: self)
+        petsDelegate.setup(collectionView: collectionView,
+                           viewController: self)
+        fetchDataCollection()
+    }
+    
+    func fetchDataCollection() {
+        petsDataSource.fetch(delegate: petsDelegate)
+    }
+    
     // MARK:- Actions
     @IBAction func toProfile() {
         performSegue(withIdentifier: "toProfile", sender: nil)
@@ -41,17 +62,15 @@ class MainViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let view = segue.destination as? RegisterPersonViewController {
             view.isProfileEdition = true
+        } else if let view = segue.destination as? PetCreateViewController {
+            view.mainDelegate = self
         }
     }
 }
 
 
-extension MainViewController: PetsProtocolDataSource {
-    func setUpCollectionView() -> UICollectionView {
-        return collectionView
-    }
-    
-    func getPets(pets: Pets) {
-        
+extension MainViewController: MainProtocol {
+    func reloadData() {
+        fetchDataCollection()
     }
 }
