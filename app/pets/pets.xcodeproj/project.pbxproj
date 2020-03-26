@@ -62,6 +62,8 @@
 		82EF9BE7242C4E7A001D9FC2 /* CreateVaccineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BE6242C4E7A001D9FC2 /* CreateVaccineViewController.swift */; };
 		82EF9BEB242C5E58001D9FC2 /* VaccineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BE9242C5E58001D9FC2 /* VaccineCell.swift */; };
 		82EF9BEC242C5E58001D9FC2 /* VaccineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82EF9BEA242C5E58001D9FC2 /* VaccineCell.xib */; };
+		82EF9BEF242C6B6A001D9FC2 /* VaccineCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BEE242C6B6A001D9FC2 /* VaccineCellDelegate.swift */; };
+		82EF9BF1242C6B7A001D9FC2 /* VaccineCellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BF0242C6B7A001D9FC2 /* VaccineCellDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +144,8 @@
 		82EF9BE6242C4E7A001D9FC2 /* CreateVaccineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVaccineViewController.swift; sourceTree = "<group>"; };
 		82EF9BE9242C5E58001D9FC2 /* VaccineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCell.swift; sourceTree = "<group>"; };
 		82EF9BEA242C5E58001D9FC2 /* VaccineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineCell.xib; sourceTree = "<group>"; };
+		82EF9BEE242C6B6A001D9FC2 /* VaccineCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCellDelegate.swift; sourceTree = "<group>"; };
+		82EF9BF0242C6B7A001D9FC2 /* VaccineCellDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCellDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +304,7 @@
 		82682EC82429BA0D006908CB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				82EF9BED242C6B4B001D9FC2 /* Vacccine */,
 				82682EC92429BA24006908CB /* Pets */,
 			);
 			path = Components;
@@ -587,6 +592,15 @@
 			path = Vaccine;
 			sourceTree = "<group>";
 		};
+		82EF9BED242C6B4B001D9FC2 /* Vacccine */ = {
+			isa = PBXGroup;
+			children = (
+				82EF9BEE242C6B6A001D9FC2 /* VaccineCellDelegate.swift */,
+				82EF9BF0242C6B7A001D9FC2 /* VaccineCellDataSource.swift */,
+			);
+			path = Vacccine;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -752,8 +766,10 @@
 				82359F022417F5B100FBC086 /* Person.swift in Sources */,
 				82B83866240C928000E82929 /* GenericDAO.swift in Sources */,
 				82359F10241803B100FBC086 /* UIImageDownload.swift in Sources */,
+				82EF9BEF242C6B6A001D9FC2 /* VaccineCellDelegate.swift in Sources */,
 				82359F07241800EE00FBC086 /* User.swift in Sources */,
 				82B8387C240CA44700E82929 /* GenderDelegate.swift in Sources */,
+				82EF9BF1242C6B7A001D9FC2 /* VaccineCellDataSource.swift in Sources */,
 				82682ECD2429BA45006908CB /* PetsDataSource.swift in Sources */,
 				8287FA10241869CC005F69BF /* CommonData.swift in Sources */,
 				823471C324287D1B001617FC /* ViewController.swift in Sources */,
