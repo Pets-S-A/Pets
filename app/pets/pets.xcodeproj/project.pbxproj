@@ -56,6 +56,12 @@
 		82B8387C240CA44700E82929 /* GenderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8387B240CA44700E82929 /* GenderDelegate.swift */; };
 		82B8387E240CA45200E82929 /* AgeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8387D240CA45200E82929 /* AgeDataSource.swift */; };
 		82B83880240CA45B00E82929 /* AgeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8387F240CA45B00E82929 /* AgeDelegate.swift */; };
+		82EF9BDE242C45F3001D9FC2 /* DetailPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BDD242C45F3001D9FC2 /* DetailPetViewController.swift */; };
+		82EF9BE2242C4809001D9FC2 /* Vaccine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BE1242C4809001D9FC2 /* Vaccine.swift */; };
+		82EF9BE4242C4817001D9FC2 /* VaccineHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BE3242C4817001D9FC2 /* VaccineHandler.swift */; };
+		82EF9BE7242C4E7A001D9FC2 /* CreateVaccineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BE6242C4E7A001D9FC2 /* CreateVaccineViewController.swift */; };
+		82EF9BEB242C5E58001D9FC2 /* VaccineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BE9242C5E58001D9FC2 /* VaccineCell.swift */; };
+		82EF9BEC242C5E58001D9FC2 /* VaccineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82EF9BEA242C5E58001D9FC2 /* VaccineCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +136,12 @@
 		82B8387B240CA44700E82929 /* GenderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderDelegate.swift; sourceTree = "<group>"; };
 		82B8387D240CA45200E82929 /* AgeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeDataSource.swift; sourceTree = "<group>"; };
 		82B8387F240CA45B00E82929 /* AgeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeDelegate.swift; sourceTree = "<group>"; };
+		82EF9BDD242C45F3001D9FC2 /* DetailPetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPetViewController.swift; sourceTree = "<group>"; };
+		82EF9BE1242C4809001D9FC2 /* Vaccine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vaccine.swift; sourceTree = "<group>"; };
+		82EF9BE3242C4817001D9FC2 /* VaccineHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineHandler.swift; sourceTree = "<group>"; };
+		82EF9BE6242C4E7A001D9FC2 /* CreateVaccineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVaccineViewController.swift; sourceTree = "<group>"; };
+		82EF9BE9242C5E58001D9FC2 /* VaccineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCell.swift; sourceTree = "<group>"; };
+		82EF9BEA242C5E58001D9FC2 /* VaccineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +246,7 @@
 				82359F05241800E100FBC086 /* User */,
 				82359F002417F59E00FBC086 /* Person */,
 				82B83869240C92D200E82929 /* Pet */,
+				82EF9BDF242C47F2001D9FC2 /* Vaccine */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -304,6 +317,7 @@
 		827BB003242ADC6200C25429 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				82EF9BE8242C5E2C001D9FC2 /* Vaccine */,
 				827BB008242ADC9300C25429 /* Pet */,
 			);
 			path = Components;
@@ -421,6 +435,7 @@
 		82B8385D240C8FDE00E82929 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				82EF9BE5242C4E63001D9FC2 /* Vaccine */,
 				82359F132418048B00FBC086 /* User */,
 				82B83871240C9A9B00E82929 /* Pets */,
 				82B83875240C9AF600E82929 /* Main */,
@@ -487,6 +502,7 @@
 		82B83871240C9A9B00E82929 /* Pets */ = {
 			isa = PBXGroup;
 			children = (
+				82EF9BDC242C45E3001D9FC2 /* Detail */,
 				82B83872240C9AA600E82929 /* Create */,
 			);
 			path = Pets;
@@ -535,6 +551,40 @@
 				82B8387B240CA44700E82929 /* GenderDelegate.swift */,
 			);
 			path = Gender;
+			sourceTree = "<group>";
+		};
+		82EF9BDC242C45E3001D9FC2 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				82EF9BDD242C45F3001D9FC2 /* DetailPetViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		82EF9BDF242C47F2001D9FC2 /* Vaccine */ = {
+			isa = PBXGroup;
+			children = (
+				82EF9BE1242C4809001D9FC2 /* Vaccine.swift */,
+				82EF9BE3242C4817001D9FC2 /* VaccineHandler.swift */,
+			);
+			path = Vaccine;
+			sourceTree = "<group>";
+		};
+		82EF9BE5242C4E63001D9FC2 /* Vaccine */ = {
+			isa = PBXGroup;
+			children = (
+				82EF9BE6242C4E7A001D9FC2 /* CreateVaccineViewController.swift */,
+			);
+			path = Vaccine;
+			sourceTree = "<group>";
+		};
+		82EF9BE8242C5E2C001D9FC2 /* Vaccine */ = {
+			isa = PBXGroup;
+			children = (
+				82EF9BE9242C5E58001D9FC2 /* VaccineCell.swift */,
+				82EF9BEA242C5E58001D9FC2 /* VaccineCell.xib */,
+			);
+			path = Vaccine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -654,6 +704,7 @@
 				827BB007242ADC8F00C25429 /* PetCell.xib in Resources */,
 				82B83842240C8FBD00E82929 /* Assets.xcassets in Resources */,
 				82B83840240C8FB900E82929 /* Main.storyboard in Resources */,
+				82EF9BEC242C5E58001D9FC2 /* VaccineCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +735,7 @@
 				82359F152418049F00FBC086 /* LoginViewController.swift in Sources */,
 				827BB006242ADC8F00C25429 /* PetCell.swift in Sources */,
 				82B83874240C9AB800E82929 /* PetCreateViewController.swift in Sources */,
+				82EF9BDE242C45F3001D9FC2 /* DetailPetViewController.swift in Sources */,
 				82B8387E240CA45200E82929 /* AgeDataSource.swift in Sources */,
 				8297A0F92419A78E00BE7733 /* ImagePicker.swift in Sources */,
 				82359EF42417E85C00FBC086 /* APIRequests.swift in Sources */,
@@ -695,6 +747,8 @@
 				8297A0FB2419A81800BE7733 /* UIView.swift in Sources */,
 				82B83839240C8FB900E82929 /* AppDelegate.swift in Sources */,
 				82682ECB2429BA35006908CB /* PetsDelegate.swift in Sources */,
+				82EF9BE2242C4809001D9FC2 /* Vaccine.swift in Sources */,
+				82EF9BE7242C4E7A001D9FC2 /* CreateVaccineViewController.swift in Sources */,
 				82359F022417F5B100FBC086 /* Person.swift in Sources */,
 				82B83866240C928000E82929 /* GenericDAO.swift in Sources */,
 				82359F10241803B100FBC086 /* UIImageDownload.swift in Sources */,
@@ -709,12 +763,14 @@
 				82359EFA2417E8C400FBC086 /* ENV.swift in Sources */,
 				82359F122418041700FBC086 /* Spinner.swift in Sources */,
 				82B8386F240C956300E82929 /* CoreDataManager.swift in Sources */,
+				82EF9BE4242C4817001D9FC2 /* VaccineHandler.swift in Sources */,
 				82B83868240C92A300E82929 /* PetDAO.swift in Sources */,
 				82359F042417F5BC00FBC086 /* PersonHandler.swift in Sources */,
 				82B83880240CA45B00E82929 /* AgeDelegate.swift in Sources */,
 				8287FA0D241838C7005F69BF /* UIAlert.swift in Sources */,
 				82359EF62417E87C00FBC086 /* Extensions.swift in Sources */,
 				8297A0FD2419AA8F00BE7733 /* String.swift in Sources */,
+				82EF9BEB242C5E58001D9FC2 /* VaccineCell.swift in Sources */,
 				82359EF12417E84200FBC086 /* ServerAnswer.swift in Sources */,
 				8287FA0924183826005F69BF /* UserDefaults.swift in Sources */,
 				82359F1B241807C900FBC086 /* RegisterPersonViewController.swift in Sources */,
@@ -928,7 +984,7 @@
 				CODE_SIGN_ENTITLEMENTS = pets/pets.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = CTAFH43K36;
 				INFOPLIST_FILE = pets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -950,7 +1006,7 @@
 				CODE_SIGN_ENTITLEMENTS = pets/pets.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = CTAFH43K36;
 				INFOPLIST_FILE = pets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

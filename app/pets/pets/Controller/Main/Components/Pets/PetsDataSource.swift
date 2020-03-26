@@ -60,9 +60,4 @@ class PetsDataSource: NSObject, UICollectionViewDataSource {
         }
         return UICollectionViewCell()
     }
-    @objc
-    func toDetail() {
-        self.viewController?.performSegue(withIdentifier: "toDetail",
-                                          sender: nil)
-    }
 }

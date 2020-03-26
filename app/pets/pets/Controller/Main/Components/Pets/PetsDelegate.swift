@@ -33,4 +33,14 @@ class PetsDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDelegate
         let width: Double = Double(collectionView.frame.width) * 0.46666666667
         return CGSize(width: width, height: height)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        toDetail(row: indexPath.row)
+    }
+    
+    @objc
+    func toDetail(row: Int) {
+        self.viewController?.performSegue(withIdentifier: "toDetail",
+                                          sender: pets[row])
+    }
 }

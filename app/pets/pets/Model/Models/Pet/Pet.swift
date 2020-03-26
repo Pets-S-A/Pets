@@ -16,6 +16,7 @@ struct Pet: Codable {
     var agressive: Bool
     var image: String?
     var breed: String
+    var vaccines: Vaccines?
     
     var dictionaryRepresentation: [String: Any] {
         return [
@@ -27,6 +28,16 @@ struct Pet: Codable {
             "breed" : breed,
             "personID": CommonData.shared.user.person?._id ?? ""
         ]
+    }
+    
+    func addVaccine(vaccine: Vaccine) {
+        let index = CommonData.shared.user.person?.pets?.firstIndex(where: { (pet) -> Bool in
+            return _id == pet._id
+        })
+        if var pets = CommonData.shared.user.person?.pets, let index = index?.byteSwapped  {
+            pets[index].vaccines?.append(vaccine)
+            CommonData.shared.user.person?.pets = pets
+        }
     }
 }
 

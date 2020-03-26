@@ -38,17 +38,17 @@ module.exports = {
     }
   },
   deleteByID: async (req, res, next) => {
-    const body = req.body || {};
-    if (validateBody(body)) {
+    const params = req.params || {};
+    if (validateBody(params)) {
       throw new Error('Boby not found');
     }
-    if (!body.id) {
+    if (!params.id) {
       throw new Error('Id is required');
     }
     try {
       res.json({
         success: true,
-        content: await VaccineModel.deleteByID(req.body.id),
+        content: await VaccineModel.findByIdAndDelete(req.params.id),
       });
     } catch (error) {
       res.json({

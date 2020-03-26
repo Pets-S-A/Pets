@@ -11,5 +11,5 @@ import UIKit
 
 class CommonData {
     var user: User!
-    static let shared = CommonData()
+    static var shared = CommonData()
 }

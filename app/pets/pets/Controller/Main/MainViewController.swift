@@ -64,6 +64,11 @@ class MainViewController: UIViewController {
             view.isProfileEdition = true
         } else if let view = segue.destination as? PetCreateViewController {
             view.mainDelegate = self
+        } else if let view = segue.destination as? DetailPetViewController {
+            guard let pet = sender as? Pet else {
+                fatalError("Error to take pet in sender")
+            }
+            view.pet = pet
         }
     }
 }

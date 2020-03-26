@@ -32,3 +32,9 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
+
+extension UIViewController {
+    func back() {
+        dismiss(animated: true, completion: nil)
+    }
+}
