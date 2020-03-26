@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-const {PetModel, PersonModel} = require('../../models');
+const {PetModel, PersonModel, UserModel} = require('../../models');
 const {validateBody} = require('../../utils');
 const HttpStatus = require('../../HttpStatus');
 
@@ -9,6 +9,34 @@ module.exports = {
       res.status(HttpStatus.OK).json({
         success: true,
         content: await PetModel.find(),
+        message: 'Pets found!',
+      });
+    } catch (error) {
+      return next(error);
+    }
+  },
+  getAllByUserID: async (req, res, next) => {
+    try {
+      const params = req.params || {};
+      if (validateBody(params)) {
+        throw new Error('Boby not found');
+      }
+      if (!params.userID) {
+        throw new Error('id is required');
+      }
+
+      const user = await UserModel.findById(params.userID);
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      if (!user.person) {
+        throw new Error('Person not found');
+      }
+
+      res.status(HttpStatus.OK).json({
+        success: true,
+        content: user.person.pets,
         message: 'Pets found!',
       });
     } catch (error) {

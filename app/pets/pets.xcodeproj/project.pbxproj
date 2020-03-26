@@ -27,6 +27,10 @@
 		82359F152418049F00FBC086 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F142418049F00FBC086 /* LoginViewController.swift */; };
 		82359F1B241807C900FBC086 /* RegisterPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F1A241807C900FBC086 /* RegisterPersonViewController.swift */; };
 		82682EC724288847006908CB /* PersonNameComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82682EC624288847006908CB /* PersonNameComponents.swift */; };
+		82682ECB2429BA35006908CB /* PetsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82682ECA2429BA35006908CB /* PetsDelegate.swift */; };
+		82682ECD2429BA45006908CB /* PetsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82682ECC2429BA45006908CB /* PetsDataSource.swift */; };
+		827BB006242ADC8F00C25429 /* PetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BB004242ADC8F00C25429 /* PetCell.swift */; };
+		827BB007242ADC8F00C25429 /* PetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827BB005242ADC8F00C25429 /* PetCell.xib */; };
 		8287FA0924183826005F69BF /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287FA0824183826005F69BF /* UserDefaults.swift */; };
 		8287FA0D241838C7005F69BF /* UIAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287FA0C241838C7005F69BF /* UIAlert.swift */; };
 		8287FA10241869CC005F69BF /* CommonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287FA0F241869CC005F69BF /* CommonData.swift */; };
@@ -93,6 +97,10 @@
 		82359F142418049F00FBC086 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		82359F1A241807C900FBC086 /* RegisterPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPersonViewController.swift; sourceTree = "<group>"; };
 		82682EC624288847006908CB /* PersonNameComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonNameComponents.swift; sourceTree = "<group>"; };
+		82682ECA2429BA35006908CB /* PetsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsDelegate.swift; sourceTree = "<group>"; };
+		82682ECC2429BA45006908CB /* PetsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsDataSource.swift; sourceTree = "<group>"; };
+		827BB004242ADC8F00C25429 /* PetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCell.swift; sourceTree = "<group>"; };
+		827BB005242ADC8F00C25429 /* PetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PetCell.xib; sourceTree = "<group>"; };
 		8287FA0824183826005F69BF /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		8287FA0C241838C7005F69BF /* UIAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlert.swift; sourceTree = "<group>"; };
 		8287FA0F241869CC005F69BF /* CommonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonData.swift; sourceTree = "<group>"; };
@@ -276,6 +284,40 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
+		82682EC82429BA0D006908CB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				82682EC92429BA24006908CB /* Pets */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		82682EC92429BA24006908CB /* Pets */ = {
+			isa = PBXGroup;
+			children = (
+				82682ECA2429BA35006908CB /* PetsDelegate.swift */,
+				82682ECC2429BA45006908CB /* PetsDataSource.swift */,
+			);
+			path = Pets;
+			sourceTree = "<group>";
+		};
+		827BB003242ADC6200C25429 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				827BB008242ADC9300C25429 /* Pet */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		827BB008242ADC9300C25429 /* Pet */ = {
+			isa = PBXGroup;
+			children = (
+				827BB004242ADC8F00C25429 /* PetCell.swift */,
+				827BB005242ADC8F00C25429 /* PetCell.xib */,
+			);
+			path = Pet;
+			sourceTree = "<group>";
+		};
 		8287FA0724183818005F69BF /* Ultils */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,6 +412,7 @@
 		82B8385C240C8FD800E82929 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				827BB003242ADC6200C25429 /* Components */,
 				82B8385B240C8FCB00E82929 /* Storyboard */,
 			);
 			path = View;
@@ -461,6 +504,7 @@
 		82B83875240C9AF600E82929 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				82682EC82429BA0D006908CB /* Components */,
 				82B8383C240C8FB900E82929 /* MainViewController.swift */,
 			);
 			path = Main;
@@ -607,6 +651,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82B83845240C8FBD00E82929 /* LaunchScreen.storyboard in Resources */,
+				827BB007242ADC8F00C25429 /* PetCell.xib in Resources */,
 				82B83842240C8FBD00E82929 /* Assets.xcassets in Resources */,
 				82B83840240C8FB900E82929 /* Main.storyboard in Resources */,
 			);
@@ -637,6 +682,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82359F152418049F00FBC086 /* LoginViewController.swift in Sources */,
+				827BB006242ADC8F00C25429 /* PetCell.swift in Sources */,
 				82B83874240C9AB800E82929 /* PetCreateViewController.swift in Sources */,
 				82B8387E240CA45200E82929 /* AgeDataSource.swift in Sources */,
 				8297A0F92419A78E00BE7733 /* ImagePicker.swift in Sources */,
@@ -648,11 +694,13 @@
 				82B83864240C918E00E82929 /* Pets.xcdatamodeld in Sources */,
 				8297A0FB2419A81800BE7733 /* UIView.swift in Sources */,
 				82B83839240C8FB900E82929 /* AppDelegate.swift in Sources */,
+				82682ECB2429BA35006908CB /* PetsDelegate.swift in Sources */,
 				82359F022417F5B100FBC086 /* Person.swift in Sources */,
 				82B83866240C928000E82929 /* GenericDAO.swift in Sources */,
 				82359F10241803B100FBC086 /* UIImageDownload.swift in Sources */,
 				82359F07241800EE00FBC086 /* User.swift in Sources */,
 				82B8387C240CA44700E82929 /* GenderDelegate.swift in Sources */,
+				82682ECD2429BA45006908CB /* PetsDataSource.swift in Sources */,
 				8287FA10241869CC005F69BF /* CommonData.swift in Sources */,
 				823471C324287D1B001617FC /* ViewController.swift in Sources */,
 				82B8387A240CA43B00E82929 /* GenderDataSource.swift in Sources */,
