@@ -304,7 +304,6 @@
 		82682EC82429BA0D006908CB /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				82EF9BED242C6B4B001D9FC2 /* Vacccine */,
 				82682EC92429BA24006908CB /* Pets */,
 			);
 			path = Components;
@@ -392,7 +391,7 @@
 				8287FA0E241869B7005F69BF /* Manager */,
 				8287FA0724183818005F69BF /* Ultils */,
 				82359F0E241803A200FBC086 /* Extension */,
-				82B8385A240C8FC500E82929 /* Delegate */,
+				82B8385A240C8FC500E82929 /* Application */,
 				82B8385E240C902300E82929 /* Model */,
 				82B8385D240C8FDE00E82929 /* Controller */,
 				82B8385C240C8FD800E82929 /* View */,
@@ -411,13 +410,13 @@
 			path = petsTests;
 			sourceTree = "<group>";
 		};
-		82B8385A240C8FC500E82929 /* Delegate */ = {
+		82B8385A240C8FC500E82929 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				82B83838240C8FB900E82929 /* AppDelegate.swift */,
 				82B8383A240C8FB900E82929 /* SceneDelegate.swift */,
 			);
-			path = Delegate;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		82B8385B240C8FCB00E82929 /* Storyboard */ = {
@@ -561,6 +560,7 @@
 		82EF9BDC242C45E3001D9FC2 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				82EF9BED242C6B4B001D9FC2 /* Vacccine */,
 				82EF9BDD242C45F3001D9FC2 /* DetailPetViewController.swift */,
 			);
 			path = Detail;

@@ -82,8 +82,26 @@ class VaccineHandler {
     static func update(vaccine: Vaccine, withCompletion completion: (VaccineOneResponse) -> Void) {
         completion(VaccineOneResponse.error(description: "Not implementation"))
     }
-    public static func delete(id: Int, completion: @escaping (VaccineOneResponse) -> Void) {
-        completion(VaccineOneResponse.error(description: "Not implementation"))
+    public static func delete(id: String, completion: @escaping (VaccineOneResponse) -> Void) {
+        APIRequests
+            .getRequest(
+                url: "\(BASE_URL)/delete/\(id)",
+                decodableType: ServerAnswer<Vaccine>.self,
+                header: Environment.TOKEN
+            ) { (response) in
+                switch response {
+                case .result(let answer as ServerAnswer<Vaccine>):
+                    if (answer.success ?? false), let vaccine = answer.content {
+                        completion(VaccineOneResponse.success(answer: vaccine))
+                    } else {
+                        completion(VaccineOneResponse.error(description: answer.message ?? ""))
+                    }
+                case .error(let error):
+                    completion(VaccineOneResponse.error(description: error.localizedDescription))
+                default:
+                    completion(VaccineOneResponse.error(description: "Error to convert data"))
+                }
+        }
         
     }
 }

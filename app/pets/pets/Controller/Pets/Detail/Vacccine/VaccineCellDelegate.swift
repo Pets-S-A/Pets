@@ -28,7 +28,7 @@ class VaccineCellDelegate: NSObject, UITableViewDelegate {
     
     @objc
     func toEdition(row: Int) {
-        self.viewController?.performSegue(withIdentifier: "toEdition",
+        self.viewController?.performSegue(withIdentifier: "toVaccine",
                                           sender: vaccines[row])
     }
 }

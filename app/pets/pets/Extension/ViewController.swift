@@ -35,6 +35,8 @@ extension UIViewController {
 
 extension UIViewController {
     func back() {
-        dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }

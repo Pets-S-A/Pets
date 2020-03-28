@@ -29,6 +29,9 @@ class DetailPetViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let view = segue.destination as? CreateVaccineViewController {
             view.pet = pet
+            if let vaccine = sender as? Vaccine {
+                view.vaccine = vaccine
+            }
         }
     }
 }

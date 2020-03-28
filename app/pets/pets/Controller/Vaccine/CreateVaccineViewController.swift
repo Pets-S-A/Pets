@@ -12,6 +12,7 @@ class CreateVaccineViewController: UIViewController {
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     var pet: Pet!
+    var vaccine: Vaccine?
     
     override func viewDidLoad() {
         super.viewDidLoad()
