@@ -24,6 +24,21 @@ class DetailPetViewController: UIViewController {
     
     func setUp() {
         vaccineCellDataSource.fetch(pet: pet, vaccineCellDelegate: vaccineCellDelegate)
+        registerEvents()
+    }
+    func registerEvents() {
+        EventManager.shared.listenTo(eventName: "reloadCommonData") {
+            DispatchQueue.main.async {
+                guard let pet = CommonData.shared.user.person?.pets?.first(where: { (petV) -> Bool in
+                    return self.pet._id == petV._id
+                }) else {
+                    fatalError("Pet not found")
+                }
+                self.pet = pet
+                self.vaccineCellDataSource.fetch(pet: self.pet,
+                                                 vaccineCellDelegate: self.vaccineCellDelegate)
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -31,6 +31,7 @@ struct Pet: Codable {
     }
     
     func addVaccine(vaccine: Vaccine) {
+        print(vaccine)
         let index = CommonData.shared.user.person?.pets?.firstIndex(where: { (pet) -> Bool in
             return _id == pet._id
         })

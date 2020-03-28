@@ -66,23 +66,24 @@ class VaccineCellDataSource: NSObject, UITableViewDataSource {
                 viewController.showSpinner(onView: viewController.view)
             }
             VaccineHandler.delete(id: vaccineID) { (response) in
-                switch response {
-                case .success(_):
-                    DispatchQueue.main.async {
+                DispatchQueue.main.async {
+                    guard let viewController = self.viewController else {
+                        fatalError("Cadê a View Controller?")
+                    }
+                    viewController.removeSpinner()
+                    
+                    switch response {
+                    case .success(_):
+                        
                         self.vaccines.removeAll { (vaccine) -> Bool in
                             return vaccine._id == vaccineID
                         }
                         self.tableView?.deleteRows(at: [indexPath], with: .fade)
-                        guard let viewController = self.viewController else {
-                            fatalError("Cadê a View Controller?")
-                        }
-                        viewController.removeSpinner()
-                    }
-                case .error(let description):
-                    DispatchQueue.main.async {
+                    case .error(let description):
                         self.viewController?.showAlert(title: "Error", message: description)
                     }
                 }
+                
             }
         }
     }

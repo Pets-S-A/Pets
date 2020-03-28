@@ -28,6 +28,7 @@ class MainViewController: UIViewController {
     func setUp() {
         preLoad()
         setUpCollection()
+        registerEvents()
     }
     
     func preLoad() {
@@ -52,6 +53,14 @@ class MainViewController: UIViewController {
     
     func fetchDataCollection() {
         petsDataSource.fetch(delegate: petsDelegate)
+    }
+    
+    func registerEvents() {
+        EventManager.shared.listenTo(eventName: "reloadCommonData") {
+            DispatchQueue.main.async {
+                self.petsDataSource.reloadWithCommonData(delegate: self.petsDelegate)
+            }
+        }
     }
     
     // MARK:- Actions

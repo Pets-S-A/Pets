@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class CommonData {
-    var user: User!
     static var shared = CommonData()
+    private init() {}
+    
+    var user: User!
 }

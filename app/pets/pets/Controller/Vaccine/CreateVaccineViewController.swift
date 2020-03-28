@@ -33,10 +33,13 @@ class CreateVaccineViewController: UIViewController {
         VaccineHandler.create(params: formatVaccine().dictionaryRepresentation(pet: pet)) { (response) in
             switch response {
             case .error(let description):
-                NSLog(description)
+                self.showAlert(title: "Error", message: description)
             case .success(let answer):
-                self.pet.addVaccine(vaccine: answer)
-                self.back()
+                DispatchQueue.main.async {
+                    self.pet.addVaccine(vaccine: answer)
+                    EventManager.shared.trigger(eventName: "reloadCommonData")
+                    self.back()
+                }
             }
         }
     }

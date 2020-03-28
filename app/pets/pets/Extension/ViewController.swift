@@ -40,3 +40,9 @@ extension UIViewController {
         }
     }
 }
+
+extension UINavigationController {
+    var previousViewController: UIViewController? {
+        return viewControllers.count > 1 ? viewControllers[viewControllers.count - 2] : nil
+    }
+}
