@@ -73,8 +73,9 @@ class VaccineCellDataSource: NSObject, UITableViewDataSource {
                     viewController.removeSpinner()
                     
                     switch response {
-                    case .success(_):
-                        
+                    case .success(let answer):
+                        answer.remove(petID: self.pet._id)
+                        EventManager.shared.trigger(eventName: "reloadDeletePet")
                         self.vaccines.removeAll { (vaccine) -> Bool in
                             return vaccine._id == vaccineID
                         }

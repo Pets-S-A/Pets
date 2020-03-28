@@ -22,6 +22,18 @@ struct Vaccine: Codable {
             "petID": pet._id
         ]
     }
+    
+    func remove(petID: String) {
+        let index = CommonData.shared.user.person?.pets?.firstIndex(where: { (pet) -> Bool in
+            return petID == pet._id
+        })
+        if var pets = CommonData.shared.user.person?.pets, let index = index?.byteSwapped  {
+            pets[index].vaccines?.removeAll(where: { (vaccine) -> Bool in
+                return vaccine._id == _id
+            })
+            CommonData.shared.user.person?.pets = pets
+        }
+    }
 }
 
 typealias Vaccines = [Vaccine]

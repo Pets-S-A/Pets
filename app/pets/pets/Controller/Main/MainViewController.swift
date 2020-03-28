@@ -61,6 +61,11 @@ class MainViewController: UIViewController {
                 self.petsDataSource.reloadWithCommonData(delegate: self.petsDelegate)
             }
         }
+        EventManager.shared.listenTo(eventName: "reloadDeletePet") {
+            DispatchQueue.main.async {
+                self.petsDataSource.reloadWithCommonData(delegate: self.petsDelegate)
+            }
+        }
     }
     
     // MARK:- Actions
