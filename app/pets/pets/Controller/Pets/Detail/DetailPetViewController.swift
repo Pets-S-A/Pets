@@ -39,6 +39,16 @@ class DetailPetViewController: UIViewController {
                                                  vaccineCellDelegate: self.vaccineCellDelegate)
             }
         }
+        EventManager.shared.listenTo(eventName: "reloadDeletePet") {
+            DispatchQueue.main.async {
+                guard let pet = CommonData.shared.user.person?.pets?.first(where: { (petV) -> Bool in
+                    return self.pet._id == petV._id
+                }) else {
+                    fatalError("Pet not found")
+                }
+                self.pet = pet
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
