@@ -19,7 +19,7 @@ enum VaccineOneResponse: Error {
 }
 
 class VaccineHandler {
-    public static let BASE_URL:String = "\(ENV.SERVER_URL)/vaccine"
+    public static let BASE_URL:String = "\(Environment.SERVER_URL)/vaccine"
     
     static func create(params: [String: Any], withCompletion completion: @escaping (VaccineOneResponse) -> Void) {
         APIRequests.postRequest(url: "\(BASE_URL)/create", params: params, decodableType: ServerAnswer<Vaccine>.self) {
@@ -58,7 +58,7 @@ class VaccineHandler {
             .getRequest(
                 url: "\(BASE_URL)/allByUserID/\(userID)",
                 decodableType: ServerAnswer<Vaccines>.self,
-                header: ENV.TOKEN
+                header: Environment.TOKEN
             ) { (response) in
                 switch response {
                 case .result(let answer as ServerAnswer<Vaccines>):

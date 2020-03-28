@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct ENV {
+struct Environment {
     // MARK:- State
     private static let PRODUCTION = false
     
     
     // MARK:- Server
     public static var SERVER_URL: String {
-        return ENV.PRODUCTION ?
+        return Environment.PRODUCTION ?
             "https://br-vacci-pet.herokuapp.com/api" : "http://localhost:3000/api"
     }
     
