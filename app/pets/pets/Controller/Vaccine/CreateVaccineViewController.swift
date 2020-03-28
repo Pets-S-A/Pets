@@ -16,9 +16,19 @@ class CreateVaccineViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setUp()
     }
     
+    func setUp() {
+        setUpEdition()
+    }
+    
+    func setUpEdition() {
+        if let vaccine = self.vaccine {
+            self.name.text = vaccine.name
+            self.datePicker.date = Date(withString: vaccine.date)
+        }
+    }
     
     func formatVaccine() -> Vaccine {
         guard let name = name.text else {
@@ -26,7 +36,7 @@ class CreateVaccineViewController: UIViewController {
         }
         let date = datePicker.date.description
         
-        return Vaccine(_id: nil, name: name, date: date)
+        return Vaccine(_id: vaccine?._id, name: name, date: date)
     }
     
     func createVaccine() {
@@ -43,9 +53,29 @@ class CreateVaccineViewController: UIViewController {
             }
         }
     }
+    
+    func updateVaccine() {
+        VaccineHandler.update(vaccine: formatVaccine()) { (response) in
+            switch response {
+            case .error(let description):
+                self.showAlert(title: "Error", message: description)
+            case .success(let answer):
+                DispatchQueue.main.async {
+                    self.pet.updateVaccine(vaccine: answer)
+                    EventManager.shared.trigger(eventName: "reloadCommonData")
+                    self.back()
+                }
+            }
+        }
+    }
+    
     //MARK:- ACTIONS
     @IBAction func create() {
-        createVaccine()
+        if vaccine != nil {
+            updateVaccine()
+        } else {
+            createVaccine()
+        }
     }
 }
 

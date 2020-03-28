@@ -27,6 +27,7 @@
 		82359F152418049F00FBC086 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F142418049F00FBC086 /* LoginViewController.swift */; };
 		82359F1B241807C900FBC086 /* RegisterPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F1A241807C900FBC086 /* RegisterPersonViewController.swift */; };
 		8236CBD6242FEA0700027972 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8236CBD5242FEA0700027972 /* EventManager.swift */; };
+		8236CBD8242FFE0300027972 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8236CBD7242FFE0300027972 /* Date.swift */; };
 		82682EC724288847006908CB /* PersonNameComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82682EC624288847006908CB /* PersonNameComponents.swift */; };
 		82682ECB2429BA35006908CB /* PetsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82682ECA2429BA35006908CB /* PetsDelegate.swift */; };
 		82682ECD2429BA45006908CB /* PetsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82682ECC2429BA45006908CB /* PetsDataSource.swift */; };
@@ -106,6 +107,7 @@
 		82359F142418049F00FBC086 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		82359F1A241807C900FBC086 /* RegisterPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPersonViewController.swift; sourceTree = "<group>"; };
 		8236CBD5242FEA0700027972 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		8236CBD7242FFE0300027972 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		82682EC624288847006908CB /* PersonNameComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonNameComponents.swift; sourceTree = "<group>"; };
 		82682ECA2429BA35006908CB /* PetsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsDelegate.swift; sourceTree = "<group>"; };
 		82682ECC2429BA45006908CB /* PetsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsDataSource.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				8297A0FC2419AA8F00BE7733 /* String.swift */,
 				823471C224287D1B001617FC /* ViewController.swift */,
 				82682EC624288847006908CB /* PersonNameComponents.swift */,
+				8236CBD7242FFE0300027972 /* Date.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -786,6 +789,7 @@
 				82B83868240C92A300E82929 /* PetDAO.swift in Sources */,
 				82359F042417F5BC00FBC086 /* PersonHandler.swift in Sources */,
 				82B83880240CA45B00E82929 /* AgeDelegate.swift in Sources */,
+				8236CBD8242FFE0300027972 /* Date.swift in Sources */,
 				8287FA0D241838C7005F69BF /* UIAlert.swift in Sources */,
 				82359EF62417E87C00FBC086 /* Extensions.swift in Sources */,
 				8297A0FD2419AA8F00BE7733 /* String.swift in Sources */,

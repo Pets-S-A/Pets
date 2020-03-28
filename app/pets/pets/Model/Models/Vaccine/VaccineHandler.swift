@@ -73,14 +73,39 @@ class VaccineHandler {
                 default:
                     completion(VaccineLoadResponse.error(description: "Error to convert data"))
                 }
-        }
+            }
     }
     static func getOne(id: String, withCompletion
         completion: (VaccineOneResponse) -> Void) {
         completion(VaccineOneResponse.error(description: "Not implementation"))
     }
-    static func update(vaccine: Vaccine, withCompletion completion: (VaccineOneResponse) -> Void) {
-        completion(VaccineOneResponse.error(description: "Not implementation"))
+    static func update(vaccine: Vaccine, withCompletion completion: @escaping (VaccineOneResponse) -> Void) {
+        let params = vaccine.dictionaryRepresentation(pet: nil)
+        APIRequests.postRequest(url: "\(BASE_URL)/update", params: params, decodableType: ServerAnswer<Vaccine>.self) {
+            (response) in
+            switch response {
+            case .result(let answer as ServerAnswer<Vaccine>):
+                guard let result = answer.success,
+                    let vaccine = answer.content,
+                    result
+                    
+                    else {
+                        if let message = answer.message {
+                            completion(VaccineOneResponse
+                                .error(description: message))
+                        } else {
+                            completion(VaccineOneResponse
+                                .error(description: "Answer is false"))
+                        }
+                        return
+                }
+                completion(VaccineOneResponse.success(answer: vaccine))
+            case .error(let error):
+                completion(VaccineOneResponse.error(description: error.localizedDescription))
+            default:
+                completion(VaccineOneResponse.error(description: "Error to convert data"))
+            }
+        }
     }
     public static func delete(id: String, completion: @escaping (VaccineOneResponse) -> Void) {
         APIRequests
