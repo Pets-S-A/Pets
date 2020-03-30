@@ -1,6 +1,6 @@
-const {UserModel} = require('../../models');
-const HttpStatus = require('../../HttpStatus');
-const {validateBody} = require('../../utils');
+const {UserModel, VetModel} = require('../../models');
+// const HttpStatus = require('../../HttpStatus');
+const {validateBody, validatePassword} = require('../../utils');
 
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -10,65 +10,36 @@ const config = require('../../config');
 const EXPIRES_IN_MINUTES = '1440m'; // expires in 24 hours
 
 module.exports = {
-  getAll: async (req, res, next) => {
-    try {
-      res.status(HttpStatus.OK).json({
-        success: true,
-        content: await UserModel.find(),
-        message: 'Usuários encontrados!',
-      });
-    } catch (error) {
-      return next(error);
-    }
-  },
   create: async (req, res, next) => {
     try {
       const body = req.body || {};
       if (validateBody(body)) {
         throw new Error('Body não encontrado');
       }
-      if (!body.application) {
-        throw new Error('Aplication is required');
+
+      if (!validatePassword(body.password, body.password2)) {
+        throw new Error('Senhas não são iguais');
       }
 
-      const user = await UserModel.create(body);
+      const user = await new UserModel(body);
+      const vet = await new VetModel(body);
+      user.vet = vet;
       user.hash(next);
-      user.save();
-      if (body.application == 'json') {
-        res.json({
-          success: true,
-          message: 'Pessoa criada com successo!',
-          content: user,
-        });
-      } else {
-        res.json({
-          success: false,
-          message: 'not implemented',
-        });
-      }
-    } catch (error) {
+      await user.save();
+      await vet.save();
+
       res.json({
-        success: false,
-        message: error.message,
+        success: true,
+        message: 'Vet criado com successo!',
+        content: user,
       });
+    } catch (error) {
+      return next(error);
     }
   },
-  get: async (req, res, next) => {
+  getRegister: async (req, res, next) => {
     try {
-      if (req.cookies) {
-        const isValid = await token(req.cookies.auth);
-        if (isValid) {
-          res.render('admin/dashboard/dashboard.view.hbs');
-        } else {
-          res.render('index', {
-            pageIsLogin: true,
-          });
-        }
-      } else {
-        res.render('index', {
-          pageIsLogin: true,
-        });
-      }
+      res.render('vet/register/register.view.hbs');
     } catch (err) {
       return next(err);
     }
@@ -77,9 +48,8 @@ module.exports = {
     const email = req.body.email;
     const password = req.body.password;
 
-
     try {
-      const user = await UserModel.findOne({email});
+      const user = await VetModel.findOne({email});
 
       if (!user) {
         return res.json({
@@ -132,7 +102,7 @@ module.exports = {
       }
       res.json({
         success: true,
-        content: await UserModel.findByIdAndDelete(params.id),
+        content: await VetModel.findByIdAndDelete(params.id),
       });
     } catch (error) {
       res.json({
@@ -145,7 +115,7 @@ module.exports = {
     try {
       res.json({
         success: true,
-        content: await UserModel.deleteMany({}),
+        content: await VetModel.deleteMany({}),
       });
     } catch (error) {
       res.json({
@@ -159,26 +129,3 @@ module.exports = {
     res.redirect('/user/auth');
   },
 };
-
-
-// TODO - FIX
-// eslint-disable-next-line require-jsdoc
-async function createAdmin() {
-  const user = await UserModel.findOne({email: 'admin'});
-
-  if (!user) {
-    const password = 'admin123!@#';
-    const body = {
-      email: 'admin',
-      name: 'Admin',
-      password,
-      access: ['master'],
-    };
-    await UserModel.create(body);
-    console.log('admin criado com sucesso!', password);
-  } else {
-    console.log('admin já existe!');
-  }
-}
-
-createAdmin();

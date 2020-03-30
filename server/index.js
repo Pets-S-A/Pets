@@ -17,6 +17,7 @@ const {
   apiVaccineRouterProtected,
   userRouterUnprotected,
   userRouterProtected,
+  vetRouterUnprotected,
 } = require('./route');
 
 
@@ -49,6 +50,7 @@ app.get('/', (req, res) => {
 
 // Unprotected
 app.use('/', userRouterUnprotected);
+app.use('/', vetRouterUnprotected);
 
 // Protected
 app.use('/', userRouterProtected);

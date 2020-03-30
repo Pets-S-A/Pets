@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 
+const vetRouterUnprotected = require('./public/vet/vet.router.unprotected');
 const userRouterUnprotected = require('./public/user/user.router.unprotected');
 const errorRouterProtected = require('./private/error/error.router.protected');
 const userRouterProtected = require('./private/user/user.router.protected');
@@ -15,4 +16,5 @@ module.exports = {
   apiPetRouterProtected,
   apiPersonRouterProtected,
   apiVaccineRouterProtected,
+  vetRouterUnprotected,
 };
