@@ -1,12 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const hbs = require('hbs');
 const path = require('path');
 const helmet = require('helmet');
 
 const db = require('./db');
-// const {ErrorModel} = require('./models');
+const {ErrorModel} = require('./models');
+const {UserCtrl} = require('./controllers');
 // const validateToken = require('./middleware/validate-token');
 const app = express();
 
@@ -31,6 +33,7 @@ app.use(
     }),
 );
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(helmet());
@@ -44,13 +47,10 @@ app.set('view engine', 'hbs');
 // DB
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
-
 // Unprotected
 app.use('/', userRouterUnprotected);
 app.use('/', vetRouterUnprotected);
+app.get('/', UserCtrl.get);
 
 // Protected
 app.use('/', userRouterProtected);
@@ -65,9 +65,9 @@ app.use(async (error, req, res, next) => {
   res.locals.error = req.app.get('env') === 'development' ? error : {};
   res.status(error.status || 500);
 
-  // const err = error;
-  // err.error = JSON.stringify(err.errors);
-  // await ErrorModel.create(err);
+  const err = error;
+  err.error = JSON.stringify(err.errors);
+  await ErrorModel.create(err);
 
   res.render('error');
 });

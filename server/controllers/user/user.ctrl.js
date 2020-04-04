@@ -93,10 +93,12 @@ module.exports = {
   },
   get: async (req, res, next) => {
     try {
-      if (req.cookies) {
-        const isValid = await token(req.cookies.auth);
-        if (isValid) {
-          res.render('admin/dashboard/dashboard.view.hbs');
+      const token = req.cookies.auth;
+      if (token) {
+        const response = await jwt.verify(req.cookies.auth, config.JWTSecret);
+        if (response) {
+          let userID = response.user;
+          res.render('vet/dashboard/dashboard.view.hbs');
         } else {
           res.render('index', {
             pageIsLogin: true,
