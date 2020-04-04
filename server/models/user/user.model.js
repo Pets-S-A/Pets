@@ -28,7 +28,7 @@ User.methods.hash = (async function(next) {
             return next(error);
           }
           user.password = hashed;
-          next();
+          return;
         });
       }
     });

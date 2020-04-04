@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const Vet = new Schema(
     {
-      clinic: {type: String, required: true, unique: true},
+      clinic: {type: String, required: true},
       name: {type: String, required: true},
       crmv: {type: String, required: true},
     },

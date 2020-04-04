@@ -21,17 +21,18 @@ module.exports = {
         throw new Error('Senhas não são iguais');
       }
 
-      const user = await new UserModel(body);
-      const vet = await new VetModel(body);
-      user.vet = vet;
-      user.hash(next);
-      await user.save();
-      await vet.save();
+      if (await UserModel.findOne({email: body.email})) {
+        throw new Error('E-mail já cadastrado');
+      }
 
-      res.json({
-        success: true,
-        message: 'Vet criado com successo!',
-        content: user,
+      const user = await UserModel.create(body);
+      await user.hash(next);
+      const vet = await VetModel.create(body);
+      user.vet = vet;
+      await user.save();
+
+      res.render('index', {
+        message: 'Cadastro realizado com sucesso!',
       });
     } catch (error) {
       return next(error);

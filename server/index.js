@@ -6,7 +6,7 @@ const path = require('path');
 const helmet = require('helmet');
 
 const db = require('./db');
-const {ErrorModel} = require('./models');
+// const {ErrorModel} = require('./models');
 // const validateToken = require('./middleware/validate-token');
 const app = express();
 
@@ -65,9 +65,9 @@ app.use(async (error, req, res, next) => {
   res.locals.error = req.app.get('env') === 'development' ? error : {};
   res.status(error.status || 500);
 
-  const err = error;
-  err.error = JSON.stringify(err.errors);
-  await ErrorModel.create(err);
+  // const err = error;
+  // err.error = JSON.stringify(err.errors);
+  // await ErrorModel.create(err);
 
   res.render('error');
 });
