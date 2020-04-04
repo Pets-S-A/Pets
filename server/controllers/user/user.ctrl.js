@@ -2,6 +2,7 @@ const {UserModel} = require('../../models');
 const HttpStatus = require('../../HttpStatus');
 const {validateBody} = require('../../utils');
 
+
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -10,6 +11,43 @@ const config = require('../../config');
 const EXPIRES_IN_MINUTES = '1440m'; // expires in 24 hours
 
 module.exports = {
+  login: async (req, res, next) => {
+    const body = req.body || {};
+    if (validateBody(body)) {
+      throw new Error('Body não encontrado');
+    }
+    const email = body.email;
+    const password = body.password;
+
+    try {
+      const user = await UserModel.findOne({email});
+
+      if (!user) {
+        return res.json({
+          success: false,
+          message: 'Usuário não encontrado!',
+        });
+      }
+
+      const compare = await bcrypt.compare(password, user.password);
+      if (!compare) {
+        return res.json({
+          success: false,
+          message: 'Senha não confere!',
+        });
+      }
+
+      const payload = {user: user._id};
+      const token = jwt.sign(payload, config.JWTSecret, {
+        expiresIn: EXPIRES_IN_MINUTES,
+      });
+
+      res.cookie('auth', token);
+      res.render('vet/dashboard/dashboard.view.hbs');
+    } catch (error) {
+      return next(error);
+    }
+  },
   getAll: async (req, res, next) => {
     try {
       res.status(HttpStatus.OK).json({

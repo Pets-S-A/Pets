@@ -1,12 +1,13 @@
 <section txt="c">
 	<grid>
 		<form action="/user/login" method="post">
+			<input type="text" name="application" value="hbs" style="display: none;">
 			<div col="1/2">
 				<card>
 					<label for="usuario" txt="c">LOGIN</label>
-						<input type="user" name="user" id="user" placeholder="Usuário" required>
+						<input type="email" name="email" id="email" placeholder="Usuário" required>
 
-						<input type="password" name="senha" id="senhaID" placeholder="Senha" required>
+						<input type="password" name="password" id="senhaID" placeholder="Senha" required>
 
 						<button btn type="submit">Entrar</button>
 				</card>	
