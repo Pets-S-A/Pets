@@ -24,7 +24,7 @@ enum PersonTokenResponse: Error {
 }
 
 class PersonHandler {
-    public static let BASE_URL:String = "\(ENV.server)/person"
+    public static let BASE_URL:String = "\(Environment.SERVER_URL)/person"
     
     static func create(person: Person, withCompletion completion: @escaping (PersonOneResponse) -> Void) {
         APIRequests.postRequest(url: "\(BASE_URL)/create", params: person.dictionaryRepresentation, decodableType: ServerAnswer<Person>.self) {

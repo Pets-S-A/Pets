@@ -22,12 +22,14 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         setUp()
     }
     
     func setUp() {
         preLoad()
         setUpCollection()
+        registerEvents()
     }
     
     func preLoad() {
@@ -54,6 +56,19 @@ class MainViewController: UIViewController {
         petsDataSource.fetch(delegate: petsDelegate)
     }
     
+    func registerEvents() {
+        EventManager.shared.listenTo(eventName: "reloadCommonData") {
+            DispatchQueue.main.async {
+                self.petsDataSource.reloadWithCommonData(delegate: self.petsDelegate)
+            }
+        }
+        EventManager.shared.listenTo(eventName: "reloadDeletePet") {
+            DispatchQueue.main.async {
+                self.petsDataSource.reloadWithCommonData(delegate: self.petsDelegate)
+            }
+        }
+    }
+    
     // MARK:- Actions
     @IBAction func toProfile() {
         performSegue(withIdentifier: "toProfile", sender: nil)
@@ -64,6 +79,11 @@ class MainViewController: UIViewController {
             view.isProfileEdition = true
         } else if let view = segue.destination as? PetCreateViewController {
             view.mainDelegate = self
+        } else if let view = segue.destination as? DetailPetViewController {
+            guard let pet = sender as? Pet else {
+                fatalError("Error to take pet in sender")
+            }
+            view.pet = pet
         }
     }
 }

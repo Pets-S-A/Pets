@@ -11,26 +11,30 @@ const User = new Schema(
       password: {type: String, required: true},
       access: {type: [String], required: true},
       person: {type: mongoose.Schema.Types.ObjectId, ref: 'person', autopopulate: true},
+      vet: {type: mongoose.Schema.Types.ObjectId, ref: 'vet', autopopulate: true},
     },
     {timestamps: true},
 );
 
 User.methods.hash = (async function(next) {
   const user = this;
-  bcrypt.genSalt(10, async function(error, salt) {
-    if (error) {
-      return next(error);
-    } else {
-      bcrypt.hash(user.password, salt, async function(error, hashed) {
-        if (error) {
-          return next(error);
-        }
-        user.password = hashed;
-        await user.save();
-        next();
-      });
-    }
-  });
+  try {
+    bcrypt.genSalt(10, async function(error, salt) {
+      if (error) {
+        return next(error);
+      } else {
+        bcrypt.hash(user.password, salt, async function(error, hashed) {
+          if (error) {
+            return next(error);
+          }
+          user.password = hashed;
+          return;
+        });
+      }
+    });
+  } catch (error) {
+    return next(error);
+  }
 });
 
 User.plugin(require('mongoose-autopopulate'));

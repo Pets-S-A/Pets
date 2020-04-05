@@ -67,6 +67,26 @@ module.exports = {
       });
     }
   },
+  update: async (req, res, next) => {
+    try {
+      const body = req.body || {};
+      if (validateBody(body)) {
+        throw new Error('Boby not found');
+      }
+      if (!body._id) {
+        throw new Error('Id is required');
+      }
+      res.json({
+        success: true,
+        content: await PetModel.findByIdAndUpdate(body._id, body),
+      });
+    } catch (error) {
+      res.json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
   deleteByID: async (req, res, next) => {
     try {
       const params = req.params || {};

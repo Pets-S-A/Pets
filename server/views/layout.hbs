@@ -4,6 +4,8 @@
 <head>
   <title>{{#if title}}{{title}}{{else}}User | AcampaIPP{{/if}}</title>
   <link rel='stylesheet' href='/assets/css/bare.min.css' />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9" defer></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
@@ -12,9 +14,9 @@
   {{> nav}}
   <section style="max-width: auto">
     <br>
-    {{#if msg}}
+    {{#if message}}
     <card>
-      <p txt="c" id="nao-pago">{{msg}}</p>
+      <p txt="c" id="nao-pago">{{message}}</p>
     </card>
     {{/if}}
     {{#if error}}

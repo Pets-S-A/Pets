@@ -32,3 +32,17 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
+
+extension UIViewController {
+    func back() {
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+}
+
+extension UINavigationController {
+    var previousViewController: UIViewController? {
+        return viewControllers.count > 1 ? viewControllers[viewControllers.count - 2] : nil
+    }
+}

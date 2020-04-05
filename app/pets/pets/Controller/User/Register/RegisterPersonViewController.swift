@@ -36,7 +36,8 @@ class RegisterPersonViewController: UIViewController {
         }
         if isProfileEdition {
             button.setTitle("Atualizar", for: .normal)
-            if let imageURL = CommonData.shared.user.person?.image {
+            if let imageURL = CommonData.shared.user.person?.image,
+                   imageURL != "" {
                 DispatchQueue.main.async {
                     self.imageView.imageFromWeb(withURL: imageURL)
                 }

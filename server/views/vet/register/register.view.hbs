@@ -1,0 +1,29 @@
+<section txt="c">
+	<grid>
+		<form action="/vet/create" method="post">
+			<div col="1/2">
+				<card>
+					<h3>Register</h3>
+					<blockquote>
+						<label txt="l">Informações pessoais</label>
+						<input type="name" xx class="body" name="name" id="name" placeholder="Nome" value="" required>
+						<input type="text" xx class="body" name="clinic" placeholder="Qual o nome da sua clínica?"
+							required>
+						<input type="text" xx class="body" name="crmv" placeholder="Qual o seu CRMV?" required>
+					</blockquote>
+
+					<blockquote>
+						<label txt="l">Informações para Login</label>
+						<input type="email" xx class="body" name="email" id="email" placeholder="E-mail" required>
+						<input type="password" xx class="body" name="password" id="senhaID" placeholder="Senha"
+							required>
+						<input type="password" xx class="body" name="password2" id="senhaID"
+							placeholder="Repita a Senha" required>
+					</blockquote>
+
+					<button btn>Criar</button>
+				</card>
+			</div>
+		</form>
+	</grid>
+</section>

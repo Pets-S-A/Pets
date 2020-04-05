@@ -38,6 +38,19 @@ class PetsDataSource: NSObject, UICollectionViewDataSource {
         }
     }
     
+    func reloadWithCommonData(delegate: PetsDelegate) {
+        guard let pets = CommonData.shared.user.person?.pets else {
+            fatalError("Onde estao os pets?")
+        }
+        DispatchQueue.main.async {
+            self.pets = pets
+            delegate.pets = pets
+            if let view = self.viewController as? MainViewController {
+                view.collectionView.reloadData()
+            }
+        }
+    }
+    
     internal func register(collectionView: UICollectionView) {
         let cell = UINib(nibName: "PetCell", bundle: nil)
         collectionView.register(cell, forCellWithReuseIdentifier: "PetCell")
@@ -59,10 +72,5 @@ class PetsDataSource: NSObject, UICollectionViewDataSource {
             return cell
         }
         return UICollectionViewCell()
-    }
-    @objc
-    func toDetail() {
-        self.viewController?.performSegue(withIdentifier: "toDetail",
-                                          sender: nil)
     }
 }

@@ -14,7 +14,7 @@ enum ImageUploadResponse: Error {
 }
 
 struct ImageHandler {
-    static let url = ENV.IMAGE_URL_SERVER
+    static let url = Environment.IMAGE_URL_SERVER
     
     static func uploadRequest(imagemT: UIImage?, name: String, withCompletion completion: @escaping (ImageUploadResponse) -> Void) {
                 
@@ -41,7 +41,7 @@ struct ImageHandler {
         
         
         var body = Data()
-        body = ImageHandler().createBody(nil , ENV.IMAGE_ACCESS_CODE, imageData, boundary, name)
+        body = ImageHandler().createBody(nil , Environment.IMAGE_ACCESS_CODE, imageData, boundary, name)
         request.httpBody = body
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {

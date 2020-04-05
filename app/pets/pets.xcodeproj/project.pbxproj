@@ -16,7 +16,7 @@
 		82359EF42417E85C00FBC086 /* APIRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359EF32417E85C00FBC086 /* APIRequests.swift */; };
 		82359EF62417E87C00FBC086 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359EF52417E87C00FBC086 /* Extensions.swift */; };
 		82359EF82417E8A900FBC086 /* NotURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359EF72417E8A900FBC086 /* NotURLProtocol.swift */; };
-		82359EFA2417E8C400FBC086 /* ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359EF92417E8C400FBC086 /* ENV.swift */; };
+		82359EFA2417E8C400FBC086 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359EF92417E8C400FBC086 /* Environment.swift */; };
 		82359F022417F5B100FBC086 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F012417F5B100FBC086 /* Person.swift */; };
 		82359F042417F5BC00FBC086 /* PersonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F032417F5BC00FBC086 /* PersonHandler.swift */; };
 		82359F07241800EE00FBC086 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F06241800EE00FBC086 /* User.swift */; };
@@ -26,6 +26,8 @@
 		82359F122418041700FBC086 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F112418041700FBC086 /* Spinner.swift */; };
 		82359F152418049F00FBC086 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F142418049F00FBC086 /* LoginViewController.swift */; };
 		82359F1B241807C900FBC086 /* RegisterPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82359F1A241807C900FBC086 /* RegisterPersonViewController.swift */; };
+		8236CBD6242FEA0700027972 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8236CBD5242FEA0700027972 /* EventManager.swift */; };
+		8236CBD8242FFE0300027972 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8236CBD7242FFE0300027972 /* Date.swift */; };
 		82682EC724288847006908CB /* PersonNameComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82682EC624288847006908CB /* PersonNameComponents.swift */; };
 		82682ECB2429BA35006908CB /* PetsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82682ECA2429BA35006908CB /* PetsDelegate.swift */; };
 		82682ECD2429BA45006908CB /* PetsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82682ECC2429BA45006908CB /* PetsDataSource.swift */; };
@@ -56,6 +58,14 @@
 		82B8387C240CA44700E82929 /* GenderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8387B240CA44700E82929 /* GenderDelegate.swift */; };
 		82B8387E240CA45200E82929 /* AgeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8387D240CA45200E82929 /* AgeDataSource.swift */; };
 		82B83880240CA45B00E82929 /* AgeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8387F240CA45B00E82929 /* AgeDelegate.swift */; };
+		82EF9BDE242C45F3001D9FC2 /* DetailPetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BDD242C45F3001D9FC2 /* DetailPetViewController.swift */; };
+		82EF9BE2242C4809001D9FC2 /* Vaccine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BE1242C4809001D9FC2 /* Vaccine.swift */; };
+		82EF9BE4242C4817001D9FC2 /* VaccineHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BE3242C4817001D9FC2 /* VaccineHandler.swift */; };
+		82EF9BE7242C4E7A001D9FC2 /* CreateVaccineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BE6242C4E7A001D9FC2 /* CreateVaccineViewController.swift */; };
+		82EF9BEB242C5E58001D9FC2 /* VaccineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BE9242C5E58001D9FC2 /* VaccineCell.swift */; };
+		82EF9BEC242C5E58001D9FC2 /* VaccineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82EF9BEA242C5E58001D9FC2 /* VaccineCell.xib */; };
+		82EF9BEF242C6B6A001D9FC2 /* VaccineCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BEE242C6B6A001D9FC2 /* VaccineCellDelegate.swift */; };
+		82EF9BF1242C6B7A001D9FC2 /* VaccineCellDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF9BF0242C6B7A001D9FC2 /* VaccineCellDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +96,7 @@
 		82359EF32417E85C00FBC086 /* APIRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequests.swift; sourceTree = "<group>"; };
 		82359EF52417E87C00FBC086 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		82359EF72417E8A900FBC086 /* NotURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotURLProtocol.swift; sourceTree = "<group>"; };
-		82359EF92417E8C400FBC086 /* ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENV.swift; sourceTree = "<group>"; };
+		82359EF92417E8C400FBC086 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		82359F012417F5B100FBC086 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		82359F032417F5BC00FBC086 /* PersonHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonHandler.swift; sourceTree = "<group>"; };
 		82359F06241800EE00FBC086 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -96,6 +106,8 @@
 		82359F112418041700FBC086 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		82359F142418049F00FBC086 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		82359F1A241807C900FBC086 /* RegisterPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPersonViewController.swift; sourceTree = "<group>"; };
+		8236CBD5242FEA0700027972 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		8236CBD7242FFE0300027972 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		82682EC624288847006908CB /* PersonNameComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonNameComponents.swift; sourceTree = "<group>"; };
 		82682ECA2429BA35006908CB /* PetsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsDelegate.swift; sourceTree = "<group>"; };
 		82682ECC2429BA45006908CB /* PetsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsDataSource.swift; sourceTree = "<group>"; };
@@ -130,6 +142,14 @@
 		82B8387B240CA44700E82929 /* GenderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderDelegate.swift; sourceTree = "<group>"; };
 		82B8387D240CA45200E82929 /* AgeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeDataSource.swift; sourceTree = "<group>"; };
 		82B8387F240CA45B00E82929 /* AgeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeDelegate.swift; sourceTree = "<group>"; };
+		82EF9BDD242C45F3001D9FC2 /* DetailPetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPetViewController.swift; sourceTree = "<group>"; };
+		82EF9BE1242C4809001D9FC2 /* Vaccine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vaccine.swift; sourceTree = "<group>"; };
+		82EF9BE3242C4817001D9FC2 /* VaccineHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineHandler.swift; sourceTree = "<group>"; };
+		82EF9BE6242C4E7A001D9FC2 /* CreateVaccineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVaccineViewController.swift; sourceTree = "<group>"; };
+		82EF9BE9242C5E58001D9FC2 /* VaccineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCell.swift; sourceTree = "<group>"; };
+		82EF9BEA242C5E58001D9FC2 /* VaccineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineCell.xib; sourceTree = "<group>"; };
+		82EF9BEE242C6B6A001D9FC2 /* VaccineCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCellDelegate.swift; sourceTree = "<group>"; };
+		82EF9BF0242C6B7A001D9FC2 /* VaccineCellDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCellDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,12 +214,12 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		82359EFB2417E8F000FBC086 /* ENV */ = {
+		82359EFB2417E8F000FBC086 /* Environment */ = {
 			isa = PBXGroup;
 			children = (
-				82359EF92417E8C400FBC086 /* ENV.swift */,
+				82359EF92417E8C400FBC086 /* Environment.swift */,
 			);
-			path = ENV;
+			path = Environment;
 			sourceTree = "<group>";
 		};
 		82359EFC2417EA8E00FBC086 /* Pet */ = {
@@ -234,6 +254,7 @@
 				82359F05241800E100FBC086 /* User */,
 				82359F002417F59E00FBC086 /* Person */,
 				82B83869240C92D200E82929 /* Pet */,
+				82EF9BDF242C47F2001D9FC2 /* Vaccine */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -255,6 +276,7 @@
 				8297A0FC2419AA8F00BE7733 /* String.swift */,
 				823471C224287D1B001617FC /* ViewController.swift */,
 				82682EC624288847006908CB /* PersonNameComponents.swift */,
+				8236CBD7242FFE0300027972 /* Date.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -304,6 +326,7 @@
 		827BB003242ADC6200C25429 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				82EF9BE8242C5E2C001D9FC2 /* Vaccine */,
 				827BB008242ADC9300C25429 /* Pet */,
 			);
 			path = Components;
@@ -332,6 +355,7 @@
 			children = (
 				8287FA0F241869CC005F69BF /* CommonData.swift */,
 				8297A0F82419A78E00BE7733 /* ImagePicker.swift */,
+				8236CBD5242FEA0700027972 /* EventManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -368,11 +392,12 @@
 			isa = PBXGroup;
 			children = (
 				823471C424287DB4001617FC /* pets.entitlements */,
+				82359EFB2417E8F000FBC086 /* Environment */,
 				8297A0F52419A43900BE7733 /* Helpers */,
 				8287FA0E241869B7005F69BF /* Manager */,
 				8287FA0724183818005F69BF /* Ultils */,
 				82359F0E241803A200FBC086 /* Extension */,
-				82B8385A240C8FC500E82929 /* Delegate */,
+				82B8385A240C8FC500E82929 /* Application */,
 				82B8385E240C902300E82929 /* Model */,
 				82B8385D240C8FDE00E82929 /* Controller */,
 				82B8385C240C8FD800E82929 /* View */,
@@ -391,13 +416,13 @@
 			path = petsTests;
 			sourceTree = "<group>";
 		};
-		82B8385A240C8FC500E82929 /* Delegate */ = {
+		82B8385A240C8FC500E82929 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				82B83838240C8FB900E82929 /* AppDelegate.swift */,
 				82B8383A240C8FB900E82929 /* SceneDelegate.swift */,
 			);
-			path = Delegate;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		82B8385B240C8FCB00E82929 /* Storyboard */ = {
@@ -421,6 +446,7 @@
 		82B8385D240C8FDE00E82929 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				82EF9BE5242C4E63001D9FC2 /* Vaccine */,
 				82359F132418048B00FBC086 /* User */,
 				82B83871240C9A9B00E82929 /* Pets */,
 				82B83875240C9AF600E82929 /* Main */,
@@ -433,7 +459,6 @@
 			children = (
 				82359F0B241802FB00FBC086 /* Image */,
 				82359F0A2418016A00FBC086 /* Models */,
-				82359EFB2417E8F000FBC086 /* ENV */,
 				82359EEE2417E81F00FBC086 /* Server */,
 				82B83861240C914D00E82929 /* Data */,
 				82B8385F240C912000E82929 /* Persistence */,
@@ -487,6 +512,7 @@
 		82B83871240C9A9B00E82929 /* Pets */ = {
 			isa = PBXGroup;
 			children = (
+				82EF9BDC242C45E3001D9FC2 /* Detail */,
 				82B83872240C9AA600E82929 /* Create */,
 			);
 			path = Pets;
@@ -535,6 +561,50 @@
 				82B8387B240CA44700E82929 /* GenderDelegate.swift */,
 			);
 			path = Gender;
+			sourceTree = "<group>";
+		};
+		82EF9BDC242C45E3001D9FC2 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				82EF9BED242C6B4B001D9FC2 /* Vacccine */,
+				82EF9BDD242C45F3001D9FC2 /* DetailPetViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		82EF9BDF242C47F2001D9FC2 /* Vaccine */ = {
+			isa = PBXGroup;
+			children = (
+				82EF9BE1242C4809001D9FC2 /* Vaccine.swift */,
+				82EF9BE3242C4817001D9FC2 /* VaccineHandler.swift */,
+			);
+			path = Vaccine;
+			sourceTree = "<group>";
+		};
+		82EF9BE5242C4E63001D9FC2 /* Vaccine */ = {
+			isa = PBXGroup;
+			children = (
+				82EF9BE6242C4E7A001D9FC2 /* CreateVaccineViewController.swift */,
+			);
+			path = Vaccine;
+			sourceTree = "<group>";
+		};
+		82EF9BE8242C5E2C001D9FC2 /* Vaccine */ = {
+			isa = PBXGroup;
+			children = (
+				82EF9BE9242C5E58001D9FC2 /* VaccineCell.swift */,
+				82EF9BEA242C5E58001D9FC2 /* VaccineCell.xib */,
+			);
+			path = Vaccine;
+			sourceTree = "<group>";
+		};
+		82EF9BED242C6B4B001D9FC2 /* Vacccine */ = {
+			isa = PBXGroup;
+			children = (
+				82EF9BEE242C6B6A001D9FC2 /* VaccineCellDelegate.swift */,
+				82EF9BF0242C6B7A001D9FC2 /* VaccineCellDataSource.swift */,
+			);
+			path = Vacccine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -654,6 +724,7 @@
 				827BB007242ADC8F00C25429 /* PetCell.xib in Resources */,
 				82B83842240C8FBD00E82929 /* Assets.xcassets in Resources */,
 				82B83840240C8FB900E82929 /* Main.storyboard in Resources */,
+				82EF9BEC242C5E58001D9FC2 /* VaccineCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +755,7 @@
 				82359F152418049F00FBC086 /* LoginViewController.swift in Sources */,
 				827BB006242ADC8F00C25429 /* PetCell.swift in Sources */,
 				82B83874240C9AB800E82929 /* PetCreateViewController.swift in Sources */,
+				82EF9BDE242C45F3001D9FC2 /* DetailPetViewController.swift in Sources */,
 				82B8387E240CA45200E82929 /* AgeDataSource.swift in Sources */,
 				8297A0F92419A78E00BE7733 /* ImagePicker.swift in Sources */,
 				82359EF42417E85C00FBC086 /* APIRequests.swift in Sources */,
@@ -695,27 +767,35 @@
 				8297A0FB2419A81800BE7733 /* UIView.swift in Sources */,
 				82B83839240C8FB900E82929 /* AppDelegate.swift in Sources */,
 				82682ECB2429BA35006908CB /* PetsDelegate.swift in Sources */,
+				82EF9BE2242C4809001D9FC2 /* Vaccine.swift in Sources */,
+				82EF9BE7242C4E7A001D9FC2 /* CreateVaccineViewController.swift in Sources */,
 				82359F022417F5B100FBC086 /* Person.swift in Sources */,
 				82B83866240C928000E82929 /* GenericDAO.swift in Sources */,
 				82359F10241803B100FBC086 /* UIImageDownload.swift in Sources */,
+				82EF9BEF242C6B6A001D9FC2 /* VaccineCellDelegate.swift in Sources */,
 				82359F07241800EE00FBC086 /* User.swift in Sources */,
 				82B8387C240CA44700E82929 /* GenderDelegate.swift in Sources */,
+				82EF9BF1242C6B7A001D9FC2 /* VaccineCellDataSource.swift in Sources */,
 				82682ECD2429BA45006908CB /* PetsDataSource.swift in Sources */,
 				8287FA10241869CC005F69BF /* CommonData.swift in Sources */,
 				823471C324287D1B001617FC /* ViewController.swift in Sources */,
 				82B8387A240CA43B00E82929 /* GenderDataSource.swift in Sources */,
 				82359F09241800F700FBC086 /* UserHandler.swift in Sources */,
 				82359EF82417E8A900FBC086 /* NotURLProtocol.swift in Sources */,
-				82359EFA2417E8C400FBC086 /* ENV.swift in Sources */,
+				82359EFA2417E8C400FBC086 /* Environment.swift in Sources */,
 				82359F122418041700FBC086 /* Spinner.swift in Sources */,
 				82B8386F240C956300E82929 /* CoreDataManager.swift in Sources */,
+				82EF9BE4242C4817001D9FC2 /* VaccineHandler.swift in Sources */,
 				82B83868240C92A300E82929 /* PetDAO.swift in Sources */,
 				82359F042417F5BC00FBC086 /* PersonHandler.swift in Sources */,
 				82B83880240CA45B00E82929 /* AgeDelegate.swift in Sources */,
+				8236CBD8242FFE0300027972 /* Date.swift in Sources */,
 				8287FA0D241838C7005F69BF /* UIAlert.swift in Sources */,
 				82359EF62417E87C00FBC086 /* Extensions.swift in Sources */,
 				8297A0FD2419AA8F00BE7733 /* String.swift in Sources */,
+				82EF9BEB242C5E58001D9FC2 /* VaccineCell.swift in Sources */,
 				82359EF12417E84200FBC086 /* ServerAnswer.swift in Sources */,
+				8236CBD6242FEA0700027972 /* EventManager.swift in Sources */,
 				8287FA0924183826005F69BF /* UserDefaults.swift in Sources */,
 				82359F1B241807C900FBC086 /* RegisterPersonViewController.swift in Sources */,
 				82359F0D2418030600FBC086 /* ImageHandler.swift in Sources */,
@@ -928,7 +1008,7 @@
 				CODE_SIGN_ENTITLEMENTS = pets/pets.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = CTAFH43K36;
 				INFOPLIST_FILE = pets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -950,7 +1030,7 @@
 				CODE_SIGN_ENTITLEMENTS = pets/pets.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = CTAFH43K36;
 				INFOPLIST_FILE = pets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

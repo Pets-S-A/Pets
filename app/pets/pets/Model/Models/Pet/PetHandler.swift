@@ -19,14 +19,13 @@ enum PetOneResponse: Error {
 }
 
 class PetHandler {
-    public static let BASE_URL:String = "\(ENV.server)/pet"
+    public static let BASE_URL:String = "\(Environment.SERVER_URL)/pet"
     
     static func create(params: [String: Any], withCompletion completion: @escaping (PetOneResponse) -> Void) {
         APIRequests.postRequest(url: "\(BASE_URL)/create", params: params, decodableType: ServerAnswer<Pet>.self) {
             (response) in
             switch response {
             case .result(let answer as ServerAnswer<Pet>):
-                print(answer)
                 guard let result = answer.success,
                     let pet = answer.content,
                                    result
@@ -52,7 +51,7 @@ class PetHandler {
             .getRequest(
                 url: "\(BASE_URL)/allByUserID/\(userID)",
                 decodableType: ServerAnswer<Pets>.self,
-                header: ENV.token
+                header: Environment.TOKEN
             ) { (response) in
             switch response {
             case .result(let answer as ServerAnswer<Pets>):

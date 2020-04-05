@@ -4,9 +4,8 @@ const Schema = mongoose.Schema;
 
 const Vaccine = new Schema(
     {
+      name: {type: String, required: true},
       date: {type: String, required: true},
-      price: {type: String, required: true},
-      type: {type: String, required: true},
     },
     {timestamps: true},
 );

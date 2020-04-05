@@ -2,6 +2,7 @@ const {UserModel} = require('../../models');
 const HttpStatus = require('../../HttpStatus');
 const {validateBody} = require('../../utils');
 
+
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -10,6 +11,43 @@ const config = require('../../config');
 const EXPIRES_IN_MINUTES = '1440m'; // expires in 24 hours
 
 module.exports = {
+  login: async (req, res, next) => {
+    const body = req.body || {};
+    if (validateBody(body)) {
+      throw new Error('Body não encontrado');
+    }
+    const email = body.email;
+    const password = body.password;
+
+    try {
+      const user = await UserModel.findOne({email});
+
+      if (!user) {
+        return res.json({
+          success: false,
+          message: 'Usuário não encontrado!',
+        });
+      }
+
+      const compare = await bcrypt.compare(password, user.password);
+      if (!compare) {
+        return res.json({
+          success: false,
+          message: 'Senha não confere!',
+        });
+      }
+
+      const payload = {user: user._id};
+      const token = jwt.sign(payload, config.JWTSecret, {
+        expiresIn: EXPIRES_IN_MINUTES,
+      });
+
+      res.cookie('auth', token);
+      res.render('vet/dashboard/dashboard.view.hbs');
+    } catch (error) {
+      return next(error);
+    }
+  },
   getAll: async (req, res, next) => {
     try {
       res.status(HttpStatus.OK).json({
@@ -32,7 +70,8 @@ module.exports = {
       }
 
       const user = await UserModel.create(body);
-      await user.hash(next);
+      user.hash(next);
+      user.save();
       if (body.application == 'json') {
         res.json({
           success: true,
@@ -54,10 +93,12 @@ module.exports = {
   },
   get: async (req, res, next) => {
     try {
-      if (req.cookies) {
-        const isValid = await token(req.cookies.auth);
-        if (isValid) {
-          res.render('admin/dashboard/dashboard.view.hbs');
+      const token = req.cookies.auth;
+      if (token) {
+        const response = await jwt.verify(req.cookies.auth, config.JWTSecret);
+        if (response) {
+          let userID = response.user;
+          res.render('vet/dashboard/dashboard.view.hbs');
         } else {
           res.render('index', {
             pageIsLogin: true,
