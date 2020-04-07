@@ -37,18 +37,43 @@ module.exports = {
       });
     }
   },
+  update: async (req, res, next) => {
+    try {
+      const body = req.body || {};
+      if (validateBody(body)) {
+        throw new Error('Boby not found');
+      }
+      if (!body._id) {
+        throw new Error('Id is required');
+      }
+      const vaccine = await VaccineModel.findById(body._id);
+      vaccine.name = body.name;
+      vaccine.date = body.date;
+      await vaccine.save();
+
+      res.json({
+        success: true,
+        content: vaccine,
+      });
+    } catch (error) {
+      res.json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
   deleteByID: async (req, res, next) => {
-    const body = req.body || {};
-    if (validateBody(body)) {
+    const params = req.params || {};
+    if (validateBody(params)) {
       throw new Error('Boby not found');
     }
-    if (!body.id) {
+    if (!params.id) {
       throw new Error('Id is required');
     }
     try {
       res.json({
         success: true,
-        content: await VaccineModel.deleteByID(req.body.id),
+        content: await VaccineModel.findByIdAndDelete(req.params.id),
       });
     } catch (error) {
       res.json({

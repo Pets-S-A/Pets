@@ -31,6 +31,8 @@ class PetCreateViewController: UIViewController {
     
     var user: User!
     
+    var mainDelegate: MainProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         config()
@@ -88,6 +90,7 @@ class PetCreateViewController: UIViewController {
                 }
             case .success(_):
                 DispatchQueue.main.async {
+                    self.mainDelegate?.reloadData()
                     UIAlert.show(controller: self, title: "Pet cadastrado com sucesso!", message: "") { (_) in
                         self.dismiss(animated: true, completion: nil)
                     }
@@ -112,30 +115,6 @@ class PetCreateViewController: UIViewController {
                       breed: petBreed.text ?? "")
         
         return pet
-    }
-    
-    // MARK: - Keyboard
-    var tap: UITapGestureRecognizer!
-    func setupKeyboard() {
-        tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    @objc
-    private func keyboardWillShow(sender: NSNotification) {
-        view.frame.origin.y = -150
-    }
-    @objc
-    private func keyboardWillHide(sender: NSNotification) {
-        view.frame.origin.y = 0
-    }
-    @objc
-    private func dismissKeyboard() {
-        view.endEditing(true)
     }
     
     //MARK: - IMAGE

@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const hbs = require('hbs');
 const path = require('path');
@@ -7,7 +8,8 @@ const helmet = require('helmet');
 
 const db = require('./db');
 const {ErrorModel} = require('./models');
-const validateToken = require('./middleware/validate-token');
+const {UserCtrl} = require('./controllers');
+// const validateToken = require('./middleware/validate-token');
 const app = express();
 
 // ROUTE
@@ -17,6 +19,7 @@ const {
   apiVaccineRouterProtected,
   userRouterUnprotected,
   userRouterProtected,
+  vetRouterUnprotected,
 } = require('./route');
 
 
@@ -30,6 +33,7 @@ app.use(
     }),
 );
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(helmet());
@@ -43,16 +47,16 @@ app.set('view engine', 'hbs');
 // DB
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
-
-
+// Unprotected
 app.use('/', userRouterUnprotected);
+app.use('/', vetRouterUnprotected);
+app.get('/', UserCtrl.get);
+
+// Protected
+app.use('/', userRouterProtected);
 app.use('/api', apiPetRouterProtected);
 app.use('/api', apiPersonRouterProtected);
 app.use('/api', apiVaccineRouterProtected);
-app.use('/', userRouterProtected);
 // app.use('/admin', errorRouterUnprotected);
 
 // Error Handler

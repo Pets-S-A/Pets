@@ -9,7 +9,7 @@
 import Foundation
 
 struct Person: Codable {
-    let _id: String
+    let _id: String?
     var name: String
     var image: String
     var pets: Pets?
@@ -18,6 +18,17 @@ struct Person: Codable {
         return [
             "name" : name,
             "image" : image,
+            "userID" : CommonData.shared.user._id ?? ""
+        ]
+    }
+    
+    var dictionaryRepresentationUpdate: [String: Any] {
+        return [
+            "name" : name,
+            "image" : image,
+            "id" : _id ?? ""
         ]
     }
 }
+
+typealias Persons = [Person]

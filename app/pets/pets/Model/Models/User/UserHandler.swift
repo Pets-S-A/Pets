@@ -24,10 +24,10 @@ enum UserTokenResponse: Error {
 }
 
 class UserHandler {
-    public static let BASE_URL:String = "\(ENV.server)/user"
+    public static let BASE_URL:String = "\(Environment.SERVER_URL)/user"
     
     static func create(user: User, withCompletion completion: @escaping (UserOneResponse) -> Void) {
-        APIRequests.postRequest(url: "\(BASE_URL)/create", params: user.dictionaryRepresentation, decodableType: ServerAnswer<Users>.self) {
+        APIRequests.postRequest(url: "\(BASE_URL)/create", params: user.dictionaryRepresentation, decodableType: ServerAnswer<User>.self) {
             (response) in
             switch response {
             case .result(let answer as ServerAnswer<User>):
