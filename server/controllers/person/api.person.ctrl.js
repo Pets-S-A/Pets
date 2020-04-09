@@ -25,7 +25,7 @@ module.exports = {
       }
       const user = await UserModel.findById(body.userID);
       if (!user) {
-        throw new Error('User not found');
+        throw new Error('Person not found');
       }
       const person = await PersonModel.create(body);
       user.person = person.id;
@@ -55,7 +55,7 @@ module.exports = {
 
       const person = await PersonModel.findById(body.id);
       if (!person) {
-        throw new Error('User not found');
+        throw new Error('Person not found');
       }
       person.name = body.name;
       person.image = body.image;

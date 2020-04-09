@@ -10,8 +10,10 @@ import UIKit
 
 class AgeDelegate: NSObject, UIPickerViewDelegate {
     var options  = ["1 anos", "2 anos", "3 anos", "4 anos"]
-    weak var viewController: UIViewController?
-    func config(pickerPerson: UIPickerView, viewController: UIViewController) {
+    weak var viewController: PetCreateViewController?
+    
+    init(pickerPerson: UIPickerView, viewController: PetCreateViewController) {
+        super.init()
         pickerPerson.delegate = self
         self.viewController = viewController
     }
@@ -19,7 +21,7 @@ class AgeDelegate: NSObject, UIPickerViewDelegate {
         return options[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if let view = viewController as? PetCreateViewController {
+        if let view = viewController {
             view.ageSelected = options[row]
         }
     }

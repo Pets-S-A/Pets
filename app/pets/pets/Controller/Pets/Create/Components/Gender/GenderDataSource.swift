@@ -11,8 +11,10 @@ import UIKit
 
 class GenderDataSource: NSObject, UIPickerViewDataSource {
     var options  = ["Macho", "Femêa"]
-    weak var viewController: UIViewController?
-    func config(pickerPerson: UIPickerView, viewController: UIViewController) {
+    weak var viewController: PetCreateViewController?
+    
+    init(pickerPerson: UIPickerView, viewController: PetCreateViewController) {
+        super.init()
         pickerPerson.dataSource = self
         self.viewController = viewController
     }

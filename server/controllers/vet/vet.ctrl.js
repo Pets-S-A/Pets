@@ -25,10 +25,12 @@ module.exports = {
         throw new Error('E-mail já cadastrado');
       }
 
-      const user = await UserModel.create(body);
-      await user.hash(next);
+      const user = await new UserModel(body);
+      user.password = await user.hash(next);
       const vet = await VetModel.create(body);
       user.vet = vet;
+      
+      await user.save();
       await user.save();
 
       res.render('index', {

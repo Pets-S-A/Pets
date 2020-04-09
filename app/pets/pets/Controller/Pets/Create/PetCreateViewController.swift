@@ -17,11 +17,11 @@ class PetCreateViewController: UIViewController {
     @IBOutlet weak var petGender: UIPickerView!
     @IBOutlet weak var petAgressive: UISwitch!
     
-    var genderDataSource = GenderDataSource()
-    var genderDelegate = GenderDelegate()
+    lazy var genderDataSource = GenderDataSource(pickerPerson: petGender, viewController: self)
+    lazy var genderDelegate = GenderDelegate(pickerPerson: petGender, viewController: self)
     
-    var ageDataSource = AgeDataSource()
-    var ageDelegate = AgeDelegate()
+    lazy var ageDataSource = AgeDataSource(pickerPerson: petAge, viewController: self)
+    lazy var ageDelegate = AgeDelegate(pickerPerson: petAge, viewController: self)
     
     lazy var genderSelected = genderDataSource.options[0]
     lazy var ageSelected  = ageDataSource.options[0]
@@ -81,20 +81,22 @@ class PetCreateViewController: UIViewController {
     }
     
     func uploadPet() {
-        PetHandler.create(params: formatPet().dictionaryRepresentation) { (response) in
-            switch response {
-            case .error(let description):
-                DispatchQueue.main.async {
-                    UIAlert.show(controller: self, title: "Não foi possível cadastrar o pet, tente novamente!", message: description) { (_) in }
-                    self.removeSpinner()
-                }
-            case .success(_):
-                DispatchQueue.main.async {
-                    self.mainDelegate?.reloadData()
-                    UIAlert.show(controller: self, title: "Pet cadastrado com sucesso!", message: "") { (_) in
-                        self.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            PetHandler.create(params: self.formatPet().dictionaryRepresentation) { (response) in
+                switch response {
+                case .error(let description):
+                    DispatchQueue.main.async {
+                        UIAlert.show(controller: self, title: "Não foi possível cadastrar o pet, tente novamente!", message: description) { (_) in }
+                        self.removeSpinner()
                     }
-                    self.removeSpinner()
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self.mainDelegate?.reloadData()
+                        UIAlert.show(controller: self, title: "Pet cadastrado com sucesso!", message: "") { (_) in
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                        self.removeSpinner()
+                    }
                 }
             }
         }
@@ -106,15 +108,16 @@ class PetCreateViewController: UIViewController {
     
     // MARK: - Ultils
     func formatPet() -> Pet {
-        let pet = Pet(_id: "",
-                      name: petName.text ?? "",
-                      age: ageSelected,
-                      gender: genderSelected,
-                      agressive: agressive,
-                      image: imageName,
-                      breed: petBreed.text ?? "")
         
+        let pet = Pet(_id: "",
+                      name: self.petName.text ?? "",
+                      age: self.ageSelected,
+                      gender: self.genderSelected,
+                      agressive: self.agressive,
+                      image: self.imageName,
+                      breed: self.petBreed.text ?? "")
         return pet
+        
     }
     
     //MARK: - IMAGE

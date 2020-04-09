@@ -49,7 +49,6 @@ class LoginViewController: UIViewController {
                 }
             case.error(let description):
                 DispatchQueue.main.async {
-                    print(description)
                     if description == "Usuário não encontrado!" {
                         self.create(user: self.formatterUser(email: email, name: name, password: password))
                     } else {

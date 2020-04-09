@@ -145,8 +145,12 @@ class RegisterPersonViewController: UIViewController {
         showSpinner(onView: view)
         if imageHasChange && isProfileEdition {
             uploadImage()
-        } else {
             updatePerson()
+        } else if (isProfileEdition) {
+            updatePerson()
+        } else {
+            uploadImage()
+            createPerson()
         }
     }
 }

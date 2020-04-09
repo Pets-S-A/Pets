@@ -17,21 +17,18 @@ const User = new Schema(
 );
 
 User.methods.hash = (async function(next) {
-  const user = this;
   try {
-    bcrypt.genSalt(10, async function(error, salt) {
-      if (error) {
-        return next(error);
-      } else {
-        bcrypt.hash(user.password, salt, async function(error, hashed) {
-          if (error) {
-            return next(error);
-          }
-          user.password = hashed;
-          return;
-        });
-      }
-    });
+    const password = this.password;
+    const saltRounds = 10;
+
+    const hashedPassword = await new Promise((resolve, reject) => {
+      bcrypt.hash(password, saltRounds, function(err, hash) {
+        if (err) reject(err)
+        resolve(hash)
+      });
+    })
+
+    return hashedPassword
   } catch (error) {
     return next(error);
   }

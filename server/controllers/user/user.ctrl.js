@@ -1,6 +1,6 @@
-const {UserModel} = require('../../models');
+const { UserModel } = require('../../models');
 const HttpStatus = require('../../HttpStatus');
-const {validateBody} = require('../../utils');
+const { validateBody } = require('../../utils');
 
 
 const jwt = require('jsonwebtoken');
@@ -20,7 +20,7 @@ module.exports = {
     const password = body.password;
 
     try {
-      const user = await UserModel.findOne({email});
+      const user = await UserModel.findOne({ email });
 
       if (!user) {
         return res.json({
@@ -37,7 +37,7 @@ module.exports = {
         });
       }
 
-      const payload = {user: user._id};
+      const payload = { user: user._id };
       const token = jwt.sign(payload, config.JWTSecret, {
         expiresIn: EXPIRES_IN_MINUTES,
       });
@@ -68,18 +68,33 @@ module.exports = {
       if (!body.application) {
         throw new Error('Aplication is required');
       }
-
-      const user = await UserModel.create(body);
-      user.hash(next);
-      user.save();
+      let previusUser = await UserModel.findOne({email: body.email});
+      if(previusUser) {
+        if(!previusUser.person) {
+          previusUser.person = null
+          return res.json({
+            success: true,
+            message: 'Pessoa criada com successo!',
+            content: previusUser,
+          });
+        } else {
+          return res.json({
+            success: false,
+            message: 'E-mail já cadastrado!',
+          });
+        }
+      }
+      const user = await new UserModel(body);
+      user.password = await user.hash(next);
+      await user.save();
       if (body.application == 'json') {
-        res.json({
+        return res.json({
           success: true,
           message: 'Pessoa criada com successo!',
           content: user,
         });
       } else {
-        res.json({
+        return res.json({
           success: false,
           message: 'not implemented',
         });
@@ -97,7 +112,7 @@ module.exports = {
       if (token) {
         const response = await jwt.verify(req.cookies.auth, config.JWTSecret);
         if (response) {
-          let userID = response.user;
+          // let userID = response.user;
           res.render('vet/dashboard/dashboard.view.hbs');
         } else {
           res.render('index', {
@@ -119,7 +134,7 @@ module.exports = {
 
 
     try {
-      const user = await UserModel.findOne({email});
+      const user = await UserModel.findOne({ email });
 
       if (!user) {
         return res.json({
@@ -130,7 +145,7 @@ module.exports = {
       if (!user.person) {
         return res.json({
           success: false,
-          message: 'Pessoa não encontrada!',
+          message: 'Usuário não encontrado!',
         });
       }
       const compare = await bcrypt.compare(password, user.password);
@@ -142,7 +157,7 @@ module.exports = {
         });
       }
 
-      const payload = {user: user._id};
+      const payload = { user: user._id };
       const token = jwt.sign(payload, config.JWTSecret, {
         expiresIn: EXPIRES_IN_MINUTES,
       });
@@ -204,7 +219,7 @@ module.exports = {
 // TODO - FIX
 // eslint-disable-next-line require-jsdoc
 async function createAdmin() {
-  const user = await UserModel.findOne({email: 'admin'});
+  const user = await UserModel.findOne({ email: 'admin' });
 
   if (!user) {
     const password = 'admin123!@#';
