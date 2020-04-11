@@ -8,7 +8,8 @@
   "scripts": {
     "start": "node index.js",
     "nodemon": "nodemon index.js",
-    "test": "mocha --timeout 10000 --exit"
+    "test": "mocha --timeout 10000 --exit",
+    "coverage": "./node_modules/.bin/nyc -r cobertura -r text-summary -r lcov npm test"
   },
   "pre-commit": [
     "test"

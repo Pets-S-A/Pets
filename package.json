@@ -2,7 +2,7 @@
     "scripts": {
         "postinstall": "cd server && npm install",
         "start": "cd server && npm start",
-        "test": "cd server && mocha --timeout 10000 --exit && eslint ."
+        "test": "cd server && mocha --timeout 30000 --exit && eslint ."
     },
     "devDependencies": {
         "husky": "^4.2.5",

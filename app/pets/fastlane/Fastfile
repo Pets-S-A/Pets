@@ -39,19 +39,20 @@ platform :ios do
   lane :metrics do
     scan(scheme: "pets", 
       code_coverage: true, 
-      derived_data_path: "./DerivedData", 
-      output_directory: "./sonar-reports",
+      derived_data_path: "DerivedData", 
+      output_directory: "sonar-reports",
       devices: "iPhone 11")
      
     slather(cobertura_xml: true, 
       scheme: "pets", 
-      build_directory: "./DerivedData", 
-      output_directory: "./sonar-reports", 
-      proj: "./pets.xcodeproj")
+      build_directory: "DerivedData", 
+      output_directory: "sonar-reports", 
+      proj: "pets.xcodeproj")
 
-    swiftlint(output_file: "./sonar-reports/swiftlint.txt", 
+    swiftlint(output_file: "sonar-reports/swiftlint.txt", 
       ignore_exit_status: true)
 
      sonar
+     
   end
 end

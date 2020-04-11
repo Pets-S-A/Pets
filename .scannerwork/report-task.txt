@@ -2,5 +2,5 @@ projectKey=node-pets-server
 serverUrl=http://localhost:9000
 serverVersion=8.2.0.32929
 dashboardUrl=http://localhost:9000/dashboard?id=node-pets-server
-ceTaskId=AXFp3Dam2tNpIs8fcz6l
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXFp3Dam2tNpIs8fcz6l
+ceTaskId=AXFqt86X2tNpIs8fcz7N
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXFqt86X2tNpIs8fcz7N
