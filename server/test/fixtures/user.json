@@ -1,0 +1,10 @@
+{
+    "createUser": {
+        "name": "Calebe",
+        "email": "calebe.bianchini@mackenzie.br",
+        "password": "melhorprofessor",
+        "access": ["person"],
+        "application": "json",
+        "_id": "507f191e810c19729de860ea"
+    }
+}
