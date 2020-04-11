@@ -11,7 +11,7 @@
     "test": "mocha --timeout 10000 --exit"
   },
   "pre-commit": [
-    "lint"
+    "test"
   ],
   "dependencies": {
     "async": "^3.2.0",
