@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 module.exports = {
   env: process.env.NODE_ENV,
   mongoUri: process.env.MONGODB_URI,
@@ -7,3 +6,4 @@ module.exports = {
   serverDb: process.env.SERVER_DB,
   JWTSecret: process.env.JWT_SECRET,
 };
+

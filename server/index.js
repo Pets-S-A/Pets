@@ -6,6 +6,7 @@ const hbs = require('hbs');
 const path = require('path');
 const helmet = require('helmet');
 
+
 const db = require('./db');
 const {ErrorModel} = require('./models');
 const {UserCtrl} = require('./controllers');
@@ -76,3 +77,6 @@ app.set('PORT', process.env.PORT || 3000);
 app.listen(app.get('PORT'), () =>
   console.log(`Server running on port ${app.get('PORT')}`),
 );
+
+
+module.exports = app

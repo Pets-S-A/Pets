@@ -214,26 +214,3 @@ module.exports = {
     res.redirect('/user/auth');
   },
 };
-
-
-// TODO - FIX
-// eslint-disable-next-line require-jsdoc
-async function createAdmin() {
-  const user = await UserModel.findOne({ email: 'admin' });
-
-  if (!user) {
-    const password = 'admin123!@#';
-    const body = {
-      email: 'admin',
-      name: 'Admin',
-      password,
-      access: ['master'],
-    };
-    await UserModel.create(body);
-    console.log('admin criado com sucesso!', password);
-  } else {
-    console.log('admin já existe!');
-  }
-}
-
-createAdmin();

@@ -2,5 +2,8 @@
     "scripts": {
         "postinstall": "cd server && npm install",
         "start": "cd server && npm start"
+    },
+    "dependencies": {
+        "dotenv": "^8.2.0"
     }
 }
