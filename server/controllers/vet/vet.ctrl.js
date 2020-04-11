@@ -29,7 +29,7 @@ module.exports = {
       user.password = await user.hash(next);
       const vet = await VetModel.create(body);
       user.vet = vet;
-      
+
       await user.save();
       await user.save();
 

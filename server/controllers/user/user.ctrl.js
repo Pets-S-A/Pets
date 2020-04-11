@@ -1,6 +1,6 @@
-const { UserModel } = require('../../models');
+const {UserModel} = require('../../models');
 const HttpStatus = require('../../HttpStatus');
-const { validateBody } = require('../../utils');
+const {validateBody} = require('../../utils');
 
 
 const jwt = require('jsonwebtoken');
@@ -20,7 +20,7 @@ module.exports = {
     const password = body.password;
 
     try {
-      const user = await UserModel.findOne({ email });
+      const user = await UserModel.findOne({email});
 
       if (!user) {
         return res.json({
@@ -37,7 +37,7 @@ module.exports = {
         });
       }
 
-      const payload = { user: user._id };
+      const payload = {user: user._id};
       const token = jwt.sign(payload, config.JWTSecret, {
         expiresIn: EXPIRES_IN_MINUTES,
       });
@@ -68,10 +68,10 @@ module.exports = {
       if (!body.application) {
         throw new Error('Aplication is required');
       }
-      let previusUser = await UserModel.findOne({email: body.email});
-      if(previusUser) {
-        if(!previusUser.person) {
-          previusUser.person = null
+      const previusUser = await UserModel.findOne({email: body.email});
+      if (previusUser) {
+        if (!previusUser.person) {
+          previusUser.person = null;
           return res.json({
             success: true,
             message: 'Pessoa criada com successo!',
@@ -134,7 +134,7 @@ module.exports = {
 
 
     try {
-      const user = await UserModel.findOne({ email });
+      const user = await UserModel.findOne({email});
 
       if (!user) {
         return res.json({
@@ -157,7 +157,7 @@ module.exports = {
         });
       }
 
-      const payload = { user: user._id };
+      const payload = {user: user._id};
       const token = jwt.sign(payload, config.JWTSecret, {
         expiresIn: EXPIRES_IN_MINUTES,
       });

@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const cors = require('cors');
+// const cors = require('cors');
 const hbs = require('hbs');
 const path = require('path');
 const helmet = require('helmet');
@@ -79,4 +79,4 @@ app.listen(app.get('PORT'), () =>
 );
 
 
-module.exports = app
+module.exports = app;

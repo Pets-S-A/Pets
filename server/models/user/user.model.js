@@ -23,12 +23,12 @@ User.methods.hash = (async function(next) {
 
     const hashedPassword = await new Promise((resolve, reject) => {
       bcrypt.hash(password, saltRounds, function(err, hash) {
-        if (err) reject(err)
-        resolve(hash)
+        if (err) reject(err);
+        resolve(hash);
       });
-    })
+    });
 
-    return hashedPassword
+    return hashedPassword;
   } catch (error) {
     return next(error);
   }
