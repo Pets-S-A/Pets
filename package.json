@@ -1,12 +1,14 @@
 {
     "scripts": {
         "postinstall": "cd server && npm install",
-        "start": "cd server && npm start"
-    },
-    "dependencies": {
-        "dotenv": "^8.2.0"
+        "start": "cd server && npm start",
+        "test": "cd server && mocha --timeout 10000 --exit"
     },
     "devDependencies": {
-        "pre-commit": "^1.2.2"
-    }
+        "pre-commit": "^1.2.2",
+        "mocha": "^7.1.1"
+    },
+    "pre-commit": [
+        "test"
+    ]
 }
