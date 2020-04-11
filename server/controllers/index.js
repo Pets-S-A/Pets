@@ -5,7 +5,7 @@ const ApiPersonCtrl = require('./person/api.person.ctrl');
 const ApiVaccineCtrl = require('./vaccine/api.vaccine.ctrl');
 const VetCtrl = require('./vet/vet.ctrl');
 
-module.exports = {
+const CTRL = {
   UserCtrl,
   ErrorCtrl,
   ApiPetCtrl,
@@ -13,3 +13,5 @@ module.exports = {
   ApiVaccineCtrl,
   VetCtrl,
 };
+
+module.exports = CTRL;
