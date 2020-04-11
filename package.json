@@ -1,17 +1,18 @@
 {
     "scripts": {
         "postinstall": "cd server && npm install",
-        "start": "cd server && npm start",
-        "test": "cd server && mocha --timeout 10000 --exit",
-        "lint": "cd server && eslint ."
+        "start": "cd server && npm start"
     },
     "devDependencies": {
-        "mocha": "^7.1.1",
-        "pre-commit": "^1.2.2"
+        "husky": "^4.2.5",
+        "mocha": "^7.1.1"
     },
-    "pre-commit": [
-        "test",
-        "lint"
-    ],
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm test",
+            "pre-push": "npm test",
+            "...": "..."
+        }
+    },
     "dependencies": {}
 }
