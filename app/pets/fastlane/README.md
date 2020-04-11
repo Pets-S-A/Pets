@@ -31,6 +31,11 @@ Take screenshots
 fastlane ios beta
 ```
 Push a new beta build to TestFlight
+### ios metrics
+```
+fastlane ios metrics
+```
+Use SonarSource to make metrics of the code
 
 ----
 

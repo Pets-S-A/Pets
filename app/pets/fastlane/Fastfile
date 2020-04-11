@@ -34,5 +34,24 @@ platform :ios do
     build_app(scheme: "pets")
     upload_to_testflight
   end
+  
+  desc "Use SonarSource to make metrics of the code"
+  lane :metrics do
+    scan(scheme: "pets", 
+      code_coverage: true, 
+      derived_data_path: "./DerivedData", 
+      output_directory: "./sonar-reports",
+      devices: "iPhone 11")
+     
+    slather(cobertura_xml: true, 
+      scheme: "pets", 
+      build_directory: "./DerivedData", 
+      output_directory: "./sonar-reports", 
+      proj: "./pets.xcodeproj")
 
+    swiftlint(output_file: "./sonar-reports/swiftlint.txt", 
+      ignore_exit_status: true)
+
+     sonar
+  end
 end

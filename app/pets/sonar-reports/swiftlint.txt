@@ -1,0 +1,2 @@
+/Users/matheussilva/repos/pets/app/pets/pets/Extension/UIImageDownload.swift:38:11: warning: Todo Violation: TODOs should be resolved (- CHANGE THIS URL). (todo)
+/Users/matheussilva/repos/pets/app/pets/pets/Manager/EventManager.swift:15:21: warning: Syntactic Sugar Violation: Shorthand syntactic sugar should be used, i.e. [String: Int] instead of Dictionary<String, Int>. (syntactic_sugar)
