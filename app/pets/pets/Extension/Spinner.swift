@@ -11,21 +11,21 @@ import UIKit
 var vSpinner: UIView?
 
 extension UIViewController {
-    func showSpinner(onView : UIView) {
+    func showSpinner(onView: UIView) {
         let spinnerView = UIView.init(frame: onView.bounds)
         spinnerView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        let ai = UIActivityIndicatorView.init(style: .large)
-        ai.startAnimating()
-        ai.center = spinnerView.center
-        
+        let animation = UIActivityIndicatorView.init(style: .large)
+        animation.startAnimating()
+        animation.center = spinnerView.center
+
         DispatchQueue.main.async {
-            spinnerView.addSubview(ai)
+            spinnerView.addSubview(animation)
             onView.addSubview(spinnerView)
         }
-        
+
         vSpinner = spinnerView
     }
-    
+
     func removeSpinner() {
         DispatchQueue.main.async {
             vSpinner?.removeFromSuperview()

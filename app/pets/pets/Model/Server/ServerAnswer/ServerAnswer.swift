@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ServerAnswer<T:Codable>: Codable{
+public struct ServerAnswer<T: Codable>: Codable {
     var success: Bool?
     var message: String?
     var content: T?

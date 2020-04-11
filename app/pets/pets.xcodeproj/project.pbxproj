@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		82005A0E24217ACE00768D46 /* petsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82005A0D24217ACE00768D46 /* petsUITests.swift */; };
+		82005A0E24217ACE00768D46 /* PetsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82005A0D24217ACE00768D46 /* PetsUITests.swift */; };
 		82005A1624217B2700768D46 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82005A1524217B2700768D46 /* SnapshotHelper.swift */; };
 		82005A1724217BB700768D46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82B8383E240C8FB900E82929 /* Main.storyboard */; };
 		82005A1824217BB800768D46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82B8383E240C8FB900E82929 /* Main.storyboard */; };
@@ -46,13 +46,9 @@
 		82B83840240C8FB900E82929 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82B8383E240C8FB900E82929 /* Main.storyboard */; };
 		82B83842240C8FBD00E82929 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82B83841240C8FBD00E82929 /* Assets.xcassets */; };
 		82B83845240C8FBD00E82929 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82B83843240C8FBD00E82929 /* LaunchScreen.storyboard */; };
-		82B83850240C8FBD00E82929 /* petsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8384F240C8FBD00E82929 /* petsTests.swift */; };
-		82B83864240C918E00E82929 /* Pets.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82B83862240C918E00E82929 /* Pets.xcdatamodeld */; };
-		82B83866240C928000E82929 /* GenericDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B83865240C928000E82929 /* GenericDAO.swift */; };
-		82B83868240C92A300E82929 /* PetDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B83867240C92A300E82929 /* PetDAO.swift */; };
+		82B83850240C8FBD00E82929 /* PetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8384F240C8FBD00E82929 /* PetsTests.swift */; };
 		82B8386B240C92DF00E82929 /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8386A240C92DF00E82929 /* Pet.swift */; };
 		82B8386D240C92EA00E82929 /* PetHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8386C240C92EA00E82929 /* PetHandler.swift */; };
-		82B8386F240C956300E82929 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8386E240C956300E82929 /* CoreDataManager.swift */; };
 		82B83874240C9AB800E82929 /* PetCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B83873240C9AB800E82929 /* PetCreateViewController.swift */; };
 		82B8387A240CA43B00E82929 /* GenderDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B83879240CA43B00E82929 /* GenderDataSource.swift */; };
 		82B8387C240CA44700E82929 /* GenderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8387B240CA44700E82929 /* GenderDelegate.swift */; };
@@ -87,7 +83,7 @@
 
 /* Begin PBXFileReference section */
 		82005A0B24217ACE00768D46 /* petsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = petsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		82005A0D24217ACE00768D46 /* petsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = petsUITests.swift; sourceTree = "<group>"; };
+		82005A0D24217ACE00768D46 /* PetsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsUITests.swift; sourceTree = "<group>"; };
 		82005A0F24217ACE00768D46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82005A1524217B2700768D46 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		823471C224287D1B001617FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -129,14 +125,10 @@
 		82B83844240C8FBD00E82929 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82B83846240C8FBD00E82929 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82B8384B240C8FBD00E82929 /* petsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = petsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		82B8384F240C8FBD00E82929 /* petsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = petsTests.swift; sourceTree = "<group>"; };
+		82B8384F240C8FBD00E82929 /* PetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsTests.swift; sourceTree = "<group>"; };
 		82B83851240C8FBD00E82929 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		82B83863240C918E00E82929 /* Pets.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pets.xcdatamodel; sourceTree = "<group>"; };
-		82B83865240C928000E82929 /* GenericDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDAO.swift; sourceTree = "<group>"; };
-		82B83867240C92A300E82929 /* PetDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDAO.swift; sourceTree = "<group>"; };
 		82B8386A240C92DF00E82929 /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
 		82B8386C240C92EA00E82929 /* PetHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetHandler.swift; sourceTree = "<group>"; };
-		82B8386E240C956300E82929 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		82B83873240C9AB800E82929 /* PetCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCreateViewController.swift; sourceTree = "<group>"; };
 		82B83879240CA43B00E82929 /* GenderDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderDataSource.swift; sourceTree = "<group>"; };
 		82B8387B240CA44700E82929 /* GenderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderDelegate.swift; sourceTree = "<group>"; };
@@ -181,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				82005A1524217B2700768D46 /* SnapshotHelper.swift */,
-				82005A0D24217ACE00768D46 /* petsUITests.swift */,
+				82005A0D24217ACE00768D46 /* PetsUITests.swift */,
 				82005A0F24217ACE00768D46 /* Info.plist */,
 			);
 			path = petsUITests;
@@ -220,14 +212,6 @@
 				82359EF92417E8C400FBC086 /* Environment.swift */,
 			);
 			path = Environment;
-			sourceTree = "<group>";
-		};
-		82359EFC2417EA8E00FBC086 /* Pet */ = {
-			isa = PBXGroup;
-			children = (
-				82B83867240C92A300E82929 /* PetDAO.swift */,
-			);
-			path = Pet;
 			sourceTree = "<group>";
 		};
 		82359F002417F59E00FBC086 /* Person */ = {
@@ -410,7 +394,7 @@
 		82B8384E240C8FBD00E82929 /* petsTests */ = {
 			isa = PBXGroup;
 			children = (
-				82B8384F240C8FBD00E82929 /* petsTests.swift */,
+				82B8384F240C8FBD00E82929 /* PetsTests.swift */,
 				82B83851240C8FBD00E82929 /* Info.plist */,
 			);
 			path = petsTests;
@@ -460,36 +444,8 @@
 				82359F0B241802FB00FBC086 /* Image */,
 				82359F0A2418016A00FBC086 /* Models */,
 				82359EEE2417E81F00FBC086 /* Server */,
-				82B83861240C914D00E82929 /* Data */,
-				82B8385F240C912000E82929 /* Persistence */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		82B8385F240C912000E82929 /* Persistence */ = {
-			isa = PBXGroup;
-			children = (
-				82B83860240C913300E82929 /* DAO */,
-				82B83870240C956800E82929 /* CoreData */,
-			);
-			path = Persistence;
-			sourceTree = "<group>";
-		};
-		82B83860240C913300E82929 /* DAO */ = {
-			isa = PBXGroup;
-			children = (
-				82B83865240C928000E82929 /* GenericDAO.swift */,
-				82359EFC2417EA8E00FBC086 /* Pet */,
-			);
-			path = DAO;
-			sourceTree = "<group>";
-		};
-		82B83861240C914D00E82929 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				82B83862240C918E00E82929 /* Pets.xcdatamodeld */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		82B83869240C92D200E82929 /* Pet */ = {
@@ -499,14 +455,6 @@
 				82B8386C240C92EA00E82929 /* PetHandler.swift */,
 			);
 			path = Pet;
-			sourceTree = "<group>";
-		};
-		82B83870240C956800E82929 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				82B8386E240C956300E82929 /* CoreDataManager.swift */,
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 		82B83871240C9A9B00E82929 /* Pets */ = {
@@ -635,6 +583,7 @@
 				82B83831240C8FB900E82929 /* Sources */,
 				82B83832240C8FB900E82929 /* Frameworks */,
 				82B83833240C8FB900E82929 /* Resources */,
+				8264D9582441DFB000372A90 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -738,12 +687,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8264D9582441DFB000372A90 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint \nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		82005A0724217ACE00768D46 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82005A0E24217ACE00768D46 /* petsUITests.swift in Sources */,
+				82005A0E24217ACE00768D46 /* PetsUITests.swift in Sources */,
 				82005A1624217B2700768D46 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -763,14 +732,12 @@
 				82B8383D240C8FB900E82929 /* MainViewController.swift in Sources */,
 				8297A0F72419A44700BE7733 /* TextFieldWithReturn.swift in Sources */,
 				82B8386D240C92EA00E82929 /* PetHandler.swift in Sources */,
-				82B83864240C918E00E82929 /* Pets.xcdatamodeld in Sources */,
 				8297A0FB2419A81800BE7733 /* UIView.swift in Sources */,
 				82B83839240C8FB900E82929 /* AppDelegate.swift in Sources */,
 				82682ECB2429BA35006908CB /* PetsDelegate.swift in Sources */,
 				82EF9BE2242C4809001D9FC2 /* Vaccine.swift in Sources */,
 				82EF9BE7242C4E7A001D9FC2 /* CreateVaccineViewController.swift in Sources */,
 				82359F022417F5B100FBC086 /* Person.swift in Sources */,
-				82B83866240C928000E82929 /* GenericDAO.swift in Sources */,
 				82359F10241803B100FBC086 /* UIImageDownload.swift in Sources */,
 				82EF9BEF242C6B6A001D9FC2 /* VaccineCellDelegate.swift in Sources */,
 				82359F07241800EE00FBC086 /* User.swift in Sources */,
@@ -784,9 +751,7 @@
 				82359EF82417E8A900FBC086 /* NotURLProtocol.swift in Sources */,
 				82359EFA2417E8C400FBC086 /* Environment.swift in Sources */,
 				82359F122418041700FBC086 /* Spinner.swift in Sources */,
-				82B8386F240C956300E82929 /* CoreDataManager.swift in Sources */,
 				82EF9BE4242C4817001D9FC2 /* VaccineHandler.swift in Sources */,
-				82B83868240C92A300E82929 /* PetDAO.swift in Sources */,
 				82359F042417F5BC00FBC086 /* PersonHandler.swift in Sources */,
 				82B83880240CA45B00E82929 /* AgeDelegate.swift in Sources */,
 				8236CBD8242FFE0300027972 /* Date.swift in Sources */,
@@ -808,7 +773,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82B83850240C8FBD00E82929 /* petsTests.swift in Sources */,
+				82B83850240C8FBD00E82929 /* PetsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,7 +900,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -990,7 +955,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1131,19 +1096,6 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		82B83862240C918E00E82929 /* Pets.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				82B83863240C918E00E82929 /* Pets.xcdatamodel */,
-			);
-			currentVersion = 82B83863240C918E00E82929 /* Pets.xcdatamodel */;
-			path = Pets.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 82B8382D240C8FB900E82929 /* Project object */;
 }

@@ -24,14 +24,15 @@ enum UserTokenResponse: Error {
 }
 
 class UserHandler {
-    public static let BASE_URL:String = "\(Environment.SERVER_URL)/user"
-    
+    public static let BASE_URL: String = "\(Environment.SERVER_URL)/user"
+
     static func create(user: User, withCompletion completion: @escaping (UserOneResponse) -> Void) {
-        APIRequests.postRequest(url: "\(BASE_URL)/create", params: user.dictionaryRepresentation, decodableType: ServerAnswer<User>.self) {
-            (response) in
+        APIRequests.postRequest(url: "\(BASE_URL)/create",
+                                params: user.dictionaryRepresentation,
+                                decodableType: ServerAnswer<User>.self) { (response) in
             switch response {
             case .result(let answer as ServerAnswer<User>):
-                if (answer.success ?? false) {
+                if answer.success ?? false {
                     if let user = answer.content {
                         completion(UserOneResponse.success(answer: user))
                     } else {
@@ -51,9 +52,11 @@ class UserHandler {
         var success: Bool?
         var content: String?
     }
-    
+
     static func auth(params: [String: Any], withCompletion completion: @escaping (UserTokenResponse) -> Void) {
-        APIRequests.postRequest(url: "\(BASE_URL)/auth", params: params, decodableType: ServerAnswer<User>.self) { (response) in
+        APIRequests.postRequest(url: "\(BASE_URL)/auth",
+                                params: params,
+                                decodableType: ServerAnswer<User>.self) { (response) in
             switch response {
             case .result(let answer as ServerAnswer<User>):
                 guard let token = answer.message, let user = answer.content else {
@@ -73,22 +76,22 @@ class UserHandler {
             }
         }
     }
-    
+
     static func getAll(userID: String, withCompletion completion: @escaping (UserLoadResponse) -> Void) {
         completion(UserLoadResponse.error(description: "Not implementation"))
-        
+
     }
     static func getOne(id: String, withCompletion
         completion: (UserOneResponse) -> Void) {
         completion(UserOneResponse.error(description: "Not implementation"))
-        
+
     }
     static func update(user: User, withCompletion completion: (UserOneResponse) -> Void) {
         completion(UserOneResponse.error(description: "Not implementation"))
-        
+
     }
     public static func delete(id: Int, completion: @escaping (UserOneResponse) -> Void) {
         completion(UserOneResponse.error(description: "Not implementation"))
-        
+
     }
 }

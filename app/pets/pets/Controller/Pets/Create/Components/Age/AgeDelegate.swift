@@ -11,7 +11,7 @@ import UIKit
 class AgeDelegate: NSObject, UIPickerViewDelegate {
     var options  = ["1 anos", "2 anos", "3 anos", "4 anos"]
     weak var viewController: PetCreateViewController?
-    
+
     init(pickerPerson: UIPickerView, viewController: PetCreateViewController) {
         super.init()
         pickerPerson.delegate = self

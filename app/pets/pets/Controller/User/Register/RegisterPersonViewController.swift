@@ -8,26 +8,24 @@
 
 import UIKit
 
-
 class RegisterPersonViewController: UIViewController {
-    
+
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var button: UIButton!
     private var imageName = ""
     public var isProfileEdition = false
     private var imageHasChange = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
     }
 
-    
     func setUp() {
         loadPreview()
     }
-    
+
     private func loadPreview() {
         if let person = CommonData.shared.user.person {
             nameText.text = person.name
@@ -44,9 +42,9 @@ class RegisterPersonViewController: UIViewController {
             }
         }
     }
-    
+
     func formartPerson() -> Person {
-        if isProfileEdition  {
+        if isProfileEdition {
             if var person = CommonData.shared.user.person {
                 DispatchQueue.main.async {
                     if let nameText = self.nameText.text {
@@ -63,10 +61,9 @@ class RegisterPersonViewController: UIViewController {
         return Person(_id: nil,
                 name: nameText.text ?? "",
                 image: imageName, pets: nil)
-        
+
     }
-    
-    
+
     func createPerson() {
         let person = formartPerson()
         PersonHandler.create(person: person) { (response) in
@@ -79,7 +76,9 @@ class RegisterPersonViewController: UIViewController {
                 }
             case .error(let description):
                 DispatchQueue.main.async {
-                    UIAlert.show(controller: self, title: "Não foi possível fazer criar um usuário!", message: description) { (_) in }
+                    UIAlert.show(controller: self,
+                                 title: "Não foi possível fazer criar um usuário!",
+                                 message: description) { (_) in }
                     self.removeSpinner()
                 }
             }
@@ -97,19 +96,19 @@ class RegisterPersonViewController: UIViewController {
                 }
             case .error(let description):
                 DispatchQueue.main.async {
-                    UIAlert.show(controller: self, title: "Não foi possível fazer atualizar o usuário!", message: description) { (_) in }
+                    UIAlert.show(controller: self, title: "Não foi possível fazer atualizar o usuário!",
+                                 message: description) { (_) in }
                     self.removeSpinner()
                 }
             }
         }
     }
-    
-    
+
     func uploadImage() {
         let date = Date().description.getFirst()
         let nameImage = "person_\(Int.random(in: 0...100000000))_\(date).png"
         imageName = ImageHandler.url + nameImage
-        
+
         ImageHandler.uploadRequest(imagemT: imageView.image, name: nameImage) { (response) in
             switch response {
             case .success(let result):
@@ -123,34 +122,34 @@ class RegisterPersonViewController: UIViewController {
                     self.showAlert(title: "Erro ao subir a imagem", message: "Sem descrição!")
                     self.removeSpinner()
                 }
-                
+
             case .error(let description):
                 self.showAlert(title: "Erro ao subir a imagem", message: description)
                 self.removeSpinner()
             }
         }
     }
-    
-    
-    
+
     // MARK: - Actions
     @IBAction func loadImage() {
-        ImagePickerManager().pickImage(self){ image in
+        ImagePickerManager().pickImage(self) { image in
             self.imageView.image = image
             self.imageHasChange = true
         }
     }
-    
+
     @IBAction func finishRegister() {
         showSpinner(onView: view)
-        if imageHasChange && isProfileEdition {
-            uploadImage()
-            updatePerson()
-        } else if (isProfileEdition) {
-            updatePerson()
-        } else {
-            uploadImage()
-            createPerson()
+        DispatchQueue.main.async {
+            if self.imageHasChange && self.isProfileEdition {
+                self.uploadImage()
+                self.updatePerson()
+            } else if self.isProfileEdition {
+                self.updatePerson()
+            } else {
+                self.uploadImage()
+                self.createPerson()
+            }
         }
     }
 }

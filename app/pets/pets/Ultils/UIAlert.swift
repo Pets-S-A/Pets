@@ -33,7 +33,7 @@ struct UIAlert {
                      title: String,
                      message: String,
                      withComplete complete: @escaping (Bool) -> Void) {
-        
+
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)

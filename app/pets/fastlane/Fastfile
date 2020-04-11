@@ -29,6 +29,7 @@ platform :ios do
 
   desc "Push a new beta build to TestFlight"
   lane :beta do
+    swiftlint()
     increment_build_number(xcodeproj: "pets.xcodeproj")
     build_app(scheme: "pets")
     upload_to_testflight

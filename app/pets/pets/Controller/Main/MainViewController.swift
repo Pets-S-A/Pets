@@ -18,20 +18,20 @@ class MainViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var petsDelegate = PetsDelegate()
     var petsDataSource = PetsDataSource()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+
         setUp()
     }
-    
+
     func setUp() {
         preLoad()
         setUpCollection()
         registerEvents()
     }
-    
+
     func preLoad() {
         personName.text = CommonData.shared.user.person?.name
         if let imageUrl = CommonData.shared.user.person?.image {
@@ -39,11 +39,11 @@ class MainViewController: UIViewController {
                 self.personImage.imageFromWeb(withURL: imageUrl)
             }
         }
-        
+
     }
-    
-    // MARK:- Collection
-    @IBAction 
+
+    // MARK: - Collection
+    @IBAction
     func setUpCollection() {
         petsDataSource.setup(collectionView: collectionView,
                              viewController: self)
@@ -51,11 +51,11 @@ class MainViewController: UIViewController {
                            viewController: self)
         fetchDataCollection()
     }
-    
+
     func fetchDataCollection() {
         petsDataSource.fetch(delegate: petsDelegate)
     }
-    
+
     func registerEvents() {
         EventManager.shared.listenTo(eventName: "reloadCommonData") {
             DispatchQueue.main.async {
@@ -68,12 +68,12 @@ class MainViewController: UIViewController {
             }
         }
     }
-    
-    // MARK:- Actions
+
+    // MARK: - Actions
     @IBAction func toProfile() {
         performSegue(withIdentifier: "toProfile", sender: nil)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let view = segue.destination as? RegisterPersonViewController {
             view.isProfileEdition = true
@@ -87,7 +87,6 @@ class MainViewController: UIViewController {
         }
     }
 }
-
 
 extension MainViewController: MainProtocol {
     func reloadData() {

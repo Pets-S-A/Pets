@@ -11,7 +11,7 @@ import UIKit
 class GenderDelegate: NSObject, UIPickerViewDelegate {
     var options  = ["Macho", "Femêa"]
     weak var viewController: PetCreateViewController?
-    
+
     init(pickerPerson: UIPickerView, viewController: PetCreateViewController) {
         super.init()
         pickerPerson.delegate = self
