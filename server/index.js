@@ -24,15 +24,15 @@ const {
 } = require('./route');
 
 
-app.use(
-    cors({
-      allowedHeaders: ['sessionId', 'Content-Type', 'master-token'],
-      exposedHeaders: ['sessionId'],
-      origin: '*',
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-      preflightContinue: false,
-    }),
-);
+// app.use(
+//     cors({
+//       allowedHeaders: ['sessionId', 'Content-Type', 'master-token'],
+//       exposedHeaders: ['sessionId'],
+//       origin: '*',
+//       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//       preflightContinue: false,
+//     }),
+// );
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(bodyParser.json());
