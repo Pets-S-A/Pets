@@ -1,5 +1,5 @@
 const {UserModel, VetModel} = require('../../models');
-// const HttpStatus = require('../../HttpStatus');
+const HttpStatus = require('../../HttpStatus');
 const {validateBody, validatePassword} = require('../../utils');
 
 const jwt = require('jsonwebtoken');
@@ -10,6 +10,17 @@ const config = require('../../config');
 const EXPIRES_IN_MINUTES = '1440m'; // expires in 24 hours
 
 module.exports = {
+  getAll: async (req, res, next) => {
+    try {
+      res.status(HttpStatus.OK).json({
+        success: true,
+        content: await VetModel.find(),
+        message: 'Vets founded!',
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
   create: async (req, res, next) => {
     try {
       const body = req.body || {};

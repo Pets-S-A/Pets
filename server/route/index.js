@@ -8,6 +8,7 @@ const userRouterProtected = require('./private/user/user.router.protected');
 const apiPetRouterProtected = require('./private/pet/api.pet.router.protected');
 const apiPersonRouterProtected = require('./private/person/api.person.router.protected');
 const apiVaccineRouterProtected = require('./private/vaccine/api.vaccine.router.protected');
+const apiVetRouterProtected = require('./private/vet/api.vet.router.protected');
 
 const API = {
   userRouterProtected,
@@ -17,6 +18,7 @@ const API = {
   apiPersonRouterProtected,
   apiVaccineRouterProtected,
   vetRouterUnprotected,
+  apiVetRouterProtected,
 };
 
 module.exports = API;

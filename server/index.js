@@ -18,6 +18,7 @@ const {
   apiPetRouterProtected,
   apiPersonRouterProtected,
   apiVaccineRouterProtected,
+  apiVetRouterProtected,
   userRouterUnprotected,
   userRouterProtected,
   vetRouterUnprotected,
@@ -61,6 +62,7 @@ app.use('/api', userRouterProtected);
 app.use('/api', apiPetRouterProtected);
 app.use('/api', apiPersonRouterProtected);
 app.use('/api', apiVaccineRouterProtected);
+app.use('/api', apiVetRouterProtected);
 app.use('/api', errorRouterUnprotected);
 
 // Error Handler
