@@ -14,11 +14,7 @@ const Person = new Schema(
 Person.methods.addPet = async function(pet, next) {
   try {
     const person = this;
-    if (person.pets) {
-      person.pets.push(pet.id);
-    } else {
-      person.pets = [pet.id];
-    }
+    person.pets.push(pet.id);
     await person.save();
     next();
   } catch (error) {

@@ -23,7 +23,19 @@ module.exports = {
           .expect('Content-Type', /json/)
           .expect(200);
     } catch (error) {
-      throw error;
+      return error;
+    }
+  },
+  deleteRequest: async (url, body = {}) => {
+    try {
+      return await request(server)
+          .delete(url)
+          .send(body)
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(200);
+    } catch (error) {
+      return error;
     }
   },
 };
