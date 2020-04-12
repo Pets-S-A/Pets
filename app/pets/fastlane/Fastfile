@@ -52,7 +52,6 @@ platform :ios do
     swiftlint(output_file: "sonar-reports/swiftlint.txt", 
       ignore_exit_status: true)
 
-     sonar
-     
+    sonar
   end
 end

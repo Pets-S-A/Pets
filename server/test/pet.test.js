@@ -1,6 +1,7 @@
 const request = require('supertest');
 const server = require('..');
 
+
 describe('GET /api/pet/all', function() {
   it('responds with json', function(done) {
     request(server)

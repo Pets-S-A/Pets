@@ -5,27 +5,27 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.01283">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.013049">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: scan" time="62.749169">
+      <testcase classname="fastlane.lanes" name="1: scan" time="60.866879">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: slather" time="1.661285">
+      <testcase classname="fastlane.lanes" name="2: slather" time="1.665248">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: swiftlint" time="0.266191">
+      <testcase classname="fastlane.lanes" name="3: swiftlint" time="0.269572">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: sonar" time="10.836229">
+      <testcase classname="fastlane.lanes" name="4: sonar" time="14.664456">
         
       </testcase>
     

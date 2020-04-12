@@ -2,5 +2,5 @@ projectKey=pets
 serverUrl=http://localhost:9000
 serverVersion=8.2.0.32929
 dashboardUrl=http://localhost:9000/dashboard?id=pets
-ceTaskId=AXFqd22i2tNpIs8fcz6x
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXFqd22i2tNpIs8fcz6x
+ceTaskId=AXFsNCk9PL5qh-v1-PpP
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXFsNCk9PL5qh-v1-PpP

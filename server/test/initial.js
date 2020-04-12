@@ -1,19 +1,11 @@
 const request = require('supertest');
 const server = require('..');
+const fixturesPerson = require('./fixtures/person.json');
 const fixturesUser = require('./fixtures/user.json');
 
-describe('GET /api/user/all', function() {
-  it('responds with json', function(done) {
-    request(server)
-        .get('/api/user/all')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
-  });
-});
 
-describe('POST /api/api/user/create', function() {
-  it('responds with json', function(done) {
+describe('POST /api/user/create', function() {
+  it('create user', function(done) {
     request(server)
         .post('/api/user/create')
         .send(fixturesUser.create)
@@ -21,15 +13,20 @@ describe('POST /api/api/user/create', function() {
         .expect('Content-Type', /json/)
         .expect(200, done);
   });
-});
-
-describe('POST /api/user/delete', function() {
-  it('responds with json', function(done) {
+  it('create person', function(done) {
     request(server)
-        .post('/api/user/create')
-        .send(fixturesUser.create)
+        .post('/api/person/create')
+        .send(fixturesPerson.create)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200, done);
+  });
+  it('update person', function(done) {
+    request(server)
+        .delete('/api/person/delete/')
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200, done);
   });
 });
+

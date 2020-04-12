@@ -1,0 +1,12 @@
+{
+    "create": {
+        "name": "bob",
+        "gender": "macho",
+        "age": "2 anos",
+        "breed": "Vira lata",
+        "image": "bob.png",
+        "agressive": true,
+        "personID": "5e8e75e809eda0002385ba55",
+        "_id": "5e92814bfcc6261cb2763c57"
+    }
+}
