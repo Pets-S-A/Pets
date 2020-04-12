@@ -1,5 +1,4 @@
-const request = require('supertest');
-const server = require('..');
+const {postRequest} = require('./util');
 const {
   personFixture,
   userFixture,
@@ -10,35 +9,27 @@ const {
 
 describe('POST [create]', function() {
   it('create user', function(done) {
-    request(server)
-        .post('/api/user/create')
-        .send(userFixture.create)
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
+    postRequest('/api/user/create', userFixture.create)
+        .then(function(response) {
+          done(null);
+        });
   });
   it('create person', function(done) {
-    request(server)
-        .post('/api/person/create')
-        .send(personFixture.create)
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
+    postRequest('/api/person/create', personFixture.create)
+        .then(function(response) {
+          done(null);
+        });
   });
   it('create pet', function(done) {
-    request(server)
-        .post('/api/pet/create')
-        .send(petFixture.create)
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
+    postRequest('/api/pet/create', petFixture.create)
+        .then(function(response) {
+          done(null);
+        });
   });
   it('create vaccine', function(done) {
-    request(server)
-        .post('/api/vaccine/create')
-        .send(vaccineFixture.create)
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
+    postRequest('/api/vaccine/create', vaccineFixture.create)
+        .then(function(response) {
+          done(null);
+        });
   });
 });

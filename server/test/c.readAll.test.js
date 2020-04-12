@@ -1,47 +1,34 @@
-const request = require('supertest');
-const server = require('..');
+const {getRequest} = require('./util');
 
 describe('GET [read all]', function() {
   it('read errors', function(done) {
-    request(server)
-        .get('/api/error/all')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
+    getRequest('/api/error/all')
+        .then((response) => {
+          done(null);
+        });
   });
   it('read user', function(done) {
-    request(server)
-        .get('/api/user/all')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
+    getRequest('/api/user/all')
+        .then((response) => {
+          done(null);
+        });
   });
   it('read person', function(done) {
-    request(server)
-        .get('/api/person/all')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
+    getRequest('/api/person/all')
+        .then((response) => {
+          done(null);
+        });
   });
   it('read pet', function(done) {
-    request(server)
-        .get('/api/pet/all')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
+    getRequest('/api/pet/all')
+        .then((response) => {
+          done(null);
+        });
   });
   it('read vaccine', function(done) {
-    request(server)
-        .get('/api/vaccine/all')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
-  });
-  it('read pet', function(done) {
-    request(server)
-        .get('/api/pet/all')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
+    getRequest('/api/vaccine/all')
+        .then((response) => {
+          done(null);
+        });
   });
 });

@@ -1,5 +1,4 @@
-const request = require('supertest');
-const server = require('..');
+const {getRequest} = require('./util');
 const {
   userFixture,
 } = require('./fixtures');
@@ -7,10 +6,9 @@ const {
 
 describe('GET [read by id]', function() {
   it('read pets by [user id]', function(done) {
-    request(server)
-        .get(`/api/pet/allByUserID/${userFixture.create._id}`)
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
+    getRequest(`/api/pet/allByUserID/${userFixture.create._id}`)
+        .then(function(error, response) {
+          done(null);
+        });
   });
 });

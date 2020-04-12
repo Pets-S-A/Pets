@@ -1,5 +1,4 @@
-const request = require('supertest');
-const server = require('..');
+const {postRequest} = require('./util');
 const {
   personFixture,
   petFixture,
@@ -9,27 +8,21 @@ const {
 
 describe('POST [update]', function() {
   it('update person', function(done) {
-    request(server)
-        .post('/api/person/update')
-        .send(personFixture.create)
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
+    postRequest('/api/person/update', personFixture.create)
+        .then(function(response) {
+          done(null);
+        });
   });
   it('update pet', function(done) {
-    request(server)
-        .post('/api/pet/update')
-        .send(petFixture.create)
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
+    postRequest('/api/pet/update', petFixture.create)
+        .then(function(response) {
+          done(null);
+        });
   });
   it('update vaccine', function(done) {
-    request(server)
-        .post('/api/vaccine/update')
-        .send(vaccineFixture.create)
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
+    postRequest('/api/vaccine/update', vaccineFixture.create)
+        .then(function(response) {
+          done(null);
+        });
   });
 });
