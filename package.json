@@ -2,7 +2,7 @@
     "scripts": {
         "postinstall": "cd server && npm install",
         "start": "cd server && npm start",
-        "test": "cd server && mocha --timeout 30000 --exit && eslint .",
+        "test": "cd server && NODE_ENV=development PORT=3001 mocha --timeout 30000 --exit",
         "lint": "cd server && eslint ."
     },
     "devDependencies": {

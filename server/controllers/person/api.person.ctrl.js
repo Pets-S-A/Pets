@@ -5,13 +5,17 @@ const HttpStatus = require('../../HttpStatus');
 module.exports = {
   getAll: async (req, res, next) => {
     try {
-      res.status(HttpStatus.OK).json({
+      res.json({
         success: true,
         content: await PersonModel.find(),
         message: 'Persons founded!',
       });
     } catch (error) {
-      next(error);
+      res.status(HttpStatus.badRequest).json({
+        success: false,
+        message: 'Persons not founded!',
+        content: error.message,
+      });
     }
   },
   create: async (req, res, next) => {
@@ -37,7 +41,7 @@ module.exports = {
         content: person,
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -52,7 +56,6 @@ module.exports = {
       if (!body.id) {
         throw new Error('id is required');
       }
-
       const person = await PersonModel.findById(body.id);
       if (!person) {
         throw new Error('Person not found');
@@ -67,7 +70,7 @@ module.exports = {
         content: person,
       });
     } catch (error) {
-      res.json({
+      return res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -84,7 +87,7 @@ module.exports = {
         content: await PersonModel.findByIdAndDelete(params.id),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -97,7 +100,7 @@ module.exports = {
         content: await PersonModel.deleteMany({}),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });

@@ -11,7 +11,10 @@ module.exports = {
         message: 'Vaccines founded!',
       });
     } catch (error) {
-      next(error);
+      res.status(HttpStatus.badRequest).json({
+        success: false,
+        message: error.message,
+      });
     }
   },
   create: async (req, res, next) => {
@@ -31,7 +34,7 @@ module.exports = {
         content: vaccine,
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -56,7 +59,7 @@ module.exports = {
         content: vaccine,
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -76,7 +79,7 @@ module.exports = {
         content: await VaccineModel.findByIdAndDelete(req.params.id),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -89,7 +92,7 @@ module.exports = {
         content: await VaccineModel.deleteMany({}),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });

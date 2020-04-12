@@ -23,7 +23,7 @@ module.exports = {
       const user = await UserModel.findOne({email});
 
       if (!user) {
-        return res.json({
+        return res.status(HttpStatus.badRequest).json({
           success: false,
           message: 'Usuário não encontrado!',
         });
@@ -31,7 +31,7 @@ module.exports = {
 
       const compare = await bcrypt.compare(password, user.password);
       if (!compare) {
-        return res.json({
+        return res.status(HttpStatus.badRequest).json({
           success: false,
           message: 'Senha não confere!',
         });
@@ -56,7 +56,10 @@ module.exports = {
         message: 'Usuários encontrados!',
       });
     } catch (error) {
-      return next(error);
+      res.status(HttpStatus.badRequest).json({
+        success: false,
+        message: error.message,
+      });
     }
   },
   create: async (req, res, next) => {
@@ -94,13 +97,13 @@ module.exports = {
           content: user,
         });
       } else {
-        return res.json({
+        res.status(HttpStatus.notAcceptable).json({
           success: false,
-          message: 'not implemented',
+          message: error.message,
         });
       }
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -137,13 +140,13 @@ module.exports = {
       const user = await UserModel.findOne({email});
 
       if (!user) {
-        return res.json({
+        return res.status(HttpStatus.badRequest).json({
           success: false,
           message: 'Usuário não encontrado!',
         });
       }
       if (!user.person) {
-        return res.json({
+        return res.status(HttpStatus.badRequest).json({
           success: false,
           message: 'Usuário não encontrado!',
         });
@@ -151,7 +154,7 @@ module.exports = {
       const compare = await bcrypt.compare(password, user.password);
 
       if (!compare) {
-        return res.json({
+        return res.status(HttpStatus.badRequest).json({
           success: false,
           message: 'Senha não confere!',
         });
@@ -190,7 +193,7 @@ module.exports = {
         content: await UserModel.findByIdAndDelete(params.id),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -203,7 +206,7 @@ module.exports = {
         content: await UserModel.deleteMany({}),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });

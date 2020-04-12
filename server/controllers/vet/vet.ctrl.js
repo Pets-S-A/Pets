@@ -18,7 +18,10 @@ module.exports = {
         message: 'Vets founded!',
       });
     } catch (error) {
-      next(error);
+      res.status(HttpStatus.badRequest).json({
+        success: false,
+        message: error.message,
+      });
     }
   },
   create: async (req, res, next) => {
@@ -80,7 +83,7 @@ module.exports = {
       const compare = await bcrypt.compare(password, user.password);
 
       if (!compare) {
-        return res.json({
+        return res.status(HttpStatus.badRequest).json({
           success: false,
           message: 'Senha não confere!',
         });
@@ -92,7 +95,6 @@ module.exports = {
       });
 
       if (req.body.application && req.body.application == 'json') {
-        console.log(user);
         return res.json({
           success: true,
           content: user,
@@ -119,7 +121,7 @@ module.exports = {
         content: await VetModel.findByIdAndDelete(params.id),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -132,7 +134,7 @@ module.exports = {
         content: await VetModel.deleteMany({}),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
