@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node index.js",
     "nodemon": "nodemon index.js",
-    "test": "NODE_ENV=development PORT=3001 mocha --timeout 10000 --exit",
+    "test": "NODE_ENV=development PORT=3001 mocha --timeout 30000 --exit",
     "coverage": "nyc -r cobertura -r text-summary  --branches 100 --statements 100 --lines 100 -r lcov npm test"
   },
   "pre-commit": [

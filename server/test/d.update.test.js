@@ -1,32 +1,35 @@
 const request = require('supertest');
 const server = require('..');
-const fixturesPerson = require('./fixtures/person.json');
-const fixturesUser = require('./fixtures/user.json');
+const {
+  personFixture,
+  petFixture,
+  vaccineFixture,
+} = require('./fixtures');
 
 
-describe('POST /api/user/create', function() {
-  it('create user', function(done) {
-    request(server)
-        .post('/api/user/create')
-        .send(fixturesUser.create)
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
-  });
-  it('create person', function(done) {
-    request(server)
-        .post('/api/person/create')
-        .send(fixturesPerson.create)
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200, done);
-  });
+describe('POST [update]', function() {
   it('update person', function(done) {
     request(server)
-        .delete('/api/person/delete/')
+        .post('/api/person/update')
+        .send(personFixture.create)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200, done);
+  });
+  it('update pet', function(done) {
+    request(server)
+        .post('/api/pet/update')
+        .send(petFixture.create)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200, done);
+  });
+  it('update vaccine', function(done) {
+    request(server)
+        .post('/api/vaccine/update')
+        .send(vaccineFixture.create)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200, done);
   });
 });
-
