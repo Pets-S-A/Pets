@@ -53,10 +53,10 @@ module.exports = {
       if (validateBody(body)) {
         throw new Error('Boby not found');
       }
-      if (!body.id) {
+      if (!body._id) {
         throw new Error('id is required');
       }
-      const person = await PersonModel.findById(body.id);
+      const person = await PersonModel.findById(body._id);
       if (!person) {
         throw new Error('Person not found');
       }

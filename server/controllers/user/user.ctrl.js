@@ -81,7 +81,7 @@ module.exports = {
             content: previusUser,
           });
         } else {
-          return res.json({
+          return res.status(HttpStatus.badRequest).json({
             success: false,
             message: 'E-mail já cadastrado!',
           });
