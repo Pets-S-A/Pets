@@ -90,18 +90,11 @@ module.exports = {
       const user = await new UserModel(body);
       user.password = await user.hash(next);
       await user.save();
-      if (body.application == 'json') {
-        return res.json({
-          success: true,
-          message: 'Pessoa criada com successo!',
-          content: user,
-        });
-      } else {
-        res.status(HttpStatus.notAcceptable).json({
-          success: false,
-          message: error.message,
-        });
-      }
+      return res.json({
+        success: true,
+        message: 'Pessoa criada com successo!',
+        content: user,
+      });
     } catch (error) {
       res.status(HttpStatus.badRequest).json({
         success: false,

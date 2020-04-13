@@ -77,7 +77,7 @@ module.exports = {
     }
   },
   deleteByID: async (req, res, next) => {
-    const params = req.params || {};
+    const params = req.params;
     try {
       if (!params.id) {
         throw new Error('Id is required');
