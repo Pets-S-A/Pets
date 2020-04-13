@@ -1,10 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const cors = require('cors');
+// const cors = require('cors');
 const hbs = require('hbs');
 const path = require('path');
 const helmet = require('helmet');
+
 
 const db = require('./db');
 const {ErrorModel} = require('./models');
@@ -17,21 +18,25 @@ const {
   apiPetRouterProtected,
   apiPersonRouterProtected,
   apiVaccineRouterProtected,
+  apiVetRouterProtected,
   userRouterUnprotected,
   userRouterProtected,
   vetRouterUnprotected,
+  errorRouterUnprotected,
 } = require('./route');
 
 
-app.use(
-    cors({
-      allowedHeaders: ['sessionId', 'Content-Type', 'master-token'],
-      exposedHeaders: ['sessionId'],
-      origin: '*',
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-      preflightContinue: false,
-    }),
-);
+// app.use(
+//     cors({
+//       allowedHeaders: ['sessionId', 'Content-Type', 'master-token'],
+//       exposedHeaders: ['sessionId'],
+//       origin: '*',
+//       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//       preflightContinue: false,
+//     }),
+// );
+
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -48,23 +53,24 @@ app.set('view engine', 'hbs');
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // Unprotected
-app.use('/', userRouterUnprotected);
-app.use('/', vetRouterUnprotected);
 app.get('/', UserCtrl.get);
+app.use('/api', userRouterUnprotected);
+app.use('/api', vetRouterUnprotected);
 
 // Protected
-app.use('/', userRouterProtected);
+app.use('/api', userRouterProtected);
 app.use('/api', apiPetRouterProtected);
 app.use('/api', apiPersonRouterProtected);
 app.use('/api', apiVaccineRouterProtected);
-// app.use('/admin', errorRouterUnprotected);
+app.use('/api', apiVetRouterProtected);
+app.use('/api', errorRouterUnprotected);
 
 // Error Handler
 app.use(async (error, req, res, next) => {
   res.locals.message = error.message;
   res.locals.error = req.app.get('env') === 'development' ? error : {};
-  res.status(error.status || 500);
-
+  res.status(500);
+  console.log('<<<<');
   const err = error;
   err.error = JSON.stringify(err.errors);
   await ErrorModel.create(err);
@@ -76,3 +82,6 @@ app.set('PORT', process.env.PORT || 3000);
 app.listen(app.get('PORT'), () =>
   console.log(`Server running on port ${app.get('PORT')}`),
 );
+
+
+module.exports = app;

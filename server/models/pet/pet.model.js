@@ -18,11 +18,7 @@ const Pet = new Schema(
 Pet.methods.addVaccine = async function(vaccine, next) {
   try {
     const pet = this;
-    if (pet.vaccines) {
-      pet.vaccines.push(vaccine.id);
-    } else {
-      pet.vaccines = [vaccine.id];
-    }
+    pet.vaccines.push(vaccine.id);
     await pet.save();
     next();
   } catch (error) {

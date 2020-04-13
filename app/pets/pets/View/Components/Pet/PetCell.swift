@@ -11,11 +11,10 @@ import UIKit
 class PetCell: UICollectionViewCell {
     @IBOutlet weak var petImage: UIImageView!
     @IBOutlet weak var petName: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
-    
+
 }

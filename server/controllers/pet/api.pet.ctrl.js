@@ -12,7 +12,10 @@ module.exports = {
         message: 'Pets found!',
       });
     } catch (error) {
-      return next(error);
+      res.status(HttpStatus.badRequest).json({
+        success: false,
+        message: error.message,
+      });
     }
   },
   getAllByUserID: async (req, res, next) => {
@@ -40,7 +43,10 @@ module.exports = {
         message: 'Pets found!',
       });
     } catch (error) {
-      return next(error);
+      res.status(HttpStatus.badRequest).json({
+        success: false,
+        message: error.message,
+      });
     }
   },
   create: async (req, res, next) => {
@@ -61,7 +67,7 @@ module.exports = {
         content: pet,
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -81,7 +87,7 @@ module.exports = {
         content: await PetModel.findByIdAndUpdate(body._id, body),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -101,7 +107,7 @@ module.exports = {
         content: await PetModel.findByIdAndDelete(req.params.id),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -114,7 +120,7 @@ module.exports = {
         content: await PetModel.deleteMany({}),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });

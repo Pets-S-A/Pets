@@ -7,8 +7,13 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "test": "nodemon index.js"
+    "nodemon": "nodemon index.js",
+    "test": "NODE_ENV=development PORT=3001 mocha --timeout 30000 --exit",
+    "coverage": "nyc -r cobertura -r text-summary  --branches 100 --statements 100 --lines 100 -r lcov npm test"
   },
+  "pre-commit": [
+    "test"
+  ],
   "dependencies": {
     "async": "^3.2.0",
     "bcrypt": "^3.0.6",
@@ -17,15 +22,22 @@
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "hbs": "^4.1.0",
+    "hbs": "^4.1.1",
     "helmet": "^3.21.3",
     "jsonwebtoken": "^8.5.1",
+    "lint": "^0.7.0",
     "mongoose": "^5.6.0",
     "mongoose-autopopulate": "^0.12.0",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "superagent-proxy": "^2.0.0",
+    "supertest": "^4.0.2",
+    "supertest-with-proxy": "^5.0.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^6.8.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "mocha": "^7.1.1",
+    "pre-commit": "^1.2.2"
   }
 }

@@ -8,7 +8,6 @@
 //  Created by Pedro Giuliano Farina on 05/11/19.
 //  Copyright © 2019 Pedro Giuliano Farina. All rights reserved.
 
-
 import Foundation
 
 private struct NilCodable: Codable {
@@ -38,7 +37,8 @@ public class APIRequests {
         return request
     }
 
-    public static func getRequest(url: String, header: [String: String]? = nil, completion: @escaping (TaskAnswer<Any>) -> Void) {
+    public static func getRequest(url: String, header: [String: String]? = nil,
+                                  completion: @escaping (TaskAnswer<Any>) -> Void) {
         getRequest(url: url, decodableType: NilCodable.self, header: header, completion: completion)
     }
 
@@ -58,8 +58,11 @@ public class APIRequests {
         createTask(request: request as URLRequest, decodableType: decodableType, completion: completion).resume()
     }
 
-    public static func postRequest(url: String, method: HttpMethods = .post, header: [String: String]? = nil, params: [String: Any], completion:
-        @escaping (TaskAnswer<Any>) -> Void) {
+    public static func postRequest(url: String,
+                                   method: HttpMethods = .post,
+                                   header: [String: String]? = nil,
+                                   params: [String: Any],
+                                   completion: @escaping (TaskAnswer<Any>) -> Void) {
         postRequest(url: url, params: params, decodableType: NilCodable.self, completion: completion)
     }
 
@@ -83,34 +86,10 @@ public class APIRequests {
         request.httpBody = postString.data(using: String.Encoding.utf8)
         createTask(request: request as URLRequest, decodableType: decodableType, completion: completion).resume()
     }
-    
-//    public static func putRequest(url: String, method: HttpMethods = .put, header: [String: String]? = nil, params: [String: Any], completion:
-//        @escaping (TaskAnswer<Any>) -> Void) {
-//        postRequest(url: url, params: params, decodableType: NilCodable.self, completion: completion)
-//    }
-//
-//    public static func putRequest<T: Codable>(
-//        url: String,
-//        params: [String: Any],
-//        method: HttpMethods = .put,
-//        header: [String: String]? = nil,
-//        decodableType: T.Type,
-//        completion: @escaping (TaskAnswer<Any>) -> Void) {
-//
-//        guard let request = createRequest(url: url, method: method) else {
-//            completion(TaskAnswer.error(NotURLError(title: nil, description: "Couldn't parse argument to URL")))
-//            return
-//        }
-//
-//        for headerParam in header ?? [:] {
-//            request.addValue(headerParam.value, forHTTPHeaderField: headerParam.key)
-//        }
-//        let postString = params.percentEscaped()
-//        request.httpBody = postString.data(using: String.Encoding.utf8)
-//        createTask(request: request as URLRequest, decodableType: decodableType, completion: completion).resume()
-//    }
-    
-    public static func deleteRequest(url: String, method: HttpMethods = .delete, header: [String: String]? = nil, completion: @escaping (TaskAnswer<Any>) -> Void) {
+
+    public static func deleteRequest(url: String, method: HttpMethods = .delete,
+                                     header: [String: String]? = nil,
+                                     completion: @escaping (TaskAnswer<Any>) -> Void) {
         getRequest(url: url, decodableType: NilCodable.self, header: header, completion: completion)
     }
 

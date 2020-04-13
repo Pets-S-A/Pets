@@ -1,3 +1,5 @@
-module.exports = (password, password2) => {
+const VALIDATE = (password, password2) => {
   return password === password2;
 };
+
+module.exports = VALIDATE;

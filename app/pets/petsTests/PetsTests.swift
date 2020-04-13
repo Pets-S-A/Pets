@@ -9,10 +9,10 @@
 import XCTest
 @testable import pets
 
-class petsTests: XCTestCase {
+class PetsTests: XCTestCase {
 
     func testExample() {
-        
+
     }
 
     func testPerformanceExample() {

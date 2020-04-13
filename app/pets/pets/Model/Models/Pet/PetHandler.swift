@@ -19,11 +19,12 @@ enum PetOneResponse: Error {
 }
 
 class PetHandler {
-    public static let BASE_URL:String = "\(Environment.SERVER_URL)/pet"
-    
+    public static let BASE_URL: String = "\(Environment.SERVER_URL)/pet"
+
     static func create(params: [String: Any], withCompletion completion: @escaping (PetOneResponse) -> Void) {
-        APIRequests.postRequest(url: "\(BASE_URL)/create", params: params, decodableType: ServerAnswer<Pet>.self) {
-            (response) in
+        APIRequests.postRequest(url: "\(BASE_URL)/create",
+                                params: params,
+                                decodableType: ServerAnswer<Pet>.self) { (response) in
             switch response {
             case .result(let answer as ServerAnswer<Pet>):
                 guard let result = answer.success,
@@ -42,11 +43,11 @@ class PetHandler {
         }
     }
     static func getAll(withCompletion completion: @escaping (PetLoadResponse) -> Void) {
-        
+
         guard let userID = CommonData.shared.user._id else {
             fatalError("Cadê o userID?")
         }
-        
+
         APIRequests
             .getRequest(
                 url: "\(BASE_URL)/allByUserID/\(userID)",
@@ -55,7 +56,7 @@ class PetHandler {
             ) { (response) in
             switch response {
             case .result(let answer as ServerAnswer<Pets>):
-                if (answer.success ?? false) {
+                if answer.success ?? false {
                     let pets = answer.content ?? []
                     completion(PetLoadResponse.success(answer: pets))
                 } else {
@@ -77,6 +78,6 @@ class PetHandler {
     }
     public static func delete(id: Int, completion: @escaping (PetOneResponse) -> Void) {
         completion(PetOneResponse.error(description: "Not implementation"))
-        
+
     }
 }

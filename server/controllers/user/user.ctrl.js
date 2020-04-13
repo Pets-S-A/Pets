@@ -23,7 +23,7 @@ module.exports = {
       const user = await UserModel.findOne({email});
 
       if (!user) {
-        return res.json({
+        return res.status(HttpStatus.badRequest).json({
           success: false,
           message: 'Usuário não encontrado!',
         });
@@ -31,7 +31,7 @@ module.exports = {
 
       const compare = await bcrypt.compare(password, user.password);
       if (!compare) {
-        return res.json({
+        return res.status(HttpStatus.badRequest).json({
           success: false,
           message: 'Senha não confere!',
         });
@@ -56,7 +56,10 @@ module.exports = {
         message: 'Usuários encontrados!',
       });
     } catch (error) {
-      return next(error);
+      res.status(HttpStatus.badRequest).json({
+        success: false,
+        message: error.message,
+      });
     }
   },
   create: async (req, res, next) => {
@@ -68,24 +71,32 @@ module.exports = {
       if (!body.application) {
         throw new Error('Aplication is required');
       }
-
-      const user = await UserModel.create(body);
-      user.hash(next);
-      user.save();
-      if (body.application == 'json') {
-        res.json({
-          success: true,
-          message: 'Pessoa criada com successo!',
-          content: user,
-        });
-      } else {
-        res.json({
-          success: false,
-          message: 'not implemented',
-        });
+      const previusUser = await UserModel.findOne({email: body.email});
+      if (previusUser) {
+        if (!previusUser.person) {
+          previusUser.person = null;
+          return res.json({
+            success: true,
+            message: 'Pessoa criada com successo!',
+            content: previusUser,
+          });
+        } else {
+          return res.status(HttpStatus.badRequest).json({
+            success: false,
+            message: 'E-mail já cadastrado!',
+          });
+        }
       }
+      const user = await new UserModel(body);
+      user.password = await user.hash(next);
+      await user.save();
+      return res.json({
+        success: true,
+        message: 'Pessoa criada com successo!',
+        content: user,
+      });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -97,7 +108,7 @@ module.exports = {
       if (token) {
         const response = await jwt.verify(req.cookies.auth, config.JWTSecret);
         if (response) {
-          let userID = response.user;
+          // let userID = response.user;
           res.render('vet/dashboard/dashboard.view.hbs');
         } else {
           res.render('index', {
@@ -122,21 +133,21 @@ module.exports = {
       const user = await UserModel.findOne({email});
 
       if (!user) {
-        return res.json({
+        return res.status(HttpStatus.badRequest).json({
           success: false,
           message: 'Usuário não encontrado!',
         });
       }
       if (!user.person) {
-        return res.json({
+        return res.status(HttpStatus.badRequest).json({
           success: false,
-          message: 'Pessoa não encontrada!',
+          message: 'Usuário não encontrado!',
         });
       }
       const compare = await bcrypt.compare(password, user.password);
 
       if (!compare) {
-        return res.json({
+        return res.status(HttpStatus.badRequest).json({
           success: false,
           message: 'Senha não confere!',
         });
@@ -175,7 +186,7 @@ module.exports = {
         content: await UserModel.findByIdAndDelete(params.id),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -188,7 +199,7 @@ module.exports = {
         content: await UserModel.deleteMany({}),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -199,26 +210,3 @@ module.exports = {
     res.redirect('/user/auth');
   },
 };
-
-
-// TODO - FIX
-// eslint-disable-next-line require-jsdoc
-async function createAdmin() {
-  const user = await UserModel.findOne({email: 'admin'});
-
-  if (!user) {
-    const password = 'admin123!@#';
-    const body = {
-      email: 'admin',
-      name: 'Admin',
-      password,
-      access: ['master'],
-    };
-    await UserModel.create(body);
-    console.log('admin criado com sucesso!', password);
-  } else {
-    console.log('admin já existe!');
-  }
-}
-
-createAdmin();

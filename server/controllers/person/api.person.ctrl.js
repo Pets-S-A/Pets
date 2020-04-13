@@ -5,13 +5,17 @@ const HttpStatus = require('../../HttpStatus');
 module.exports = {
   getAll: async (req, res, next) => {
     try {
-      res.status(HttpStatus.OK).json({
+      res.json({
         success: true,
         content: await PersonModel.find(),
         message: 'Persons founded!',
       });
     } catch (error) {
-      next(error);
+      res.status(HttpStatus.badRequest).json({
+        success: false,
+        message: 'Persons not founded!',
+        content: error.message,
+      });
     }
   },
   create: async (req, res, next) => {
@@ -25,7 +29,7 @@ module.exports = {
       }
       const user = await UserModel.findById(body.userID);
       if (!user) {
-        throw new Error('User not found');
+        throw new Error('Person not found');
       }
       const person = await PersonModel.create(body);
       user.person = person.id;
@@ -37,7 +41,7 @@ module.exports = {
         content: person,
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -49,13 +53,12 @@ module.exports = {
       if (validateBody(body)) {
         throw new Error('Boby not found');
       }
-      if (!body.id) {
+      if (!body._id) {
         throw new Error('id is required');
       }
-
-      const person = await PersonModel.findById(body.id);
+      const person = await PersonModel.findById(body._id);
       if (!person) {
-        throw new Error('User not found');
+        throw new Error('Person not found');
       }
       person.name = body.name;
       person.image = body.image;
@@ -67,14 +70,14 @@ module.exports = {
         content: person,
       });
     } catch (error) {
-      res.json({
+      return res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
     }
   },
   deleteByID: async (req, res, next) => {
-    const params = req.params || {};
+    const params = req.params;
     try {
       if (!params.id) {
         throw new Error('Id is required');
@@ -84,7 +87,7 @@ module.exports = {
         content: await PersonModel.findByIdAndDelete(params.id),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });
@@ -97,7 +100,7 @@ module.exports = {
         content: await PersonModel.deleteMany({}),
       });
     } catch (error) {
-      res.json({
+      res.status(HttpStatus.badRequest).json({
         success: false,
         message: error.message,
       });

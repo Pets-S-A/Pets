@@ -10,8 +10,10 @@ import UIKit
 
 class AgeDataSource: NSObject, UIPickerViewDataSource {
     var options  = ["1 anos", "2 anos", "3 anos", "4 anos"]
-    weak var viewController: UIViewController?
-    func config(pickerPerson: UIPickerView, viewController: UIViewController) {
+    weak var viewController: PetCreateViewController?
+
+    init(pickerPerson: UIPickerView, viewController: PetCreateViewController) {
+        super.init()
         pickerPerson.dataSource = self
         self.viewController = viewController
     }

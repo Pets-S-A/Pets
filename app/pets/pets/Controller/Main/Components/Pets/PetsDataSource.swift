@@ -8,13 +8,11 @@
 
 import UIKit
 
-
-
 class PetsDataSource: NSObject, UICollectionViewDataSource {
     var pets = Pets()
-    
+
     weak var viewController: UIViewController?
-    
+
     func setup(collectionView: UICollectionView, viewController: UIViewController) {
         self.viewController = viewController
         collectionView.dataSource = self
@@ -37,7 +35,7 @@ class PetsDataSource: NSObject, UICollectionViewDataSource {
             }
         }
     }
-    
+
     func reloadWithCommonData(delegate: PetsDelegate) {
         guard let pets = CommonData.shared.user.person?.pets else {
             fatalError("Onde estao os pets?")
@@ -50,24 +48,25 @@ class PetsDataSource: NSObject, UICollectionViewDataSource {
             }
         }
     }
-    
+
     internal func register(collectionView: UICollectionView) {
         let cell = UINib(nibName: "PetCell", bundle: nil)
         collectionView.register(cell, forCellWithReuseIdentifier: "PetCell")
     }
-    
+
     internal func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pets.count
     }
-    
-    internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+    internal func collectionView(_ collectionView: UICollectionView,
+                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PetCell",
                                                          for: indexPath) as? PetCell {
             let pet = pets[indexPath.row]
             DispatchQueue.main.async {
                 cell.petImage.imageFromWeb(withURL: pet.image ?? "")
             }
-            
+
             cell.petName.text = pet.name
             return cell
         }

@@ -12,6 +12,6 @@ import UIKit
 class CommonData {
     static var shared = CommonData()
     private init() {}
-    
+
     var user: User!
 }

@@ -10,8 +10,10 @@ import UIKit
 
 class GenderDelegate: NSObject, UIPickerViewDelegate {
     var options  = ["Macho", "Femêa"]
-    weak var viewController: UIViewController?
-    func config(pickerPerson: UIPickerView, viewController: UIViewController) {
+    weak var viewController: PetCreateViewController?
+
+    init(pickerPerson: UIPickerView, viewController: PetCreateViewController) {
+        super.init()
         pickerPerson.delegate = self
         self.viewController = viewController
     }
@@ -19,7 +21,7 @@ class GenderDelegate: NSObject, UIPickerViewDelegate {
         return options[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if let view = viewController as? PetCreateViewController {
+        if let view = viewController {
             view.genderSelected = options[row]
         }
     }

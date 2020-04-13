@@ -13,32 +13,32 @@ class CreateVaccineViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     var pet: Pet!
     var vaccine: Vaccine?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
     }
-    
+
     func setUp() {
         setUpEdition()
     }
-    
+
     func setUpEdition() {
         if let vaccine = self.vaccine {
             self.name.text = vaccine.name
             self.datePicker.date = Date(withString: vaccine.date)
         }
     }
-    
+
     func formatVaccine() -> Vaccine {
         guard let name = name.text else {
             fatalError("Without name")
         }
         let date = datePicker.date.description
-        
+
         return Vaccine(_id: vaccine?._id, name: name, date: date)
     }
-    
+
     func createVaccine() {
         VaccineHandler.create(params: formatVaccine().dictionaryRepresentation(pet: pet)) { (response) in
             switch response {
@@ -53,7 +53,7 @@ class CreateVaccineViewController: UIViewController {
             }
         }
     }
-    
+
     func updateVaccine() {
         VaccineHandler.update(vaccine: formatVaccine()) { (response) in
             switch response {
@@ -68,8 +68,8 @@ class CreateVaccineViewController: UIViewController {
             }
         }
     }
-    
-    //MARK:- ACTIONS
+
+    // MARK: - ACTIONS
     @IBAction func create() {
         if vaccine != nil {
             updateVaccine()
@@ -78,4 +78,3 @@ class CreateVaccineViewController: UIViewController {
         }
     }
 }
-

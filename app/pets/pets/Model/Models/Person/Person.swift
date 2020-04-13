@@ -13,20 +13,20 @@ struct Person: Codable {
     var name: String
     var image: String
     var pets: Pets?
-    
+
     var dictionaryRepresentation: [String: Any] {
         return [
-            "name" : name,
-            "image" : image,
-            "userID" : CommonData.shared.user._id ?? ""
+            "name": name,
+            "image": image,
+            "userID": CommonData.shared.user._id ?? ""
         ]
     }
-    
+
     var dictionaryRepresentationUpdate: [String: Any] {
         return [
-            "name" : name,
-            "image" : image,
-            "id" : _id ?? ""
+            "name": name,
+            "image": image,
+            "id": _id ?? ""
         ]
     }
 }
