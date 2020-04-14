@@ -114,19 +114,25 @@ class RegisterPersonViewController: UIViewController {
             switch response {
             case .success(let result):
                 if result {
-                    if self.isProfileEdition {
-                        self.updatePerson()
-                    } else {
-                        self.createPerson()
+                    DispatchQueue.main.async {
+                        if self.isProfileEdition {
+                            self.updatePerson()
+                        } else {
+                            self.createPerson()
+                        }
                     }
                 } else {
-                    self.showAlert(title: "Erro ao subir a imagem", message: "Sem descrição!")
-                    self.removeSpinner()
+                    DispatchQueue.main.async {
+                        self.showAlert(title: "Erro ao subir a imagem", message: "Sem descrição!")
+                        self.removeSpinner()
+                    }
                 }
 
             case .error(let description):
-                self.showAlert(title: "Erro ao subir a imagem", message: description)
-                self.removeSpinner()
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Erro ao subir a imagem", message: description)
+                    self.removeSpinner()
+                }
             }
         }
     }
@@ -142,14 +148,14 @@ class RegisterPersonViewController: UIViewController {
     @IBAction func finishRegister() {
         showSpinner(onView: view)
         DispatchQueue.main.async {
-            if self.imageHasChange && self.isProfileEdition {
+            if self.imageHasChange {
                 self.uploadImage()
-                self.updatePerson()
-            } else if self.isProfileEdition {
-                self.updatePerson()
             } else {
-                self.uploadImage()
-                self.createPerson()
+                if self.isProfileEdition {
+                    self.uploadImage()
+                } else {
+                    self.createPerson()
+                }
             }
         }
     }
