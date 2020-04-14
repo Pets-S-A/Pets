@@ -35,9 +35,7 @@ class MainViewController: UIViewController {
     func preLoad() {
         personName.text = CommonData.shared.user.person?.name
         if let imageUrl = CommonData.shared.user.person?.image {
-            DispatchQueue.main.async {
-                self.personImage.imageFromWeb(withURL: imageUrl)
-            }
+            self.personImage.imageFromWeb(withURL: imageUrl)
         }
 
     }

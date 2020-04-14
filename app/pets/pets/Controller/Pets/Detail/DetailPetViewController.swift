@@ -11,7 +11,14 @@ import UIKit
 class DetailPetViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var agressiveLabel: UILabel!
+    @IBOutlet weak var breedLabel: UILabel!
+    
     var pet: Pet!
 
     lazy var vaccineCellDelegate = VaccineCellDelegate(tableView: tableView, viewController: self)
@@ -20,11 +27,22 @@ class DetailPetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        intialSetUp()
     }
 
     func setUp() {
         vaccineCellDataSource.fetch(pet: pet, vaccineCellDelegate: vaccineCellDelegate)
         registerEvents()
+    }
+    func intialSetUp() {
+        if let urlImage = pet.image {
+            imageView.imageFromWeb(withURL: urlImage)
+        }
+        nameLabel.text = pet.name
+        ageLabel.text = pet.age
+        genderLabel.text = pet.gender
+        agressiveLabel.text = pet.agressive ? "Sim" : "Não"
+        breedLabel.text = pet.breed
     }
     func registerEvents() {
         EventManager.shared.listenTo(eventName: "reloadCommonData") {
@@ -47,6 +65,8 @@ class DetailPetViewController: UIViewController {
                     fatalError("Pet not found")
                 }
                 self.pet = pet
+                self.vaccineCellDataSource.fetch(pet: self.pet,
+                vaccineCellDelegate: self.vaccineCellDelegate)
             }
         }
     }

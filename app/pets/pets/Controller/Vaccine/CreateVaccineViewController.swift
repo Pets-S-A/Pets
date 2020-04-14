@@ -41,9 +41,12 @@ class CreateVaccineViewController: UIViewController {
 
     func createVaccine() {
         VaccineHandler.create(params: formatVaccine().dictionaryRepresentation(pet: pet)) { (response) in
+            self.removeSpinner()
             switch response {
             case .error(let description):
-                self.showAlert(title: "Error", message: description)
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Error", message: description)
+                }
             case .success(let answer):
                 DispatchQueue.main.async {
                     self.pet.addVaccine(vaccine: answer)
@@ -56,9 +59,12 @@ class CreateVaccineViewController: UIViewController {
 
     func updateVaccine() {
         VaccineHandler.update(vaccine: formatVaccine()) { (response) in
+            self.removeSpinner()
             switch response {
             case .error(let description):
-                self.showAlert(title: "Error", message: description)
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Error", message: description)
+                }
             case .success(let answer):
                 DispatchQueue.main.async {
                     self.pet.updateVaccine(vaccine: answer)
@@ -71,6 +77,7 @@ class CreateVaccineViewController: UIViewController {
 
     // MARK: - ACTIONS
     @IBAction func create() {
+        showSpinner(onView: view)
         if vaccine != nil {
             updateVaccine()
         } else {

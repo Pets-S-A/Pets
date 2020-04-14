@@ -14,7 +14,7 @@ struct Environment {
 
     // MARK: - Server
     public static var SERVER_URL: String {
-        return Environment.PRODUCTION ?
+        return PRODUCTION ?
             "https://br-vacci-pet.herokuapp.com/api" : "http://localhost:3000/api"
     }
 
