@@ -159,7 +159,6 @@ module.exports = {
       });
 
       if (req.body.application && req.body.application == 'json') {
-        console.log(user);
         return res.json({
           success: true,
           content: user,
