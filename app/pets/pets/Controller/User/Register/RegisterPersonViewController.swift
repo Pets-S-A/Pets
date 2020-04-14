@@ -15,6 +15,7 @@ class RegisterPersonViewController: UIViewController {
     @IBOutlet weak var button: UIButton!
     private var imageName = ""
     public var isProfileEdition = false
+    public var imageProfile: UIImage?
     private var imageHasChange = false
 
     override func viewDidLoad() {
@@ -34,12 +35,7 @@ class RegisterPersonViewController: UIViewController {
         }
         if isProfileEdition {
             button.setTitle("Atualizar", for: .normal)
-            if let imageURL = CommonData.shared.user.person?.image,
-                   imageURL != "" {
-                DispatchQueue.main.async {
-                    self.imageView.imageFromWeb(withURL: imageURL)
-                }
-            }
+            self.imageView.image = imageProfile
         }
     }
 
@@ -90,7 +86,7 @@ class RegisterPersonViewController: UIViewController {
             case .success(let answer):
                 DispatchQueue.main.async {
                     CommonData.shared.user.person = answer
-                    self.performSegue(withIdentifier: "toMain", sender: nil)
+                    self.back()
                     EventManager.shared.trigger(eventName: "reloadImage", information: self.imageView.image)
                     EventManager.shared.trigger(eventName: "reloadImage", information: self.nameText.text)
                     self.removeSpinner()

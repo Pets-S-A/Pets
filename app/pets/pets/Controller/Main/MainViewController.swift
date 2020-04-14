@@ -83,6 +83,7 @@ class MainViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let view = segue.destination as? RegisterPersonViewController {
             view.isProfileEdition = true
+            view.imageProfile = personImage.image
         } else if let view = segue.destination as? PetCreateViewController {
             view.mainDelegate = self
         } else if let view = segue.destination as? DetailPetViewController {
