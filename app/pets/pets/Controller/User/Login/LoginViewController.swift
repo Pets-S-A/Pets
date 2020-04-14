@@ -108,4 +108,33 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             print(error)
         }
     }
+    @IBAction
+    func loginAutomatic() {
+        let params = [
+            "email": "matheusgoislimasilva@gmail.com",
+            "password": "000837.35591f9754ae48889b47debe49ec675e.2120",
+            "name": "Matheus Gois",
+            "application": "json"
+        ]
+
+        self.showSpinner(onView: self.view)
+        UserHandler.auth(params: params) { (response) in
+            switch response {
+            case .success(let user, let token):
+                DispatchQueue.main.async {
+                    Token.value = token
+                    CommonData.shared.user = user
+                    self.performSegue(withIdentifier: "toMain", sender: nil)
+                    self.removeSpinner()
+                }
+            case.error(let description):
+                DispatchQueue.main.async {
+                    UIAlert.show(controller: self,
+                                 title: "Não foi possível fazer login!",
+                                 message: description) { (_) in }
+                    self.removeSpinner()
+                }
+            }
+        }
+    }
 }

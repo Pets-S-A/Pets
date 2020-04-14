@@ -28,6 +28,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Entrar"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="la8-mC-VGn">
+                                <rect key="frame" x="299" y="140" width="41" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="AUTH"/>
+                                <connections>
+                                    <action selector="loginAutomatic" destination="BYZ-38-t0r" eventType="touchUpInside" id="x5D-7j-s25"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -242,7 +250,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2e-qY-M1m">
-                                <rect key="frame" x="20" y="36" width="89" height="41"/>
+                                <rect key="frame" x="20" y="36" width="294" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
@@ -281,7 +289,12 @@
                         <viewLayoutGuide key="safeArea" id="diN-QS-lhe"/>
                     </view>
                     <connections>
+                        <outlet property="ageLabel" destination="ogQ-hV-Xwh" id="yRG-C0-0aF"/>
+                        <outlet property="agressiveLabel" destination="9SS-74-fed" id="D7t-RR-hCl"/>
+                        <outlet property="breedLabel" destination="4fJ-3F-eBl" id="H5d-h7-jeR"/>
+                        <outlet property="genderLabel" destination="sgb-om-RTn" id="wxg-EA-gP3"/>
                         <outlet property="imageView" destination="DxM-gs-bFk" id="fyW-Nh-vgo"/>
+                        <outlet property="nameLabel" destination="g2e-qY-M1m" id="9Ol-qL-rLd"/>
                         <outlet property="tableView" destination="Oed-kY-ZNh" id="mQ4-34-3Gb"/>
                     </connections>
                 </viewController>
@@ -336,7 +349,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bnm-IB-SWc">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bnm-IB-SWc">
                                 <rect key="frame" x="67" y="118" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1529411765" green="0.1764705882" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -344,7 +357,6 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5N-WZ-Tbs">
                                 <rect key="frame" x="67" y="118" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Imagem"/>
                                 <connections>
                                     <action selector="loadImage" destination="gFU-Aj-UC1" eventType="touchUpInside" id="bZH-xA-Nc4"/>
                                 </connections>
@@ -422,11 +434,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eTg-Ub-t6Q">
-                                <rect key="frame" x="20" y="132" width="58" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.1529411765" green="0.1764705882" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4PQ-Nf-GOI">
                                 <rect key="frame" x="20" y="197" width="196" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -472,6 +479,11 @@
                                     <segue destination="ygD-zD-Pmy" kind="presentation" id="L1u-jS-Pcv"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="336-iW-XOm">
+                                <rect key="frame" x="20" y="131" width="61" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.1529411765" green="0.1764705882" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="dH4-Hf-fcm"/>
@@ -480,7 +492,7 @@
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="JnK-HN-cpm" id="NiM-b5-rCM"/>
-                        <outlet property="personImage" destination="eTg-Ub-t6Q" id="OBt-Jo-rwM"/>
+                        <outlet property="personImage" destination="336-iW-XOm" id="1Pd-8E-X4B"/>
                         <outlet property="personName" destination="4PQ-Nf-GOI" id="mEd-Pc-TJj"/>
                         <segue destination="gFU-Aj-UC1" kind="presentation" identifier="toProfile" id="S1H-9h-KRL"/>
                         <segue destination="Nas-YS-f2H" kind="presentation" identifier="toDetail" id="egh-W9-2kc"/>

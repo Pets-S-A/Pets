@@ -56,7 +56,6 @@ class RegisterPersonViewController: UIViewController {
                 }
                 return person
             }
-
         }
         return Person(_id: nil,
                 name: nameText.text ?? "",
@@ -92,6 +91,8 @@ class RegisterPersonViewController: UIViewController {
                 DispatchQueue.main.async {
                     CommonData.shared.user.person = answer
                     self.performSegue(withIdentifier: "toMain", sender: nil)
+                    EventManager.shared.trigger(eventName: "reloadImage", information: self.imageView.image)
+                    EventManager.shared.trigger(eventName: "reloadImage", information: self.nameText.text)
                     self.removeSpinner()
                 }
             case .error(let description):

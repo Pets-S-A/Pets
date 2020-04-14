@@ -24,10 +24,10 @@ class MainViewController: UIViewController {
         // Do any additional setup after loading the view.
 
         setUp()
+        preLoad()
     }
 
     func setUp() {
-        preLoad()
         setUpCollection()
         registerEvents()
     }
@@ -37,7 +37,6 @@ class MainViewController: UIViewController {
         if let imageUrl = CommonData.shared.user.person?.image {
             self.personImage.imageFromWeb(withURL: imageUrl)
         }
-
     }
 
     // MARK: - Collection
@@ -63,6 +62,15 @@ class MainViewController: UIViewController {
         EventManager.shared.listenTo(eventName: "reloadDeletePet") {
             DispatchQueue.main.async {
                 self.petsDataSource.reloadWithCommonData(delegate: self.petsDelegate)
+            }
+        }
+        EventManager.shared.listenTo(eventName: "reloadImage") { (answer) in
+            DispatchQueue.main.async {
+                if let image = answer as? UIImage {
+                    self.personImage.image = image
+                } else if let text = answer as? String {
+                    self.personName.text = text
+                }
             }
         }
     }

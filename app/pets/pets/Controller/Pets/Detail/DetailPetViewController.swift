@@ -12,13 +12,11 @@ class DetailPetViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var agressiveLabel: UILabel!
     @IBOutlet weak var breedLabel: UILabel!
-    
     var pet: Pet!
 
     lazy var vaccineCellDelegate = VaccineCellDelegate(tableView: tableView, viewController: self)
