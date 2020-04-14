@@ -31,12 +31,15 @@ class PetsDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDelegate
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        toDetail(row: indexPath.row)
+        if let cell = collectionView.cellForItem(at: indexPath) as? PetCell {
+            toDetail(row: indexPath.row, image: cell.petImage.image)
+        }
+        
     }
 
     @objc
-    func toDetail(row: Int) {
+    func toDetail(row: Int, image: UIImage?) {
         self.viewController?.performSegue(withIdentifier: "toDetail",
-                                          sender: pets[row])
+                                          sender: (pets[row], image))
     }
 }

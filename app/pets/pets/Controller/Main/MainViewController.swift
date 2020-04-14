@@ -87,10 +87,11 @@ class MainViewController: UIViewController {
         } else if let view = segue.destination as? PetCreateViewController {
             view.mainDelegate = self
         } else if let view = segue.destination as? DetailPetViewController {
-            guard let pet = sender as? Pet else {
+            guard let answer = sender as? (Pet, UIImage) else {
                 fatalError("Error to take pet in sender")
             }
-            view.pet = pet
+            view.pet = answer.0
+            view.petImage = answer.1
         }
     }
 }

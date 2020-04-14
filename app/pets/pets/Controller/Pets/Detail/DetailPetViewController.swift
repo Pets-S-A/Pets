@@ -18,6 +18,7 @@ class DetailPetViewController: UIViewController {
     @IBOutlet weak var agressiveLabel: UILabel!
     @IBOutlet weak var breedLabel: UILabel!
     var pet: Pet!
+    var petImage: UIImage?
 
     lazy var vaccineCellDelegate = VaccineCellDelegate(tableView: tableView, viewController: self)
     lazy var vaccineCellDataSource = VaccineCellDataSource(tableView: tableView, viewController: self)
@@ -33,9 +34,7 @@ class DetailPetViewController: UIViewController {
         registerEvents()
     }
     func intialSetUp() {
-        if let urlImage = pet.image {
-            imageView.imageFromWeb(withURL: urlImage)
-        }
+        imageView.image = petImage
         nameLabel.text = pet.name
         ageLabel.text = pet.age
         genderLabel.text = pet.gender
