@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-// const cors = require('cors');
 const hbs = require('hbs');
 const path = require('path');
 const helmet = require('helmet');
@@ -24,17 +23,6 @@ const {
   vetRouterUnprotected,
   errorRouterUnprotected,
 } = require('./route');
-
-
-// app.use(
-//     cors({
-//       allowedHeaders: ['sessionId', 'Content-Type', 'master-token'],
-//       exposedHeaders: ['sessionId'],
-//       origin: '*',
-//       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//       preflightContinue: false,
-//     }),
-// );
 
 
 app.use(bodyParser.urlencoded({extended: false}));
