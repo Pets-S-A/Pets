@@ -11,7 +11,7 @@ describe('POST [create]', function() {
   it('create user', function(done) {
     postRequest('/api/user/create', userFixture.create)
         .then(function(error) {
-          done(error);
+          done('Error BATATA');
         });
   });
   it('create person', function(done) {
