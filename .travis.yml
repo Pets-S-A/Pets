@@ -9,7 +9,7 @@ matrix:
         - cd server && npm test
     - language: swift
       osx_image: xcode13.0
-      xcode_xcodeproj: pets.xcodeproj
+      xcode_project: pets.xcodeproj
       xcode_scheme: pets
       xcode_destination: platform=iOS Simulator,OS=13.0,name=iPhone X
       before_install:
