@@ -10,7 +10,7 @@ matrix:
     - language: swift
       osx_image: xcode11
       script:
-        - set -o pipefail
+        # - set -o pipefail
         - cd app && cd pets && xcodebuild build -project pets.xcodeproj -scheme "pets" -sdk iphonesimulator | xcpretty
         # - cd app && cd pets && xcodebuild test -project pets.xcodeproj -scheme pets -destination "platform=iOS Simulator,OS=13,name=iPhone 11 Pro" test | xcpretty
 
