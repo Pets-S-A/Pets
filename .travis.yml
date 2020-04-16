@@ -8,10 +8,10 @@ matrix:
       script:
         - cd server && npm test
     - language: objective-c
+      osx_image: xcode11.3
       xcode_project: pets.xcodeproj
       xcode_scheme: pets
       xcode_destination: platform=iOS Simulator,OS=13,name=iPhone 11 Pro
-      osx_image: xcode11.3
       before_install:
         - cd app && cd pets
       # script:
