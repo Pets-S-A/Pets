@@ -12,8 +12,10 @@ matrix:
       xcode_scheme: pets
       xcode_destination: platform=iOS Simulator,OS=13,name=iPhone 11 Pro
       osx_image: xcode11.3
-      script:
-        - cd app && cd pets && xcodebuild test -project pets.xcodeproj -scheme pets -destination "platform=iOS Simulator,OS=13,name=iPhone 11 Pro" test | xcpretty
+      before_install:
+        - cd app && cd pets
+      # script:
+      #   - cd app && cd pets && xcodebuild test -project pets.xcodeproj -scheme pets -destination "platform=iOS Simulator,OS=13,name=iPhone 11 Pro" test | xcpretty
 
 notifications:
   email:
