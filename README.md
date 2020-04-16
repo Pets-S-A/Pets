@@ -63,5 +63,7 @@ Copyright © 2020 [Matheus Gois <matheusgoislimasilva@gmail.com>](https://github
 This project is [MIT](https://github.com/MaatheusGois/Pets/blob/master/LICENSE) licensed.
 
 ***
-_This PROJECT was made with ❤️_
+_For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life. 🙌🏻 John 3:16 [read-the-bible](https://biblia.com/bible/esv/john/3/16)_
+
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
 
