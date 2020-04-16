@@ -1,11 +1,8 @@
 language: node_js
-jobs:
-    include:
-      - stage: test
-        script: cd server && npm install && NODE_ENV=development PORT=3001 mocha --timeout 30000 --exit
-env:
-    - NODE_ENV = production
-    - SERVER_PORT = 3000
-    - SERVER_DB = mongodb://pets:pets123@ds049935.mlab.com:49935/pets-server
-    - SERVER_DB_DEV = mongodb://pets:pets123@ds159776.mlab.com:59776/pets-server-dev
-    - JWT_SECRET = 32AX5Iks3TVXOcAmK92RSlHG2a6Zr6zZ31qQs2YztmBREEcfBSqK06yfMq94I47rtga1sSR4k0EbA7v1v9AaER6OUprozAe0vY69UuVSD7Umf7k1WG6VyrOtqakqkhN2sulwOOYePuWDE6AKYSMba90JrLBNGdpi2Ay6PFoyFLEfwnppKGW5sDfEGZda1I
+sudo: false
+node_js:
+  - 12
+install:
+  - cd server && npm install && cd ..
+script:
+  - cd server && npm test
