@@ -10,7 +10,7 @@ matrix:
     - language: swift
       osx_image: xcode11
       script:
-      - cd app && cd pets &&  - xcodebuild -scheme SwiftExample -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X Pro,OS=13' build test
+      - cd app && cd pets &&  - xcodebuild -scheme pets -sdk pets -destination 'platform=iOS Simulator,name=iPhone X Pro,OS=13' build test
 
 notifications:
   email:
