@@ -7,11 +7,14 @@ matrix:
         - cd server && npm install && cd ..
       script:
         - cd server && npm test
-    - language: swift
-      osx_image: xcode11
+    - language: objective-c
+      xcode_project: pets.xcodeproj
+      xcode_scheme: pets
+      xcode_destination: platform=iOS Simulator,OS=13,name=iPhone 11 Pro
+      osx_image: xcode11.3
       script:
-      - cd app && cd pets && xcodebuild test -project pets.xcodeproj -scheme pets -destination "platform=iOS Simulator,OS=13,name=iPhone 11 Pro" test | xcpretty
+        - cd app && cd pets && xcodebuild test -project pets.xcodeproj -scheme pets -destination "platform=iOS Simulator,OS=13,name=iPhone 11 Pro" test | xcpretty
 
 notifications:
   email:
-    - matheusgoislimasilva@gmail.com 
+    - matheusgoislimasilva@gmail.com
