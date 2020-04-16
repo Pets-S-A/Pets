@@ -1,56 +1,28 @@
-## [fastlane match](https://docs.fastlane.tools/actions/match/)
+<h1 align="center">Welcome to Pets 👋</h1>
+<p>
+</p>
 
-This repository contains all your certificates and provisioning profiles needed to build and sign your applications. They are encrypted using OpenSSL via a passphrase.
+## Install
 
-**Important:** Make sure this repository is set to private and only your team members have access to this repo.
-
-Do not modify this file, as it gets overwritten every time you run _match_.
-
-### Installation
-
-Make sure you have the latest version of the Xcode command line tools installed:
-
-```
-xcode-select --install
+```sh
+npm install
 ```
 
-Install _fastlane_ using
+## Usage
 
-```
-[sudo] gem install fastlane -NV
-```
-
-or alternatively using `brew cask install fastlane`
-
-### Usage
-
-Navigate to your project folder and run
-
-```
-fastlane match appstore
-```
-```
-fastlane match adhoc
-```
-```
-fastlane match development
-```
-```
-fastlane match enterprise
+```sh
+npm run start
 ```
 
-For more information open [fastlane match git repo](https://docs.fastlane.tools/actions/match/)
+## Run tests
 
-### Content
+```sh
+npm run test
+```
 
-#### certs
+## Show your support
 
-This directory contains all your certificates with their private keys
+Give a ⭐️ if this project helped you!
 
-#### profiles
-
-This directory contains all provisioning profiles
-
-------------------------------------
-
-For more information open [fastlane match git repo](https://docs.fastlane.tools/actions/match/)
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
