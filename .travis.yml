@@ -1,17 +1,17 @@
 matrix:
   include:
     - language: node_js
-    node_js:
-      - 12
-    install:
-      - cd server && npm install && cd ..
-    script:
-      - cd server && npm test
+      node_js:
+        - 12
+      install:
+        - cd server && npm install && cd ..
+      script:
+        - cd server && npm test
     - language: swift
       osx_image: xcode11
       script:
-      - cd app && cd pets &&  - xcodebuild -scheme pets -sdk pets -destination 'platform=iOS Simulator,name=iPhone X Pro,OS=13' build test
+      - cd app && cd pets && xcodebuild test -project pets.xcodeproj -scheme pets -destination "platform=iOS Simulator,OS=13,name=iPhone 11" test | xcpretty
 
 notifications:
   email:
-    - matheusgoislimasilva@gmail.com
+    - matheusgoislimasilva@gmail.com 
