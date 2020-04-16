@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <testsuites name='petsUITests.xctest' tests='4' failures='0'>
   <testsuite name='petsTests.PetsTests' tests='2' failures='0'>
-    <testcase classname='petsTests.PetsTests' name='testExample' time='0.004'/>
-    <testcase classname='petsTests.PetsTests' name='testPerformanceExample' time='0.402'/>
+    <testcase classname='petsTests.PetsTests' name='testExample' time='0.003'/>
+    <testcase classname='petsTests.PetsTests' name='testPerformanceExample' time='0.601'/>
   </testsuite>
   <testsuite name='petsUITests.PetsUITests' tests='2' failures='0'>
-    <testcase classname='petsUITests.PetsUITests' name='testExample' time='3.668'/>
-    <testcase classname='petsUITests.PetsUITests' name='testLaunchPerformance' time='15.119'/>
+    <testcase classname='petsUITests.PetsUITests' name='testExample' time='3.829'/>
+    <testcase classname='petsUITests.PetsUITests' name='testLaunchPerformance' time='15.201'/>
   </testsuite>
 </testsuites>
