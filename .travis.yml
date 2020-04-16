@@ -8,16 +8,12 @@ matrix:
       script:
         - cd server && npm test
     - language: swift
-      osx_image: xcode13.0
-      xcode_project: pets.xcodeproj
-      xcode_scheme: pets
-      xcode_destination: platform=iOS Simulator,OS=13.0,name=iPhone X
-      before_install:
-        - cd app && cd pets
-      # osx_image: xcode11.3
-      # script:
-      #   - cd app && cd pets && xcodebuild test -project pets.xcodeproj -scheme pets -destination "platform=iOS Simulator,OS=13,name=iPhone 11 Pro" test | xcpretty
+      osx_image: xcode11
+      script:
+        - set -o pipefail
+        - cd app && cd pets && xcodebuild build -project pets.xcodeproj -scheme "pets" -sdk iphonesimulator | xcpretty
+        # - cd app && cd pets && xcodebuild test -project pets.xcodeproj -scheme pets -destination "platform=iOS Simulator,OS=13,name=iPhone 11 Pro" test | xcpretty
 
 notifications:
   email:
-    - matheusgoislimasilva@gmail.com
+    - matheusgoislimasilva@gmail.com 
