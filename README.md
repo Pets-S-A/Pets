@@ -12,6 +12,9 @@
   <a href="https://github.com/MaatheusGois/Pets/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/github/license/MaatheusGois/pets" />
   </a>
+  <a href="(https://travis-ci.org/MaatheusGois/Pets" target="_blank">
+    <img alt="Travis" src="https://travis-ci.org/MaatheusGois/Pets.svg?branch=master" />
+  </a>
 </p>
 
 ### 🏠 [Homepage](https://github.com/MaatheusGois/Pets#readme)
