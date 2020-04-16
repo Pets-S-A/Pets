@@ -1,5 +1,8 @@
 <h1 align="center">Welcome to pets 👋</h1>
 <p>
+  <a href="(https://travis-ci.org/MaatheusGois/Pets" target="_blank">
+    <img alt="Travis CI" src="https://travis-ci.org/MaatheusGois/Pets.svg?branch=master" />
+  </a>
   <a href="https://www.npmjs.com/package/pets" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/pets.svg">
   </a>
@@ -11,9 +14,6 @@
   </a>
   <a href="https://github.com/MaatheusGois/Pets/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/github/license/MaatheusGois/pets" />
-  </a>
-  <a href="(https://travis-ci.org/MaatheusGois/Pets" target="_blank">
-    <img alt="Travis" src="https://travis-ci.org/MaatheusGois/Pets.svg?branch=master" />
   </a>
 </p>
 
@@ -41,16 +41,15 @@ npm run test
 
 👤 **Matheus Gois <matheusgoislimasilva@gmail.com>**
 
-* Website: www.linkedin.com/in/maatheusgois/
+- Website: www.linkedin.com/in/maatheusgois/
 
-* Twitter: [@maatheusgois](https://twitter.com/maatheusgois)
+- Twitter: [@maatheusgois](https://twitter.com/maatheusgois)
 
-* GitHub: [@maatheusgois](https://github.com/maatheusgois)  
+- GitHub: [@maatheusgois](https://github.com/maatheusgois)
 
-* LinkedIn: [@maatheusgois](https://linkedin.com/in/maatheusgois)
+- LinkedIn: [@maatheusgois](https://linkedin.com/in/maatheusgois)
 
-* Dribbble: [@maatheusgois](https://dribbble.com/maatheusgois)
-
+- Dribbble: [@maatheusgois](https://dribbble.com/maatheusgois)
 
 ## 🤝 Contributing
 
@@ -65,8 +64,8 @@ Give a ⭐️ if this project helped you!
 Copyright © 2020 [Matheus Gois <matheusgoislimasilva@gmail.com>](https://github.com/MaatheusGois).<br />
 This project is [MIT](https://github.com/MaatheusGois/Pets/blob/master/LICENSE) licensed.
 
-***
+---
+
 _For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life. 🙌🏻 John 3:16 [read-the-bible](https://biblia.com/bible/esv/john/3/16)_
 
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
-
