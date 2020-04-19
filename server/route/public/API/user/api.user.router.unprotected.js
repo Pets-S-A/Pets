@@ -3,6 +3,6 @@ const {ApiUserCtrl, ViewUserCtrl} = require('../../../../controllers');
 const router = new express.Router();
 
 router.post('/api/user/create', ApiUserCtrl.create);
-router.post('/user/auth', ViewUserCtrl.authenticate);
+router.post('/api/user/auth', ViewUserCtrl.authenticate);
 
 module.exports = router;

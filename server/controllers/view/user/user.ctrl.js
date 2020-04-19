@@ -16,7 +16,7 @@ module.exports = {
         const response = await jwt.verify(req.cookies.auth, config.JWTSecret);
         if (response) {
           // let userID = response.user;
-          res.render('vet/dashboard/dashboard.view.hbs');
+          res.render('vet/dashboard/dashboard.view.hbs', {isAuth: true});
         } else {
           res.render('index', {
             pageIsLogin: true,
@@ -45,10 +45,10 @@ module.exports = {
           message: 'Usuário não encontrado!',
         });
       }
-      if (!user.person) {
+      if (!user.person && req.body.application == 'json') {
         return res.status(HttpStatus.badRequest).json({
           success: false,
-          message: 'Usuário não encontrado!',
+          message: 'Pessoa não encontrada!',
         });
       }
       const compare = await bcrypt.compare(password, user.password);
@@ -73,7 +73,7 @@ module.exports = {
         });
       } else {
         res.cookie('auth', token);
-        res.render('admin/dashboard/dashboard.view.hbs');
+        res.render('vet/dashboard/dashboard.view.hbs', {isAuth: true});
       }
     } catch (error) {
       return next(error);
@@ -83,6 +83,6 @@ module.exports = {
   },
   logout: async (req, res, next) => {
     res.clearCookie('auth');
-    res.redirect('/user/auth');
+    res.redirect('/');
   },
 };

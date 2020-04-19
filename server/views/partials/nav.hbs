@@ -7,20 +7,24 @@
                 <img src="/assets/imgs/icons/favicon.ico" height="50">
             </a>
         </header>
+        
+        {{#if isAuth}}
+        <ul>
+            <li><a href="/">Home</a></li>
+            {{!-- <li>
+                <a>Menu</a>
+                <menu>
+                    <menuitem><a href="/user/Cupons">Teste</a></menuitem>
+                </menu>
+            </li> --}}
+            <li><a href="/logout">Sair</a></li>
+        </ul>
+        {{else}}
         <ul>
             <li>
                 <a href="/">Login</a>
             </li>
         </ul>
-        {{!-- <ul>
-            <li><a href="/user">Home</a></li>
-            <li>
-                <a>Menu</a>
-                <menu>
-                    <menuitem><a href="/user/Cupons">Teste</a></menuitem>
-                </menu>
-            </li>
-            <li><a href="/user/logout">Sair</a></li>
-        </ul> --}}
+        {{/if}}
     </label>
 </nav>

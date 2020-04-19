@@ -38,7 +38,6 @@ module.exports = {
       user.vet = vet;
 
       await user.save();
-      await user.save();
 
       res.render('index', {
         message: 'Cadastro realizado com sucesso!',
