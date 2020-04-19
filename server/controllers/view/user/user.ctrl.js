@@ -73,7 +73,7 @@ module.exports = {
         });
       } else {
         res.cookie('auth', token);
-        res.render('vet/dashboard/dashboard.view.hbs', {isAuth: true});
+        res.redirect('/');
       }
     } catch (error) {
       return next(error);
