@@ -14,14 +14,14 @@ const app = express();
 
 // ROUTE
 const {
+  apiErrorRouterProtected,
   apiPetRouterProtected,
   apiPersonRouterProtected,
+  apiUserRouterProtected,
   apiVaccineRouterProtected,
   apiVetRouterProtected,
-  userRouterUnprotected,
-  userRouterProtected,
-  vetRouterUnprotected,
-  errorRouterUnprotected,
+  viewUserRouterUnprotected,
+  viewVetRouterUnprotected,
 } = require('./route');
 
 
@@ -40,18 +40,19 @@ app.set('view engine', 'hbs');
 // DB
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-// Unprotected
-// app.get('/', UserCtrl.get);
-app.use('/', userRouterUnprotected);
-app.use('/', vetRouterUnprotected);
 
 // Protected
-app.use('/', userRouterProtected);
+app.use('/', apiUserRouterProtected);
 app.use('/', apiPetRouterProtected);
 app.use('/', apiPersonRouterProtected);
 app.use('/', apiVaccineRouterProtected);
 app.use('/', apiVetRouterProtected);
-app.use('/', errorRouterUnprotected);
+app.use('/', apiErrorRouterProtected);
+
+// Unprotected
+app.use('/', viewVetRouterUnprotected);
+app.use('/', viewUserRouterUnprotected);
+
 
 // Error Handler
 app.use(async (error, req, res, next) => {

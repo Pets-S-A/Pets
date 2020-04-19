@@ -1,8 +1,8 @@
 const express = require('express');
-const {ApiUserCtrl} = require('../../../../controllers');
+const {ApiUserCtrl, ViewUserCtrl} = require('../../../../controllers');
 const router = new express.Router();
 
 router.post('/api/user/create', ApiUserCtrl.create);
-// router.post('/user/auth', UserCtrl.authenticate);
+router.post('/user/auth', ViewUserCtrl.authenticate);
 
 module.exports = router;

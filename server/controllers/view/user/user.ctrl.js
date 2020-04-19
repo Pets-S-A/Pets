@@ -9,7 +9,7 @@ const config = require('../../../config');
 const EXPIRES_IN_MINUTES = '1440m'; // expires in 24 hours
 
 module.exports = {
-  get: async (req, res, next) => {
+  getLoginView: async (req, res, next) => {
     try {
       const token = req.cookies.auth;
       if (token) {
