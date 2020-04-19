@@ -20,6 +20,8 @@ const {
   apiUserRouterProtected,
   apiVaccineRouterProtected,
   apiVetRouterProtected,
+
+  apiUserRouterUnprotected,
   viewUserRouterUnprotected,
   viewVetRouterUnprotected,
 } = require('./route');
@@ -50,6 +52,7 @@ app.use('/', apiVetRouterProtected);
 app.use('/', apiErrorRouterProtected);
 
 // Unprotected
+app.use('/', apiUserRouterUnprotected);
 app.use('/', viewVetRouterUnprotected);
 app.use('/', viewUserRouterUnprotected);
 

@@ -8,8 +8,7 @@ module.exports = {
           .post(url)
           .send(body)
           .set('Accept', 'application/json')
-          .expect('Content-Type', /json/)
-          .expect(200);
+          .expect('Content-Type', /json/);
       return response.body.success ? null : response.body.message;
     } catch (error) {
       return error;
@@ -20,8 +19,7 @@ module.exports = {
       const response = await request(server)
           .get(url)
           .set('Accept', 'application/json')
-          .expect('Content-Type', /json/)
-          .expect(200);
+          .expect('Content-Type', /json/);
       return response.body.success ? null : response.body.message;
     } catch (error) {
       return error;
@@ -33,8 +31,7 @@ module.exports = {
           .delete(url)
           .send(body)
           .set('Accept', 'application/json')
-          .expect('Content-Type', /json/)
-          .expect(200);
+          .expect('Content-Type', /json/);
       return response.body.success ? null : response.body.message;
     } catch (error) {
       return error;
