@@ -20,6 +20,7 @@ const {
   apiUserRouterProtected,
   apiVaccineRouterProtected,
   apiVetRouterProtected,
+  viewVetRouterProtected,
 
   apiUserRouterUnprotected,
   viewUserRouterUnprotected,
@@ -34,9 +35,11 @@ app.use(express.static('public'));
 app.use(helmet());
 
 // VIEWS
+app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
-app.set('view engine', 'hbs');
+hbs.registerHelper('trueToSim', require('./views/helpers/trueToSim'));
+hbs.registerHelper('dateFormatter', require('./views/helpers/dateFormatter'));
 
 
 // DB
@@ -50,6 +53,7 @@ app.use('/', apiPersonRouterProtected);
 app.use('/', apiVaccineRouterProtected);
 app.use('/', apiVetRouterProtected);
 app.use('/', apiErrorRouterProtected);
+app.use('/', viewVetRouterProtected);
 
 // Unprotected
 app.use('/', apiUserRouterUnprotected);

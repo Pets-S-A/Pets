@@ -1,20 +1,27 @@
-const {UserModel, VetModel} = require('../../../models');
-const HttpStatus = require('../../../HttpStatus');
+const {UserModel, VetModel, PetModel} = require('../../../models');
 const {validateBody, validatePassword} = require('../../../utils');
 
 module.exports = {
-  getAll: async (req, res, next) => {
+  getRegister: async (req, res, next) => {
     try {
-      res.status(HttpStatus.OK).json({
-        success: true,
-        content: await VetModel.find(),
-        message: 'Vets founded!',
-      });
-    } catch (error) {
-      res.status(HttpStatus.badRequest).json({
-        success: false,
-        message: error.message,
-      });
+      res.render('vet/register/register.view.hbs');
+    } catch (err) {
+      return next(err);
+    }
+  },
+  getPet: async (req, res, next) => {
+    try {
+      res.render('vet/pet/pet.view.hbs', {isAuth: true});
+    } catch (err) {
+      return next(err);
+    }
+  },
+  getPetInfo: async (req, res, next) => {
+    try {
+      const pet = await PetModel.findOne({});
+      res.render('vet/pet/pet.info.view.hbs', {isAuth: true, pet});
+    } catch (err) {
+      return next(err);
     }
   },
   create: async (req, res, next) => {
@@ -44,43 +51,6 @@ module.exports = {
       });
     } catch (error) {
       return next(error);
-    }
-  },
-  getRegister: async (req, res, next) => {
-    try {
-      res.render('vet/register/register.view.hbs');
-    } catch (err) {
-      return next(err);
-    }
-  },
-  deleteByID: async (req, res, next) => {
-    const params = req.params || {};
-    try {
-      if (!params.id) {
-        throw new Error('Id is required');
-      }
-      res.json({
-        success: true,
-        content: await VetModel.findByIdAndDelete(params.id),
-      });
-    } catch (error) {
-      res.status(HttpStatus.badRequest).json({
-        success: false,
-        message: error.message,
-      });
-    }
-  },
-  delete: async (req, res, next) => {
-    try {
-      res.json({
-        success: true,
-        content: await VetModel.deleteMany({}),
-      });
-    } catch (error) {
-      res.status(HttpStatus.badRequest).json({
-        success: false,
-        message: error.message,
-      });
     }
   },
 };

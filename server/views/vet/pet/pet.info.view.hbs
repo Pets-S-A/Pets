@@ -1,0 +1,52 @@
+<section txt="c" style="width: 60vw;">
+    <card>
+        <h4 txt="l" style="margin-bottom: 1em;">Informações do {{pet.name}}</h4>
+        <grid>
+            <div col="1/2" txt="l">
+                <img src="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg" alt="image {{pet.name}}">
+            </div>
+        </grid>
+        <grid>
+            <div col="1/2" txt="l">
+                <label for="breed">Raça</label>
+                <input type="text" name="breed" id="breed" value="{{pet.breed}}" readonly>
+
+            </div>
+            <div col="1/2" txt="l">
+                <label for="gender">Sexo</label>
+                <input type="text" name="gender" id="gender" value="{{pet.gender}}" readonly>
+            </div>
+        </grid>
+        <grid>
+            <div col="1/2" txt="l">
+                <label for="age">Idade</label>
+                <input type="text" name="age" id="age" value="{{pet.age}}" readonly>
+            </div>
+            <div col="1/2" txt="l">
+                <label for="agressive">Agressivo</label>
+                <input type="text" name="agressive" id="agressive" value="{{trueToSim pet.agressive}}" readonly>
+            </div>
+        </grid>
+        <grid txt="l">
+            <div col="1/2" txt="l">
+                <h4 style="margin-bottom: 1em;margin-top:2em;">Vacinas</h4>
+            </div>
+            <div col="1/2">
+                <h4 txt="r" style="margin-bottom: 1em;margin-top:2em;">Adicionar</h4>
+            </div>
+        </grid>
+        <grid txt="l">
+            {{#each pet.vaccines}}
+            <div col="1/2" style="border:0.5px solid #E4E8FF;">
+                <div txt="l">
+                    <label>{{this.name}}</label>
+                </div>
+                <div txt="l">
+                    <label>{{dateFormatter this.date}}</label>
+                </div>
+            </div>
+
+            {{/each}}
+        </grid>
+    </card>
+</section>
