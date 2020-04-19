@@ -8,7 +8,7 @@ const helmet = require('helmet');
 
 const db = require('./db');
 const {ErrorModel} = require('./models');
-const {UserCtrl} = require('./controllers');
+// const {UserCtrl} = require('./controllers');
 // const validateToken = require('./middleware/validate-token');
 const app = express();
 
@@ -42,16 +42,16 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // Unprotected
 // app.get('/', UserCtrl.get);
-app.use('/api', userRouterUnprotected);
-app.use('/api', vetRouterUnprotected);
+app.use('/', userRouterUnprotected);
+app.use('/', vetRouterUnprotected);
 
 // Protected
-// app.use('/api', userRouterProtected);
-app.use('/api', apiPetRouterProtected);
-app.use('/api', apiPersonRouterProtected);
-app.use('/api', apiVaccineRouterProtected);
-app.use('/api', apiVetRouterProtected);
-app.use('/api', errorRouterUnprotected);
+app.use('/', userRouterProtected);
+app.use('/', apiPetRouterProtected);
+app.use('/', apiPersonRouterProtected);
+app.use('/', apiVaccineRouterProtected);
+app.use('/', apiVetRouterProtected);
+app.use('/', errorRouterUnprotected);
 
 // Error Handler
 app.use(async (error, req, res, next) => {

@@ -31,4 +31,10 @@ describe('GET [read all]', function() {
           done(error);
         });
   });
+  it('read vet', function(done) {
+    getRequest('/api/vet/all')
+        .then((error) => {
+          done(error);
+        });
+  });
 });
