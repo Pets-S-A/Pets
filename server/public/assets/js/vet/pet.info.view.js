@@ -25,7 +25,7 @@ const addVaccine = () => {
       console.log(result);
       Swal.fire({
         title: 'Quando a vacina foi ou será aplicada?',
-        html: `<input id="datepicker" name=${result.value} 
+        html: `<input id="datepicker" name=${JSON.stringify(result.value)} 
                 readonly class="swal2-input">`,
         customClass: 'swal2-overflow',
         onOpen: function() {
