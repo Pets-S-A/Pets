@@ -26,4 +26,10 @@ describe('POST [delete all]', function() {
           done(error);
         });
   });
+  it('delete error', function(done) {
+    deleteRequest('/api/error/delete')
+        .then(function(error) {
+          done(error);
+        });
+  });
 });

@@ -13,4 +13,17 @@ module.exports = {
       next(error);
     }
   },
+  delete: async (req, res, next) => {
+    try {
+      res.json({
+        success: true,
+        content: await ErrorModel.deleteMany({}),
+      });
+    } catch (error) {
+      res.status(HttpStatus.badRequest).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
 };
