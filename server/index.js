@@ -41,12 +41,12 @@ app.set('view engine', 'hbs');
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // Unprotected
-app.get('/', UserCtrl.get);
+// app.get('/', UserCtrl.get);
 app.use('/api', userRouterUnprotected);
 app.use('/api', vetRouterUnprotected);
 
 // Protected
-app.use('/api', userRouterProtected);
+// app.use('/api', userRouterProtected);
 app.use('/api', apiPetRouterProtected);
 app.use('/api', apiPersonRouterProtected);
 app.use('/api', apiVaccineRouterProtected);
