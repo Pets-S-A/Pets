@@ -22,6 +22,7 @@ const addVaccine = () => {
     },
   }).then((result) => {
     if (result.value) {
+      console.log(result);
       Swal.fire({
         title: 'Quando a vacina foi ou será aplicada?',
         html: `<input id="datepicker" name=${result.value} 
@@ -76,8 +77,20 @@ const addVaccine = () => {
         },
         allowOutsideClick: () => !Swal.isLoading(),
       }).then(function(result) {
-        if (result.value) {
-          alert($('#datepicker').val());
+        if (result.dismiss == 'cancel') {
+          return;
+        }
+        if (result.value.success) {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Vacina cadastrada com sucesso!',
+            showConfirmButton: false,
+            timer: 1500,
+            onAfterClose: () => {
+              window.location.reload();
+            },
+          });
         }
       });
     }
