@@ -32,7 +32,7 @@
                 <h4 style="margin-bottom: 1em;margin-top:2em;">Vacinas</h4>
             </div>
             <div col="1/2" txt="r">
-                <a href="" txt="r"><h4 txt="r" style="margin-bottom: 1em;margin-top:2em;">Adicionar</h4></a>
+                <a onclick="addVaccine()" txt="r"><h4 txt="r" style="margin-bottom: 1em;margin-top:2em;">Adicionar</h4></a>
             </div>
         </grid>
         <grid txt="l">
@@ -48,4 +48,14 @@
             {{/each}}
         </grid>
     </card>
+    <input type="text" id="petID" value="{{pet.id}}" style="display:none;">
 </section>
+
+<script src="/assets/js/vet/pet.info.view.js"></script>
+<style>
+    #datepicker {
+        overflow-x: visible;
+        overflow-y: visible;
+        z-index: 2000;
+    }
+</style>

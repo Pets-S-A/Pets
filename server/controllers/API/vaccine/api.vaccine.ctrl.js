@@ -26,8 +26,13 @@ module.exports = {
       if (!body.petID) {
         throw new Error('petID is required');
       }
-      const vaccine = await VaccineModel.create(body);
       const pet = await PetModel.findById(body.petID);
+
+      if (!pet) {
+        throw new Error('Pet not found');
+      }
+
+      const vaccine = await VaccineModel.create(body);
       await pet.addVaccine(vaccine, next);
       res.json({
         success: true,
