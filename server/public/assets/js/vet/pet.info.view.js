@@ -43,7 +43,7 @@ const addVaccine = () => {
         required: true,
         preConfirm: () => {
           const name = $('#datepicker').prop('name');
-          const date = $('#datepicker').val();
+          const date = moment($('#datepicker').val(), 'DD/MM/YYYY');
           const petID = $('#petID').val();
           if (date != '') {
             const body = JSON.stringify({
