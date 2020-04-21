@@ -70,7 +70,7 @@ module.exports = {
         throw new Error('provisoryID is required');
       }
 
-      const pet = await SharedPetID.findOneAndDelete({provisoryID});
+      const pet = await SharedPetID.findOne({provisoryID});
       if (!pet) {
         throw new Error('Pet not found');
       }

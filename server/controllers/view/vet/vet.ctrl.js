@@ -18,7 +18,14 @@ module.exports = {
   },
   getPetInfo: async (req, res, next) => {
     try {
-      const pet = await PetModel.findOne({});
+      const params = req.params || {};
+      if (validateBody(params)) {
+        throw new Error('Params not found');
+      }
+      if (!params.petID) {
+        throw new Error('petID is required');
+      }
+      const pet = await PetModel.findById(params.petID);
       res.render('vet/pet/pet.info.view.hbs', {isAuth: true, pet});
     } catch (err) {
       return next(err);
