@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const express = require('express');
 const {ApiPetCtrl, ApiSharedPetIDCtrl} = require('../../../../controllers');
 const router = new express.Router();
@@ -11,7 +12,8 @@ router.get('/api/pet/delete/:id', ApiPetCtrl.deleteByID);
 
 // Shared Pet
 router.get('/api/pet/shared/all', ApiSharedPetIDCtrl.getAll);
-router.post('/api/pet/shared/getID', ApiSharedPetIDCtrl.getSharedPetID);
+router.get('/api/pet/shared/getPet/:provisoryID', ApiSharedPetIDCtrl.getPetByProvisoryID);
+router.post('/api/pet/shared/getProvisoryID', ApiSharedPetIDCtrl.getSharedPetID);
 
 
 module.exports = router;

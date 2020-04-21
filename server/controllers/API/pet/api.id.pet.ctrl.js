@@ -9,7 +9,7 @@ module.exports = {
       res.status(HttpStatus.OK).json({
         success: true,
         content: await SharedPetID.find(),
-        message: 'Shared id created',
+        message: 'SharedIDs found!',
       });
     } catch (error) {
       res.status(HttpStatus.badRequest).json({
@@ -28,6 +28,15 @@ module.exports = {
       if (!petID) {
         throw new Error('petId is required');
       }
+      const shared = await SharedPetID.findOne({petID});
+      if (shared) {
+        res.status(HttpStatus.OK).json({
+          success: true,
+          content: shared,
+          message: 'Shared id created with success',
+        });
+        return;
+      }
       const pet = await PetModel.findById(petID);
       if (!pet) {
         throw new Error('Pet not found');
@@ -41,6 +50,35 @@ module.exports = {
         success: true,
         content: await SharedPetID.create(bodyShared),
         message: 'Shared id created with success',
+      });
+    } catch (error) {
+      res.status(HttpStatus.badRequest).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+  getPetByProvisoryID: async (req, res, next) => {
+    try {
+      const params = req.params || {};
+      if (validateBody(params)) { // retorna true caso o objeto esteja vazio
+        throw new Error('Params not found');
+      }
+
+      const provisoryID = params.provisoryID;
+      if (!provisoryID) {
+        throw new Error('provisoryID is required');
+      }
+
+      const pet = await SharedPetID.findOneAndDelete({provisoryID});
+      if (!pet) {
+        throw new Error('Pet not found');
+      }
+
+      res.status(HttpStatus.OK).json({
+        success: true,
+        content: pet,
+        message: 'Pet found!',
       });
     } catch (error) {
       res.status(HttpStatus.badRequest).json({
