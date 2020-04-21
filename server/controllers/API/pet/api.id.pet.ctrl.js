@@ -41,7 +41,7 @@ module.exports = {
       if (!pet) {
         throw new Error('Pet not found');
       }
-      const provisoryID = String(Math.floor(1000 + Math.random() * 9000));
+      const provisoryID = body.provisoryID || String(Math.floor(1000 + Math.random() * 9000));
       const bodyShared = {
         provisoryID,
         petID,

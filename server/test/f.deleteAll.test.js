@@ -1,7 +1,7 @@
 const {deleteRequest} = require('./util');
 
 
-describe('POST [delete all]', function() {
+describe('DELETE [delete all]', function() {
   it('delete user', function(done) {
     deleteRequest('/api/user/delete')
         .then(function(error) {

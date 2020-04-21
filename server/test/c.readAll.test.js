@@ -37,4 +37,10 @@ describe('GET [read all]', function() {
           done(error);
         });
   });
+  it('read provisoryIDs', function(done) {
+    getRequest('/api/pet/shared/all')
+        .then((error) => {
+          done(error);
+        });
+  });
 });

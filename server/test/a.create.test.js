@@ -4,6 +4,7 @@ const {
   userFixture,
   petFixture,
   vaccineFixture,
+  provisoryIDFixture,
 } = require('./fixtures');
 
 
@@ -28,6 +29,12 @@ describe('POST [create]', function() {
   });
   it('create vaccine', function(done) {
     postRequest('/api/vaccine/create', vaccineFixture.create)
+        .then(function(error) {
+          done(error);
+        });
+  });
+  it('create provisoryID', function(done) {
+    postRequest('/api/pet/shared/getProvisoryID', provisoryIDFixture.create)
         .then(function(error) {
           done(error);
         });
