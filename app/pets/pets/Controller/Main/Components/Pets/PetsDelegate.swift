@@ -34,7 +34,7 @@ class PetsDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDelegate
         if let cell = collectionView.cellForItem(at: indexPath) as? PetCell {
             toDetail(row: indexPath.row, image: cell.petImage.image)
         }
-        
+
     }
 
     @objc

@@ -13,7 +13,6 @@ extension UIImageView {
     public func imageFromWeb(withURL serverURL: String) {
         self.image = nil
         let activityIndicator = self.activityIndicator
-        
         DispatchQueue.main.async {
             activityIndicator.startAnimating()
         }

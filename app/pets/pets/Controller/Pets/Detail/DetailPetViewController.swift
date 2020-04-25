@@ -67,6 +67,20 @@ class DetailPetViewController: UIViewController {
             }
         }
     }
+    @IBAction func sharePet() {
+        showSpinner(onView: view)
+        PetHandler.share(id: pet._id) { (response) in
+            DispatchQueue.main.async {
+                self.removeSpinner()
+                switch response {
+                case .success(let answer):
+                    self.showAlert(title: "Compartilhe!", message: answer)
+                case .error(let description):
+                    self.showAlert(title: "Error", message: description)
+                }
+            }
+        }
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let view = segue.destination as? CreateVaccineViewController {

@@ -20,20 +20,20 @@
                         <rect key="frame" x="0.0" y="-3" width="320" height="50"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fw1-Pj-uFO">
-                                <rect key="frame" x="0.0" y="0.0" width="256" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="213.5" height="50"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uZ-9b-keX">
-                                <rect key="frame" x="256" y="0.0" width="64" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uZ-9b-keX">
+                                <rect key="frame" x="213.5" y="0.0" width="106.5" height="50"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Fw1-Pj-uFO" firstAttribute="width" secondItem="3uZ-9b-keX" secondAttribute="width" multiplier="4" id="eP5-xc-STU"/>
+                            <constraint firstItem="Fw1-Pj-uFO" firstAttribute="width" secondItem="3uZ-9b-keX" secondAttribute="width" multiplier="2" id="eP5-xc-STU"/>
                         </constraints>
                     </stackView>
                 </subviews>

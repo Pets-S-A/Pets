@@ -10,9 +10,12 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    let notificationCenter = UNUserNotificationCenter.current()
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        notificationCenter.delegate = self
+        sleep(1)
+        UIApplication.shared.applicationIconBadgeNumber = 0
         return true
     }
 

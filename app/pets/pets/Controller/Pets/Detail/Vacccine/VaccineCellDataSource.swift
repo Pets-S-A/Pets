@@ -45,7 +45,7 @@ class VaccineCellDataSource: NSObject, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "VaccineCell") as? VaccineCell {
             let vaccine = vaccines[indexPath.row]
             cell.name.text = vaccine.name
-            cell.date.text = vaccine.date
+            cell.date.text = Date(withString: vaccine.date).getTime()
             return cell
         }
         return UITableViewCell()

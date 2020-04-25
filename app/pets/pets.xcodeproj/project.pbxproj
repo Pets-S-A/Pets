@@ -33,6 +33,8 @@
 		82682ECD2429BA45006908CB /* PetsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82682ECC2429BA45006908CB /* PetsDataSource.swift */; };
 		827BB006242ADC8F00C25429 /* PetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BB004242ADC8F00C25429 /* PetCell.swift */; };
 		827BB007242ADC8F00C25429 /* PetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 827BB005242ADC8F00C25429 /* PetCell.xib */; };
+		82803EDB2453E53800B407B7 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82803EDA2453E53800B407B7 /* Notification.swift */; };
+		82803EDD2453E5C500B407B7 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82803EDC2453E5C500B407B7 /* NotificationManager.swift */; };
 		8287FA0924183826005F69BF /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287FA0824183826005F69BF /* UserDefaults.swift */; };
 		8287FA0D241838C7005F69BF /* UIAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287FA0C241838C7005F69BF /* UIAlert.swift */; };
 		8287FA10241869CC005F69BF /* CommonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287FA0F241869CC005F69BF /* CommonData.swift */; };
@@ -109,6 +111,8 @@
 		82682ECC2429BA45006908CB /* PetsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsDataSource.swift; sourceTree = "<group>"; };
 		827BB004242ADC8F00C25429 /* PetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCell.swift; sourceTree = "<group>"; };
 		827BB005242ADC8F00C25429 /* PetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PetCell.xib; sourceTree = "<group>"; };
+		82803EDA2453E53800B407B7 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		82803EDC2453E5C500B407B7 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		8287FA0824183826005F69BF /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		8287FA0C241838C7005F69BF /* UIAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlert.swift; sourceTree = "<group>"; };
 		8287FA0F241869CC005F69BF /* CommonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonData.swift; sourceTree = "<group>"; };
@@ -330,6 +334,7 @@
 			children = (
 				8287FA0824183826005F69BF /* UserDefaults.swift */,
 				8287FA0C241838C7005F69BF /* UIAlert.swift */,
+				82803EDA2453E53800B407B7 /* Notification.swift */,
 			);
 			path = Ultils;
 			sourceTree = "<group>";
@@ -340,6 +345,7 @@
 				8287FA0F241869CC005F69BF /* CommonData.swift */,
 				8297A0F82419A78E00BE7733 /* ImagePicker.swift */,
 				8236CBD5242FEA0700027972 /* EventManager.swift */,
+				82803EDC2453E5C500B407B7 /* NotificationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -747,6 +753,7 @@
 				8287FA10241869CC005F69BF /* CommonData.swift in Sources */,
 				823471C324287D1B001617FC /* ViewController.swift in Sources */,
 				82B8387A240CA43B00E82929 /* GenderDataSource.swift in Sources */,
+				82803EDB2453E53800B407B7 /* Notification.swift in Sources */,
 				82359F09241800F700FBC086 /* UserHandler.swift in Sources */,
 				82359EF82417E8A900FBC086 /* NotURLProtocol.swift in Sources */,
 				82359EFA2417E8C400FBC086 /* Environment.swift in Sources */,
@@ -762,6 +769,7 @@
 				82359EF12417E84200FBC086 /* ServerAnswer.swift in Sources */,
 				8236CBD6242FEA0700027972 /* EventManager.swift in Sources */,
 				8287FA0924183826005F69BF /* UserDefaults.swift in Sources */,
+				82803EDD2453E5C500B407B7 /* NotificationManager.swift in Sources */,
 				82359F1B241807C900FBC086 /* RegisterPersonViewController.swift in Sources */,
 				82359F0D2418030600FBC086 /* ImageHandler.swift in Sources */,
 				82B8383B240C8FB900E82929 /* SceneDelegate.swift in Sources */,
