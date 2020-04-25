@@ -98,7 +98,20 @@ class PetHandler {
     static func update(pet: Pet, withCompletion completion: (PetOneResponse) -> Void) {
         completion(PetOneResponse.error(description: "Not implementation"))
     }
-    public static func delete(id: Int, completion: @escaping (PetOneResponse) -> Void) {
-        completion(PetOneResponse.error(description: "Not implementation"))
+    public static func delete(id: String, completion: @escaping (PetOneResponse) -> Void) {
+        APIRequests.getRequest(url: "\(BASE_URL)/delete/\(id)", decodableType: ServerAnswer<Pet>.self) { (response) in
+                switch response {
+                case .result(let answer as ServerAnswer<Pet>):
+                    if let content = answer.content {
+                        completion(PetOneResponse.success(answer: content))
+                    } else {
+                        completion(PetOneResponse.error(description: "Don't have content"))
+                    }
+                case .error(let error):
+                    completion(PetOneResponse.error(description: error.localizedDescription))
+                default:
+                    completion(PetOneResponse.error(description: "Error to convert data"))
+                }
+        }
     }
 }

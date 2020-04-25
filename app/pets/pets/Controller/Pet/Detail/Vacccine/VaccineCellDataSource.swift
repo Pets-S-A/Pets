@@ -75,7 +75,7 @@ class VaccineCellDataSource: NSObject, UITableViewDataSource {
                     switch response {
                     case .success(let answer):
                         answer.remove(petID: self.pet._id)
-                        EventManager.shared.trigger(eventName: "reloadDeletePet")
+                        EventManager.shared.trigger(eventName: "reloadDeleteVaccine")
                         self.vaccines.removeAll { (vaccine) -> Bool in
                             return vaccine._id == vaccineID
                         }

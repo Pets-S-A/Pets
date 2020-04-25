@@ -55,6 +55,15 @@ struct Pet: Codable {
             }
         }
     }
+    func delete() {
+        let index = CommonData.shared.user.person?.pets?.firstIndex(where: { (pet) -> Bool in
+            return _id == pet._id
+        })
+        if var pets = CommonData.shared.user.person?.pets, let index = index {
+            pets.remove(at: index)
+            CommonData.shared.user.person?.pets = pets
+        }
+    }
 }
 
 struct Share: Codable {

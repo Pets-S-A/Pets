@@ -54,7 +54,7 @@ class DetailPetViewController: UIViewController {
                                                  vaccineCellDelegate: self.vaccineCellDelegate)
             }
         }
-        EventManager.shared.listenTo(eventName: "reloadDeletePet") {
+        EventManager.shared.listenTo(eventName: "reloadDeleteVaccine") {
             DispatchQueue.main.async {
                 guard let pet = CommonData.shared.user.person?.pets?.first(where: { (petV) -> Bool in
                     return self.pet._id == petV._id
@@ -64,6 +64,24 @@ class DetailPetViewController: UIViewController {
                 self.pet = pet
                 self.vaccineCellDataSource.fetch(pet: self.pet,
                 vaccineCellDelegate: self.vaccineCellDelegate)
+            }
+        }
+    }
+    func delete() {
+        showSpinner(onView: view)
+        PetHandler.delete(id: pet._id) { (response) in
+            DispatchQueue.main.async {
+                self.removeSpinner()
+                switch response {
+                case .success(let answer):
+                    answer.delete()
+                    EventManager.shared.trigger(eventName: "reloadDeletePet")
+                    UIAlert.show(controller: self, title: "Pet deletado com sucesso!", message: "") { (_) in
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                case .error(let description):
+                    self.showAlert(title: "Error", message: description)
+                }
             }
         }
     }
@@ -78,6 +96,19 @@ class DetailPetViewController: UIViewController {
                 case .error(let description):
                     self.showAlert(title: "Error", message: description)
                 }
+            }
+        }
+    }
+    @IBAction func deletePet() {
+        UIAlert.show(controller: self,
+                     title: "Alerta!",
+                     message: "Tem certeza que deseja deletar?",
+                     alertAction1: "Deletar") { (answer) in
+            switch answer {
+            case true:
+                self.delete()
+            case false:
+                break
             }
         }
     }

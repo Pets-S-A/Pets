@@ -438,7 +438,7 @@
 			children = (
 				82EF9BE5242C4E63001D9FC2 /* Vaccine */,
 				82359F132418048B00FBC086 /* User */,
-				82B83871240C9A9B00E82929 /* Pets */,
+				82B83871240C9A9B00E82929 /* Pet */,
 				82B83875240C9AF600E82929 /* Main */,
 			);
 			path = Controller;
@@ -463,13 +463,13 @@
 			path = Pet;
 			sourceTree = "<group>";
 		};
-		82B83871240C9A9B00E82929 /* Pets */ = {
+		82B83871240C9A9B00E82929 /* Pet */ = {
 			isa = PBXGroup;
 			children = (
 				82EF9BDC242C45E3001D9FC2 /* Detail */,
 				82B83872240C9AA600E82929 /* Create */,
 			);
-			path = Pets;
+			path = Pet;
 			sourceTree = "<group>";
 		};
 		82B83872240C9AA600E82929 /* Create */ = {
