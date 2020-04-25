@@ -33,9 +33,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                            subtitulo: String,
                            mensagem: String,
                            identificador: String,
-                           type: String,
-                           timeInterval: TimeInterval,
-                           repeats: Bool) {
+                           timeInterval: TimeInterval) {
         //Essa instancia de classe é necessária para criar o corpo da notificação
         let contexto = UNMutableNotificationContent()
         //Criando corpo da notificação
@@ -44,7 +42,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         contexto.body = mensagem
         contexto.sound = .default
         contexto.badge = 1 as NSNumber
-        contexto.categoryIdentifier = type
+        contexto.categoryIdentifier = "pet"
         //Colocando a imgem de fundo
         let imageName = "logo"
         //Aqui verificamos se a mensagem realmente existe, caso ela não exista ele para a função a retornando.

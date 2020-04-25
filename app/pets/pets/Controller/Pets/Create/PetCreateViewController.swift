@@ -65,7 +65,7 @@ class PetCreateViewController: UIViewController {
             switch response {
             case .success(let result):
                 if result {
-                    self.uploadPet()
+                    self.createPet()
                 } else {
                     self.showAlert(title: "Erro ao subir a imagem", message: "Sem descrição!")
                     self.removeSpinner()
@@ -79,7 +79,7 @@ class PetCreateViewController: UIViewController {
 
     }
 
-    func uploadPet() {
+    func createPet() {
         DispatchQueue.main.async {
             PetHandler.create(params: self.formatPet().dictionaryRepresentation) { (response) in
                 switch response {
@@ -90,9 +90,13 @@ class PetCreateViewController: UIViewController {
                                      message: description) { (_) in }
                         self.removeSpinner()
                     }
-                case .success:
+                case .success(let pet):
                     DispatchQueue.main.async {
                         self.mainDelegate?.reloadData()
+                        if var pets = CommonData.shared.user.person?.pets {
+                            pets.append(pet)
+                            CommonData.shared.user.person?.pets = pets
+                        }
                         UIAlert.show(controller: self, title: "Pet cadastrado com sucesso!", message: "") { (_) in
                             self.dismiss(animated: true, completion: nil)
                         }

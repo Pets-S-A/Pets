@@ -13,18 +13,14 @@ struct Notification {
                      subtitulo: String,
                      mensagem: String,
                      identificador: String,
-                     type: String,
-                     timeInterval: TimeInterval,
-                     repeats: Bool) {
+                     timeInterval: TimeInterval) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         getAuthorization()
         appDelegate.enviarNotificacao(titulo: titulo,
                                       subtitulo: subtitulo,
                                       mensagem: mensagem,
                                       identificador: identificador,
-                                      type: type,
-                                      timeInterval: timeInterval,
-                                      repeats: repeats)
+                                      timeInterval: timeInterval)
     }
     static func getAuthorization() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }

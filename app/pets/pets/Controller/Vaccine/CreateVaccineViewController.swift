@@ -17,7 +17,7 @@ class CreateVaccineViewController: UIViewController {
         super.viewDidLoad()
         setUp()
     }
-    
+
     func setUp() {
         setUpEdition()
     }
@@ -40,9 +40,7 @@ class CreateVaccineViewController: UIViewController {
             subtitulo: datePicker.date.getTime(),
             mensagem: "Hoje é a vacinação do seu Pet 😊",
             identificador: pet._id,
-            type: "pet",
-            timeInterval: time,
-            repeats: false)
+            timeInterval: time)
     }
     func createVaccine() {
         VaccineHandler.create(params: formatVaccine().dictionaryRepresentation(pet: pet)) { (response) in
@@ -62,7 +60,7 @@ class CreateVaccineViewController: UIViewController {
             }
         }
     }
-    
+
     func updateVaccine() {
         VaccineHandler.update(vaccine: formatVaccine()) { (response) in
             self.removeSpinner()
@@ -80,7 +78,7 @@ class CreateVaccineViewController: UIViewController {
             }
         }
     }
-    
+
     // MARK: - ACTIONS
     @IBAction func create() {
         showSpinner(onView: view)

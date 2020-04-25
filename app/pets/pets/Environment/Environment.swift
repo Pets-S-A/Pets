@@ -23,7 +23,7 @@ struct Environment {
     }
 
     // MARK: - IMAGE
-    public static let IMAGE_URL_SERVER = "http://52.23.232.252:3000/"
+    public static let IMAGE_URL_SERVER = "https://br-upload-image-pets.herokuapp.com/"
 
     public static let IMAGE_ACCESS_CODE = "qrH9hy1SFind9iGLhEkykCH7Rp7jpRDq"
 }

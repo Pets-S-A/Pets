@@ -18,7 +18,7 @@ extension Date {
     }
     func getTime() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy" 
+        formatter.dateFormat = "dd/MM/yyyy"
         formatter.timeZone = TimeZone(abbreviation: "BRT")
         let hourString = formatter.string(from: self)
         return hourString
