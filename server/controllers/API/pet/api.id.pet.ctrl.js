@@ -2,6 +2,7 @@
 const {PetModel, SharedPetID} = require('../../../models');
 const {validateBody} = require('../../../utils');
 const HttpStatus = require('../../../HttpStatus');
+const crypto = require('crypto');
 
 module.exports = {
   getAll: async (req, res, next) => {
@@ -41,7 +42,9 @@ module.exports = {
       if (!pet) {
         throw new Error('Pet not found');
       }
-      const provisoryID = body.provisoryID || String(Math.floor(1000 + Math.random() * 9000));
+
+      const buf = crypto.randomBytes(2);
+      const provisoryID = body.provisoryID || buf.toString('hex').toUpperCase();
       const bodyShared = {
         provisoryID,
         petID,
@@ -70,7 +73,7 @@ module.exports = {
         throw new Error('provisoryID is required');
       }
 
-      const pet = await SharedPetID.findOne({provisoryID});
+      const pet = await SharedPetID.findOneAndDelete({provisoryID});
       if (!pet) {
         throw new Error('Pet not found');
       }
