@@ -6,7 +6,7 @@
   <a href="https://www.npmjs.com/package/pets" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/pets.svg">
   </a>
-  <a href="https://github.com/MaatheusGois/Pets#readme" target="_blank">
+  <a href="https://documenter.getpostman.com/view/11242574/SzfDxQU1?version=latest" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
   <a href="https://github.com/MaatheusGois/Pets/graphs/commit-activity" target="_blank">
