@@ -18,32 +18,29 @@ class MainViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var petsDelegate = PetsDelegate()
     var petsDataSource = PetsDataSource()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+
         setUp()
-    }
-    
-    func setUp() {
         preLoad()
+    }
+
+    func setUp() {
         setUpCollection()
         registerEvents()
     }
-    
+
     func preLoad() {
         personName.text = CommonData.shared.user.person?.name
         if let imageUrl = CommonData.shared.user.person?.image {
-            DispatchQueue.main.async {
-                self.personImage.imageFromWeb(withURL: imageUrl)
-            }
+            self.personImage.imageFromWeb(withURL: imageUrl)
         }
-        
     }
-    
-    // MARK:- Collection
-    @IBAction 
+
+    // MARK: - Collection
+    @IBAction
     func setUpCollection() {
         petsDataSource.setup(collectionView: collectionView,
                              viewController: self)
@@ -51,11 +48,11 @@ class MainViewController: UIViewController {
                            viewController: self)
         fetchDataCollection()
     }
-    
+
     func fetchDataCollection() {
         petsDataSource.fetch(delegate: petsDelegate)
     }
-    
+
     func registerEvents() {
         EventManager.shared.listenTo(eventName: "reloadCommonData") {
             DispatchQueue.main.async {
@@ -67,27 +64,37 @@ class MainViewController: UIViewController {
                 self.petsDataSource.reloadWithCommonData(delegate: self.petsDelegate)
             }
         }
+        EventManager.shared.listenTo(eventName: "reloadImage") { (answer) in
+            DispatchQueue.main.async {
+                if let image = answer as? UIImage {
+                    self.personImage.image = image
+                } else if let text = answer as? String {
+                    self.personName.text = text
+                }
+            }
+        }
     }
-    
-    // MARK:- Actions
+
+    // MARK: - Actions
     @IBAction func toProfile() {
         performSegue(withIdentifier: "toProfile", sender: nil)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let view = segue.destination as? RegisterPersonViewController {
             view.isProfileEdition = true
+            view.imageProfile = personImage.image
         } else if let view = segue.destination as? PetCreateViewController {
             view.mainDelegate = self
         } else if let view = segue.destination as? DetailPetViewController {
-            guard let pet = sender as? Pet else {
+            guard let answer = sender as? (Pet, UIImage?) else {
                 fatalError("Error to take pet in sender")
             }
-            view.pet = pet
+            view.pet = answer.0
+            view.petImage = answer.1
         }
     }
 }
-
 
 extension MainViewController: MainProtocol {
     func reloadData() {

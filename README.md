@@ -1,56 +1,71 @@
-## [fastlane match](https://docs.fastlane.tools/actions/match/)
+<h1 align="center">Welcome to pets 👋</h1>
+<p>
+  <a href="(https://travis-ci.org/MaatheusGois/Pets" target="_blank">
+    <img alt="Travis CI" src="https://travis-ci.org/MaatheusGois/Pets.svg?branch=master" />
+  </a>
+  <a href="https://www.npmjs.com/package/pets" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/pets.svg">
+  </a>
+  <a href="https://documenter.getpostman.com/view/11242574/SzfDxQU1?version=latest" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/MaatheusGois/Pets/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/MaatheusGois/Pets/blob/master/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/MaatheusGois/pets" />
+  </a>
+</p>
 
-This repository contains all your certificates and provisioning profiles needed to build and sign your applications. They are encrypted using OpenSSL via a passphrase.
+### 🏠 [Homepage](https://github.com/MaatheusGois/Pets#readme)
 
-**Important:** Make sure this repository is set to private and only your team members have access to this repo.
+## Install
 
-Do not modify this file, as it gets overwritten every time you run _match_.
-
-### Installation
-
-Make sure you have the latest version of the Xcode command line tools installed:
-
-```
-xcode-select --install
-```
-
-Install _fastlane_ using
-
-```
-[sudo] gem install fastlane -NV
-```
-
-or alternatively using `brew cask install fastlane`
-
-### Usage
-
-Navigate to your project folder and run
-
-```
-fastlane match appstore
-```
-```
-fastlane match adhoc
-```
-```
-fastlane match development
-```
-```
-fastlane match enterprise
+```sh
+npm install
 ```
 
-For more information open [fastlane match git repo](https://docs.fastlane.tools/actions/match/)
+## Usage
 
-### Content
+```sh
+npm run start
+```
 
-#### certs
+## Run tests
 
-This directory contains all your certificates with their private keys
+```sh
+npm run test
+```
 
-#### profiles
+## Author
 
-This directory contains all provisioning profiles
+👤 **Matheus Gois <matheusgoislimasilva@gmail.com>**
 
-------------------------------------
+- Website: www.linkedin.com/in/maatheusgois/
 
-For more information open [fastlane match git repo](https://docs.fastlane.tools/actions/match/)
+- Twitter: [@maatheusgois](https://twitter.com/maatheusgois)
+
+- GitHub: [@maatheusgois](https://github.com/maatheusgois)
+
+- LinkedIn: [@maatheusgois](https://linkedin.com/in/maatheusgois)
+
+- Dribbble: [@maatheusgois](https://dribbble.com/maatheusgois)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/MaatheusGois/Pets/issues). You can also take a look at the [contributing guide](https://github.com/MaatheusGois/Pets/blob/master/CONTRIBUTING.md).
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2020 [Matheus Gois <matheusgoislimasilva@gmail.com>](https://github.com/MaatheusGois).<br />
+This project is [MIT](https://github.com/MaatheusGois/Pets/blob/master/LICENSE) licensed.
+
+---
+
+_For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life. 🙌🏻 John 3:16 [read-the-bible](https://biblia.com/bible/esv/john/3/16)_
+
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

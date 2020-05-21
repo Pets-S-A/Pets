@@ -1,6 +1,41 @@
 {
-    "scripts": {
-        "postinstall": "cd server && npm install",
-        "start": "cd server && npm start"
+  "scripts": {
+    "postinstall": "cd server && npm install",
+    "start": "cd server && npm start",
+    "test": "cd server && npm ci && npm test",
+    "lint": "cd server && eslint ."
+  },
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "mocha": "^7.1.1",
+    "eslint": "^6.8.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm test",
+      "...": "..."
     }
+  },
+  "dependencies": {
+    "please-upgrade-node": "^3.2.0"
+  },
+  "name": "pets",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaatheusGois/Pets.git"
+  },
+  "keywords": [],
+  "author": "Matheus Gois <matheusgoislimasilva@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MaatheusGois/Pets/issues"
+  },
+  "homepage": "https://github.com/MaatheusGois/Pets#readme",
+  "description": ""
 }

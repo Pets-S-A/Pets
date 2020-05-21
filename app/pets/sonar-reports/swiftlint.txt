@@ -1,0 +1,3 @@
+/Users/matheussilva/repos/pets/app/pets/pets/Extension/UIImageDownload.swift:16:1: warning: Trailing Whitespace Violation: Lines should not have trailing whitespace. (trailing_whitespace)
+/Users/matheussilva/repos/pets/app/pets/pets/Controller/Main/Components/Pets/PetsDelegate.swift:37:1: warning: Trailing Whitespace Violation: Lines should not have trailing whitespace. (trailing_whitespace)
+/Users/matheussilva/repos/pets/app/pets/pets/Manager/EventManager.swift:15:21: warning: Syntactic Sugar Violation: Shorthand syntactic sugar should be used, i.e. [String: Int] instead of Dictionary<String, Int>. (syntactic_sugar)

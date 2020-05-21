@@ -1,0 +1,12 @@
+excluded:
+    - ABC_xxTests
+identifier_name:
+  allowed_symbols: "_"
+  excluded:
+    - _id
+    - id
+    - T
+disabled_rules:
+  - alphanumeric
+  - weak_delegate
+

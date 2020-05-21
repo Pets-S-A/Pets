@@ -19,17 +19,18 @@ enum VaccineOneResponse: Error {
 }
 
 class VaccineHandler {
-    public static let BASE_URL:String = "\(Environment.SERVER_URL)/vaccine"
-    
+    public static let BASE_URL: String = "\(Environment.SERVER_URL)/vaccine"
+
     static func create(params: [String: Any], withCompletion completion: @escaping (VaccineOneResponse) -> Void) {
-        APIRequests.postRequest(url: "\(BASE_URL)/create", params: params, decodableType: ServerAnswer<Vaccine>.self) {
-            (response) in
+        APIRequests.postRequest(url: "\(BASE_URL)/create",
+                                params: params,
+                                decodableType: ServerAnswer<Vaccine>.self) { (response) in
             switch response {
             case .result(let answer as ServerAnswer<Vaccine>):
                 guard let result = answer.success,
                     let vaccine = answer.content,
                     result
-                    
+
                     else {
                         if let message = answer.message {
                             completion(VaccineOneResponse
@@ -49,11 +50,11 @@ class VaccineHandler {
         }
     }
     static func getAll(withCompletion completion: @escaping (VaccineLoadResponse) -> Void) {
-        
+
         guard let userID = CommonData.shared.user._id else {
             fatalError("Cadê o userID?")
         }
-        
+
         APIRequests
             .getRequest(
                 url: "\(BASE_URL)/allByUserID/\(userID)",
@@ -62,7 +63,7 @@ class VaccineHandler {
             ) { (response) in
                 switch response {
                 case .result(let answer as ServerAnswer<Vaccines>):
-                    if (answer.success ?? false) {
+                    if answer.success ?? false {
                         let vaccines = answer.content ?? []
                         completion(VaccineLoadResponse.success(answer: vaccines))
                     } else {
@@ -81,14 +82,15 @@ class VaccineHandler {
     }
     static func update(vaccine: Vaccine, withCompletion completion: @escaping (VaccineOneResponse) -> Void) {
         let params = vaccine.dictionaryRepresentation(pet: nil)
-        APIRequests.postRequest(url: "\(BASE_URL)/update", params: params, decodableType: ServerAnswer<Vaccine>.self) {
-            (response) in
+        APIRequests.postRequest(url: "\(BASE_URL)/update",
+                                params: params,
+                                decodableType: ServerAnswer<Vaccine>.self) { (response) in
             switch response {
             case .result(let answer as ServerAnswer<Vaccine>):
                 guard let result = answer.success,
                     let vaccine = answer.content,
                     result
-                    
+
                     else {
                         if let message = answer.message {
                             completion(VaccineOneResponse
@@ -127,7 +129,6 @@ class VaccineHandler {
                     completion(VaccineOneResponse.error(description: "Error to convert data"))
                 }
         }
-        
+
     }
 }
-

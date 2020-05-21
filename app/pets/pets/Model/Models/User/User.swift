@@ -15,12 +15,12 @@ struct User: Codable {
     var password: String
     var access: [String]?
     var person: Person?
-    
+
     var dictionaryRepresentation: [String: Any] {
         return [
-            "email" : email,
-            "name" : name,
-            "password" : password,
+            "email": email,
+            "name": name,
+            "password": password,
             "application": "json"
         ]
     }

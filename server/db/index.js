@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const config = require('../config');
+const URL = config.env == 'production' ? config.serverDb : config.serverDbDev;
 
 const options = {
   useNewUrlParser: true,
@@ -9,9 +10,9 @@ const options = {
 };
 
 mongoose
-    .connect(config.serverDb, options)
+    .connect(URL, options)
     .catch((e) => {
-      console.error(config.serverDb, e.message);
+      console.error(URL, e.message);
     });
 
 const db = mongoose.connection;

@@ -24,14 +24,16 @@ enum PersonTokenResponse: Error {
 }
 
 class PersonHandler {
-    public static let BASE_URL:String = "\(Environment.SERVER_URL)/person"
-    
-    static func create(person: Person, withCompletion completion: @escaping (PersonOneResponse) -> Void) {
-        APIRequests.postRequest(url: "\(BASE_URL)/create", params: person.dictionaryRepresentation, decodableType: ServerAnswer<Person>.self) {
-            (response) in
+    public static let BASE_URL: String = "\(Environment.SERVER_URL)/person"
+
+    static func create(person: Person,
+                       withCompletion completion: @escaping (PersonOneResponse) -> Void) {
+        APIRequests.postRequest(url: "\(BASE_URL)/create",
+        params: person.dictionaryRepresentation,
+        decodableType: ServerAnswer<Person>.self) { (response) in
             switch response {
             case .result(let answer as ServerAnswer<Person>):
-                if (answer.success ?? false) {
+                if answer.success ?? false {
                     if let person = answer.content {
                         completion(PersonOneResponse.success(answer: person))
                     } else {
@@ -49,19 +51,20 @@ class PersonHandler {
     }
     static func getAll(personID: String, withCompletion completion: @escaping (PersonLoadResponse) -> Void) {
         completion(PersonLoadResponse.error(description: "Not implementation"))
-        
+
     }
     static func getOne(id: String, withCompletion
         completion: (PersonOneResponse) -> Void) {
         completion(PersonOneResponse.error(description: "Not implementation"))
-        
+
     }
     static func update(person: Person, withCompletion completion: @escaping (PersonOneResponse) -> Void) {
-        APIRequests.postRequest(url: "\(BASE_URL)/update", params: person.dictionaryRepresentationUpdate, decodableType: ServerAnswer<Person>.self) {
-            (response) in
+        APIRequests.postRequest(url: "\(BASE_URL)/update",
+                                params: person.dictionaryRepresentationUpdate,
+                                decodableType: ServerAnswer<Person>.self) { (response) in
             switch response {
             case .result(let answer as ServerAnswer<Person>):
-                if (answer.success ?? false) {
+                if answer.success ?? false {
                     if let person = answer.content {
                         completion(PersonOneResponse.success(answer: person))
                     } else {
@@ -79,6 +82,6 @@ class PersonHandler {
     }
     public static func delete(id: Int, withCompletion completion: @escaping (PersonOneResponse) -> Void) {
         completion(PersonOneResponse.error(description: "Not implementation"))
-        
+
     }
 }

@@ -1,4 +1,4 @@
-module.exports = {
+const STATUS = {
   OK: 200,
   created: 201,
   accepted: 202,
@@ -16,3 +16,5 @@ module.exports = {
   tooManyRequests: 429,
   serverError: 500,
 };
+
+module.exports = STATUS;

@@ -1,20 +1,30 @@
 /* eslint-disable max-len */
 
-const vetRouterUnprotected = require('./public/vet/vet.router.unprotected');
-const userRouterUnprotected = require('./public/user/user.router.unprotected');
-const errorRouterProtected = require('./private/error/error.router.protected');
-const userRouterProtected = require('./private/user/user.router.protected');
+const apiUserRouterProtected = require('./private/API/user/api.user.router.protected');
+const apiErrorRouterProtected = require('./private/API/error/api.error.router.protected');
+const apiPetRouterProtected = require('./private/API/pet/api.pet.router.protected');
+const apiPersonRouterProtected = require('./private/API/person/api.person.router.protected');
+const apiVaccineRouterProtected = require('./private/API/vaccine/api.vaccine.router.protected');
+const apiVetRouterProtected = require('./private/API/vet/api.vet.router.protected');
+const viewVetRouterProtected = require('./private/view/vet/view.vet.router.protected');
 
-const apiPetRouterProtected = require('./private/pet/api.pet.router.protected');
-const apiPersonRouterProtected = require('./private/person/api.person.router.protected');
-const apiVaccineRouterProtected = require('./private/vaccine/api.vaccine.router.protected');
+const apiUserRouterUnprotected = require('./public/API/user/api.user.router.unprotected');
+const viewUserRouterUnprotected = require('./public/view/user/view.user.router.unprotected');
+const viewVetRouterUnprotected = require('./public/view/vet/view.vet.router.unprotected');
 
-module.exports = {
-  userRouterProtected,
-  userRouterUnprotected,
-  errorRouterUnprotected: errorRouterProtected,
+
+const API = {
+  apiUserRouterProtected,
+  apiErrorRouterProtected,
   apiPetRouterProtected,
   apiPersonRouterProtected,
   apiVaccineRouterProtected,
-  vetRouterUnprotected,
+  apiVetRouterProtected,
+  viewVetRouterProtected,
+
+  apiUserRouterUnprotected,
+  viewUserRouterUnprotected,
+  viewVetRouterUnprotected,
 };
+
+module.exports = API;

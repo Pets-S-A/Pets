@@ -8,7 +8,7 @@ function getTokenFromHeaders(req) {
   const token =
         req.body.token || req.query.token || req.headers['master-token'];
 
-  if (!token) return token;
+  if (!token) return '';
 
   return token;
 }
