@@ -3,7 +3,7 @@
     "postinstall": "cd server && npm install",
     "start": "cd server && npm start",
     "test": "cd server && npm ci && npm test",
-    "lint": "cd server && lint ."
+    "lint": "cd server && eslint ."
   },
   "devDependencies": {
     "husky": "^4.2.5",
