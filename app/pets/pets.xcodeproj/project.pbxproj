@@ -599,6 +599,8 @@
 			dependencies = (
 			);
 			name = pets;
+			packageProductDependencies = (
+			);
 			productName = pets;
 			productReference = 82B83835240C8FB900E82929 /* pets.app */;
 			productType = "com.apple.product-type.application";
@@ -654,6 +656,8 @@
 				Base,
 			);
 			mainGroup = 82B8382C240C8FB900E82929;
+			packageReferences = (
+			);
 			productRefGroup = 82B83836240C8FB900E82929 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
