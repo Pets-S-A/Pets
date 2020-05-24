@@ -12,4 +12,4 @@ jobs:
         uses: mrfyda/codacy-analysis-cli-action@master
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          directory: /server/coverage/lcov.info
+          directory: ./server/coverage/lcov.info
