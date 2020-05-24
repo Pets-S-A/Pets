@@ -3,6 +3,7 @@
     "postinstall": "cd server && npm install",
     "start": "cd server && npm start",
     "test": "cd server && npm ci && npm test",
+    "coverage": "cd server && npm coverage",
     "lint": "cd server && eslint ."
   },
   "devDependencies": {
