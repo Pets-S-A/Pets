@@ -27,6 +27,5 @@ jobs:
     - run: cd server
     - run: npm i
     - run: npm run build --if-present
-    # - run: npm start
       env:
         CI: true
