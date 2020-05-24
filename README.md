@@ -1,5 +1,6 @@
 <h1 align="center">Welcome to pets 👋</h1>
 <p>
+  <a href="https://www.codacy.com/manual/MaatheusGois/Pets?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MaatheusGois/Pets&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/719abfe469ed4d1c9e5dac451fb5d491"/></a>
   <a href="(https://travis-ci.org/MaatheusGois/Pets" target="_blank">
     <img alt="Travis CI" src="https://travis-ci.org/MaatheusGois/Pets.svg?branch=master" />
   </a>
