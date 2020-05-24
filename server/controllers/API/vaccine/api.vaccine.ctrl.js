@@ -84,16 +84,9 @@ module.exports = {
     }
   },
   delete: async (req, res, next) => {
-    try {
-      res.json({
-        success: true,
-        content: await VaccineModel.deleteMany({}),
-      });
-    } catch (error) {
-      res.status(HttpStatus.badRequest).json({
-        success: false,
-        message: error.message,
-      });
-    }
+    res.json({
+      success: true,
+      content: await VaccineModel.deleteMany({}),
+    });
   },
 };
