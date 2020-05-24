@@ -27,7 +27,8 @@ jobs:
     - run: npm i
     - run: npm run build --if-present
     - run: npm run coverage
+    
     - name: Send report to Codacy
       env:
-        CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        CODACY_PROJECT_TOKEN: b2e554f1c2f448d79963a8bcdac2afe5
       run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Javascript -r ./server/coverage/lcov.info
