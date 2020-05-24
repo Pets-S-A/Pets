@@ -29,6 +29,7 @@ jobs:
     - run: npm i
     - run: npm run build --if-present
     - run: npm run coverage
-    - run: wget -qO - https://coverage.codacy.com/get.sh | sh -s report -l Javascript -r coverage/lcov.info
-      env:
-        CI: true
+    - name: wget
+      uses: wei/wget@v1
+      with:
+        args: -qO- https://coverage.codacy.com/get.sh | sh -s report -l Javascript -r coverage/lcov.info
