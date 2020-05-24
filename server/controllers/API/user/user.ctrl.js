@@ -5,18 +5,11 @@ const {validateBody} = require('../../../utils');
 
 module.exports = {
   getAll: async (req, res, next) => {
-    try {
-      res.status(HttpStatus.OK).json({
-        success: true,
-        content: await UserModel.find(),
-        message: 'Usuários encontrados!',
-      });
-    } catch (error) {
-      res.status(HttpStatus.badRequest).json({
-        success: false,
-        message: error.message,
-      });
-    }
+    res.status(HttpStatus.OK).json({
+      success: true,
+      content: await UserModel.find(),
+      message: 'Usuários encontrados!',
+    });
   },
   create: async (req, res, next) => {
     try {
