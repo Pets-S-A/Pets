@@ -14,15 +14,15 @@ jobs:
     steps:
         - uses: actions/checkout@master
         - name: Use Node.js 12.x
-            uses: actions/setup-node@v1
-            with:
-                node-version: 12.x
-            - run: npm i
-            - run: npm run build --if-present
-            - run: npm run test
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        - run: npm i
+        - run: npm run build --if-present
+        - run: npm run test
             
         - name: Run codacy-analysis-cli
-            uses: mrfyda/codacy-analysis-cli-action@master
-            with:
-            project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-            directory: ./server/coverage/lcov.info
+        uses: mrfyda/codacy-analysis-cli-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          directory: ./server/coverage/lcov.info
