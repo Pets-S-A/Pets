@@ -27,3 +27,11 @@ jobs:
     - run: npm i
     - run: npm run build --if-present
     - run: npm run coverage
+
+    - uses: actions/checkout@master
+      - name: Run codacy-analysis-cli
+        uses: mrfyda/codacy-analysis-cli-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          directory: ./server/coverage/lcov.info
+      
