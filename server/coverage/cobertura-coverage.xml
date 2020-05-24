@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="526" lines-covered="380" line-rate="0.7223999999999999" branches-valid="148" branches-covered="54" branch-rate="0.3649" timestamp="1590349316734" complexity="0" version="0.1">
+<coverage lines-valid="526" lines-covered="380" line-rate="0.7223999999999999" branches-valid="148" branches-covered="54" branch-rate="0.3649" timestamp="1590350380898" complexity="0" version="0.1">
   <sources>
     <source>/Users/matheussilva/repos/pets/server</source>
   </sources>
