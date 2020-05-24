@@ -24,12 +24,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-        project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-    - run: cd server
     - run: npm i
     - run: npm run build --if-present
     - run: npm run coverage
-    - name: wget
-      uses: wei/wget@v1
-      with:
-        args: -qO- https://coverage.codacy.com/get.sh | sh -s report -l Javascript -r coverage/lcov.info
+    - name: Send report to Codacy
+      run: |
+        export CODACY_PROJECT_TOKEN=${{secrets.CODACY_KEY}}
+        bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Javascript -r coverage/lcov.info
