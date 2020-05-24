@@ -4,8 +4,7 @@
     "start": "cd server && npm start",
     "test": "cd server && npm ci && npm test",
     "coverage": "cd server && npm run coverage",
-    "lint": "cd server && eslint . && npm run coverage",
-    "codacy": "chmod +x ./codacy.sh && ./codacy.sh"
+    "lint": "cd server && eslint . && npm run coverage"
 
   },
   "devDependencies": {
@@ -15,8 +14,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run codacy",
+      "pre-commit": "npm run test",
+      "pre-push": "npm run lint",
       "...": "..."
     }
   },
