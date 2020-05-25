@@ -1,5 +1,4 @@
 server/node_modules
 node_modules
 server/coverage/lcov-report
-server/coverage/cobertura-coverage.xml
 server/.nyc_output
