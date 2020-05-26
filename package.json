@@ -3,7 +3,9 @@
     "postinstall": "cd server && npm install",
     "start": "cd server && npm start",
     "test": "cd server && npm ci && npm test",
-    "lint": "cd server && eslint ."
+    "coverage": "cd server && npm run coverage",
+    "lint": "cd server && eslint . && npm run coverage"
+
   },
   "devDependencies": {
     "husky": "^4.2.5",
@@ -12,12 +14,14 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm test",
+      "pre-commit": "",
+      "pre-push": "",
       "...": "..."
     }
   },
   "dependencies": {
+    "lint": "^0.7.0",
+    "nyc": "^15.0.1",
     "please-upgrade-node": "^3.2.0"
   },
   "name": "pets",

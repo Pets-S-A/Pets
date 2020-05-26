@@ -4,19 +4,11 @@ const HttpStatus = require('../../../HttpStatus');
 
 module.exports = {
   getAll: async (req, res, next) => {
-    try {
-      res.json({
-        success: true,
-        content: await PersonModel.find(),
-        message: 'Persons founded!',
-      });
-    } catch (error) {
-      res.status(HttpStatus.badRequest).json({
-        success: false,
-        message: 'Persons not founded!',
-        content: error.message,
-      });
-    }
+    res.json({
+      success: true,
+      content: await PersonModel.find(),
+      message: 'Persons founded!',
+    });
   },
   create: async (req, res, next) => {
     try {
@@ -94,16 +86,9 @@ module.exports = {
     }
   },
   delete: async (req, res, next) => {
-    try {
-      res.json({
-        success: true,
-        content: await PersonModel.deleteMany({}),
-      });
-    } catch (error) {
-      res.status(HttpStatus.badRequest).json({
-        success: false,
-        message: error.message,
-      });
-    }
+    res.json({
+      success: true,
+      content: await PersonModel.deleteMany({}),
+    });
   },
 };

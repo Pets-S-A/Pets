@@ -6,18 +6,11 @@ const crypto = require('crypto');
 
 module.exports = {
   getAll: async (req, res, next) => {
-    try {
-      res.status(HttpStatus.OK).json({
-        success: true,
-        content: await SharedPetID.find(),
-        message: 'SharedIDs found!',
-      });
-    } catch (error) {
-      res.status(HttpStatus.badRequest).json({
-        success: false,
-        message: error.message,
-      });
-    }
+    res.status(HttpStatus.OK).json({
+      success: true,
+      content: await SharedPetID.find(),
+      message: 'SharedIDs found!',
+    });
   },
   getSharedPetID: async (req, res, next) => {
     try {

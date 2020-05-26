@@ -4,18 +4,11 @@ const HttpStatus = require('../../../HttpStatus');
 
 module.exports = {
   getAll: async (req, res, next) => {
-    try {
-      res.status(HttpStatus.OK).json({
-        success: true,
-        content: await VaccineModel.find(),
-        message: 'Vaccines founded!',
-      });
-    } catch (error) {
-      res.status(HttpStatus.badRequest).json({
-        success: false,
-        message: error.message,
-      });
-    }
+    res.status(HttpStatus.OK).json({
+      success: true,
+      content: await VaccineModel.find(),
+      message: 'Vaccines founded!',
+    });
   },
   create: async (req, res, next) => {
     try {
@@ -91,16 +84,9 @@ module.exports = {
     }
   },
   delete: async (req, res, next) => {
-    try {
-      res.json({
-        success: true,
-        content: await VaccineModel.deleteMany({}),
-      });
-    } catch (error) {
-      res.status(HttpStatus.badRequest).json({
-        success: false,
-        message: error.message,
-      });
-    }
+    res.json({
+      success: true,
+      content: await VaccineModel.deleteMany({}),
+    });
   },
 };

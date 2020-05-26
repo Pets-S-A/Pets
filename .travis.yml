@@ -1,3 +1,14 @@
+dist: trusty
+
+addons:
+  sonarcloud:
+    organization: "maatheusgois"
+    token:
+      secure: ${SONAR_TOKEN} # encrypted value of your token
+
+script:
+  - sonar-scanner
+
 matrix:
   include:
     - language: node_js
@@ -12,7 +23,6 @@ matrix:
       script:
         - cd app && cd pets && xcodebuild build -project pets.xcodeproj -scheme pets -sdk iphonesimulator | xcpretty
         # - cd app && cd pets && xcodebuild test -project pets.xcodeproj -scheme pets -destination "platform=iOS Simulator,OS=13,name=iPhone 11 Pro" test | xcpretty
-
 notifications:
   email:
     - matheusgoislimasilva@gmail.com 
