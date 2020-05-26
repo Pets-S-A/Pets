@@ -1,30 +1,14 @@
 package StepsCucumber;
 
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import java.util.concurrent.TimeUnit;
-
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.Alert;
+import static org.junit.Assert.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.By.ByXPath;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverInfo;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import cucumber.api.java.After;
-import cucumber.api.java.pt.Dado;
-import cucumber.api.java.pt.Entao;
-import cucumber.api.java.pt.Quando;
+import cucumber.api.java.pt.*;
 
 public class CadVetSteps {
 	
@@ -69,14 +53,14 @@ public class CadVetSteps {
 		
 		Thread.sleep(1000);
 		
-		assertFalse("Campo nao preenchido",driver.getCurrentUrl().equals("http://localhost:3000/vet/create?"));
+		assertTrue("Campo nao preenchido", botaoCriar.isDisplayed());
 		
 	}
 
 	@Quando("^nao preencho o campo nome da clinica$")
 	public void nao_preencho_o_campo_nome_da_clinica() throws Throwable {
 		nome.click();
-		nome.sendKeys("Marcelina Frescho");
+		nome.sendKeys("ABC");
 		clinica.click();
 		clinica.sendKeys("");
 	}
@@ -84,7 +68,7 @@ public class CadVetSteps {
 	@Quando("^nao preencho o campo crm$")
 	public void nao_preencho_o_campo_crm() throws Throwable {
 		nome.click();
-		nome.sendKeys("Marcelina Frescho");
+		nome.sendKeys("ABC");
 		clinica.click();
 		clinica.sendKeys("Pets do Vale");
 		crmv.click();
@@ -94,7 +78,7 @@ public class CadVetSteps {
 	@Quando("^nao preencho o campo email$")
 	public void nao_preencho_o_campo_email() throws Throwable {
 		nome.click();
-		nome.sendKeys("Marcelina Frescho");
+		nome.sendKeys("ABC");
 		clinica.click();
 		clinica.sendKeys("Pets do Vale");
 		crmv.click();
@@ -157,7 +141,7 @@ public class CadVetSteps {
 		
 		Thread.sleep(1000);
 		
-		assertTrue("Mensagem de erro exibida",driver.getCurrentUrl().equals("http://localhost:3000/vet/create"));
+		assertFalse("Mensagem de erro exibida",driver.getCurrentUrl().equals("https://br-vacci-pet.herokuapp.com/vet/create?"));
 		
 	}
 	
@@ -171,7 +155,7 @@ public class CadVetSteps {
 		crmv.click();
 		crmv.sendKeys("63973652");
 		email.click();
-		email.sendKeys("marcelina@hotmail.com");
+		email.sendKeys("marcelina2@hotmail.com");
 		definirSenha.click();
 		definirSenha.sendKeys("123456");
 		repetirSenha.click();
@@ -179,17 +163,16 @@ public class CadVetSteps {
 		botaoCriar.click();
 	}
 	
-	@Entao("^vou para a tela seguinte \"([^\"]*)\"$")
-	public void vou_para_a_tela_seguinte(String arg1) throws Throwable {
+	@Entao("^vou para a tela seguinte$")
+	public void vou_para_a_tela_seguinte() throws Throwable {
 		Thread.sleep(1000);
-		assertTrue("Cadastro SUCESSO",driver.getCurrentUrl().equals("http://localhost:3000/vet/create"));
+		assertTrue("Cadastro SUCESSO",driver.getCurrentUrl().equals("https://br-vacci-pet.herokuapp.com/vet/create"));
 	}
 	
-	@AfterClass
-	public static void fechar() {
-		driver.close();
-	}
-	
+//	@After
+	//public static void fechar() {
+	//	driver.close();
+	//}
 }
 
 

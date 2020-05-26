@@ -119,10 +119,10 @@ public class Steps {
 	@Quando("^preencho os campos corretamente$")
 	public void preencho_os_campos_corretamente() throws Throwable {
 		
-		usuario.sendKeys("FelipeAA");
+		usuario.sendKeys("marcelina2@hotmail.com");
 		Thread.sleep(1000);
 		senha.click();
-		senha.sendKeys("3y3y363f");
+		senha.sendKeys("123456");
 		
 	  
 	}

@@ -10,13 +10,12 @@ Eu quero realizar um cadastro no Pets
 
 Contexto: #antes de cada cenário, ele roda o contexto
 		Dado que estou na tela Register
-		Quando insiro a url "http://localhost:3000/vet/create?" do cadastro
+		Quando insiro a url "https://br-vacci-pet.herokuapp.com/vet/create?" do cadastro
 		
 
 Cenario: nao preenche o nome
 Quando nao preencho o campo nome 
 Entao permaneco na tela Register
-
 
 Cenario: nao preenche o nome da clinica
 Quando nao preencho o campo nome da clinica
@@ -45,6 +44,6 @@ Entao e exibido uma mensagem de erro na tela
 
 Cenario: preencher corretamente os campos
 Quando preencho os campos de cadastro corretamente
-Entao vou para a tela seguinte "http://localhost:3000/vet/create?"
+Entao vou para a tela seguinte 
 
 
