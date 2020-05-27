@@ -106,9 +106,9 @@ module.exports = {
       if (!params.id) {
         throw new Error('Id is required');
       }
+      await PetModel.findByIdAndDelete(req.params.id);
       res.json({
         success: true,
-        content: await PetModel.findByIdAndDelete(req.params.id),
       });
     } catch (error) {
       res.status(HttpStatus.badRequest).json({

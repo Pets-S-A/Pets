@@ -66,8 +66,8 @@ class PetCreateViewController: UIViewController {
             if let indexAge = ageDataSource.options.firstIndex(of: pet.age) {
                 petAge.selectRow(indexAge, inComponent: 0, animated: true)
             }
-            if let indexGender = genderDataSource.options.firstIndex(of: pet.age) {
-                petAge.selectRow(indexGender, inComponent: 0, animated: true)
+            if let indexGender = genderDataSource.options.firstIndex(of: pet.gender) {
+                petGender.selectRow(indexGender, inComponent: 0, animated: true)
             }
             petAgressive.isOn = pet.agressive
         }
