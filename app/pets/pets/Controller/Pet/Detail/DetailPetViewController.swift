@@ -44,9 +44,18 @@ class DetailPetViewController: UIViewController {
     func registerEvents() {
         EventManager.shared.listenTo(eventName: "reloadCommonData") {
             DispatchQueue.main.async {
-                guard let pet = CommonData.shared.user.person?.pets?.first(where: { (petV) -> Bool in
-                    return self.pet._id == petV._id
-                }) else {
+                guard let pet = CommonData.shared.user.person?.pets?.first(
+                    where: { self.pet._id == $0._id }) else {
+                    fatalError("Pet not found")
+                }
+                self.pet = pet
+                self.vaccineCellDataSource.fetch(pet: self.pet,
+                                                 vaccineCellDelegate: self.vaccineCellDelegate)
+            }
+        }
+        EventManager.shared.listenTo(eventName: "reloadCreatePetCommonData") { (answer) in
+            DispatchQueue.main.async {
+                guard let pet = answer as? Pet else {
                     fatalError("Pet not found")
                 }
                 self.pet = pet
@@ -82,7 +91,8 @@ class DetailPetViewController: UIViewController {
                 self.removeSpinner()
                 switch response {
                 case .success(let answer):
-                    answer.delete()
+                    print(answer)
+                    self.pet.delete()
                     EventManager.shared.trigger(eventName: "reloadDeletePet")
                     self.showCustomAlert(title: "Pet deletado",
                                          message: "Seu Pet foi deletado com sucesso!",
