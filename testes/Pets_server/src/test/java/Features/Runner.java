@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(glue= {"StepsCucumber"},
-plugin = {"pretty", "html:target"}, 
+plugin = {"pretty", "html:target/RelatorioLoginVeterinario.xml"}, 
 monochrome = true, /*tira os caracteres doidos que são usados para colorir a saida em ASCII*/
 features = {"src/test/java/Features/LoginVeterinario.feature"}) /*Indica qual cenario da feature quero executar */
 

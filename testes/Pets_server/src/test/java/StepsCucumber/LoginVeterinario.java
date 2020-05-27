@@ -5,18 +5,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.SendKeysAction;
+
 import cucumber.api.java.After;
 import cucumber.api.java.pt.*;
 
 public class LoginVeterinario {
 	static WebDriver driver;
 	WebElement usuario, senha, botaoEntrar, cardPets, PetID, botaoSair, botaoAdicionarVacina;
-	WebElement nomeVacina, adicionarNome, campoDataAplicacao,dataAplicacao, adicionarDataAplicacao;
+	WebElement botaoPesquisar,nomeVacina, adicionarNome, campoDataAplicacao,dataAplicacao, adicionarDataAplicacao;
 	WebElement dadosVacina;
 	
 	String user = "userteste@teste.com.br";
 	String password = "1234";
-	String idCorreto = "31B0";
+	String idCorreto = "A80E";
 	
 	@Dado("^que estou na tela de Login$")
 	public void que_estou_na_tela_de_Login() throws Throwable {
@@ -79,6 +81,7 @@ public class LoginVeterinario {
 
 	@Entao("^e redirecionado a tela de ID do pet$")
 	public void e_redirecionado_a_tela_de_ID_do_pet() throws Throwable {
+		Thread.sleep(1000);
 	    PetID = driver.findElement(By.xpath("/html/body/section/section/grid/div/card/input"));
 	    assertTrue(PetID.isDisplayed());
 	}
@@ -91,6 +94,7 @@ public class LoginVeterinario {
 
 	@Quando("^digita o ID errado$")
 	public void digita_o_ID_errado() throws Throwable {
+		Thread.sleep(1000);
 		PetID = driver.findElement(By.xpath("/html/body/section/section/grid/div/card/input"));
 	    PetID.click();
 	    PetID.sendKeys("iderrado");
@@ -103,33 +107,38 @@ public class LoginVeterinario {
 
 	@Quando("^digita o ID correto$")
 	public void digita_o_ID_correto() throws Throwable {
+		Thread.sleep(1000);
 		PetID = driver.findElement(By.xpath("/html/body/section/section/grid/div/card/input"));
+		botaoPesquisar = driver.findElement(By.xpath("/html/body/section/section/grid/div/card/button"));
 	    PetID.click();
 	    PetID.sendKeys(idCorreto);
+	    botaoPesquisar.click();
+	    Thread.sleep(3000);
 	}
 
 	@Entao("^ele visualiza as informacoes do Pet$")
 	public void ele_visualiza_as_informacoes_do_Pet() throws Throwable {
 		Thread.sleep(1000);
-		botaoAdicionarVacina = driver.findElement(By.xpath("/html/body/section/section/card/grid[4]/div[2]/a/h4"));
+		botaoAdicionarVacina = driver.findElement(By.xpath("/html/body/section/section/card/grid[4]/div[2]/a"));
 	    assertTrue(botaoAdicionarVacina.isDisplayed());
 	}
 	
 	@Dado("^que estou no campo para inserir o nome da vacina$")
 	public void que_estou_no_campo_para_inserir_o_nome_da_vacina() throws Throwable {
-	   botaoAdicionarVacina.click();
-	   nomeVacina = driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/input[1]"));
-	   nomeVacina.click();
+		botaoAdicionarVacina = driver.findElement(By.xpath("/html/body/section/section/card/grid[4]/div[2]/a"));
+		botaoAdicionarVacina.click();
+		Thread.sleep(4000);
 	}
 
 	@Quando("^digito o nome da vacina$")
 	public void digito_o_nome_da_vacina() throws Throwable {
+	   nomeVacina = driver.findElement(By.className("swal2-input"));
 	   nomeVacina.sendKeys("V8");
 	}
 
 	@Entao("^clico em Adicionar nome$")
 	public void clico_em_Adicionar_nome() throws Throwable {
-	   adicionarNome = driver.findElement(By.xpath("/html/body/div[2]/div/div[3]/button[2]"));
+	   adicionarNome = driver.findElement(By.cssSelector("body > div.swal2-container.swal2-center.swal2-backdrop-show > div > div.swal2-actions > button.swal2-confirm.swal2-styled"));
 	   adicionarNome.click();
 	}
 
@@ -147,7 +156,7 @@ public class LoginVeterinario {
 	
 	@Entao("^clico em Adicionar data$")
 	public void clico_em_Adicionar_data() throws Throwable {
-		adicionarDataAplicacao = driver.findElement(By.xpath("/html/body/div[2]/div/div[3]/button[2]"));
+		adicionarDataAplicacao = driver.findElement(By.cssSelector("body > div.swal2-container.swal2-center.swal2-backdrop-show > div > div.swal2-actions > button.swal2-confirm.swal2-styled"));
 		adicionarDataAplicacao.click();
 	}
 
@@ -157,6 +166,7 @@ public class LoginVeterinario {
 
 	@Quando("^estou na tela de informacoes do Pet$")
 	public void estou_na_tela_de_informacoes_do_Pet() throws Throwable {
+		Thread.sleep(2000);
 	}
 
 	@Entao("^consigo visualizar os dados da vacina$")

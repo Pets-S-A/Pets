@@ -29,7 +29,7 @@ Cenario: Verificar ID errado do Pet
 	Dado que o veterinario deseja informacoes de um pet
 	Quando digita o ID errado
 	Entao permanece na tela de ID do pet
-	
+
 Cenario: Verificar ID correto do Pet
 	Dado que o veterinario deseja informacoes de um pet
 	Quando digita o ID correto
