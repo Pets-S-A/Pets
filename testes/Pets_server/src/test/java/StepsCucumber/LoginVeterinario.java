@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.SendKeysAction;
 
 import cucumber.api.java.After;
 import cucumber.api.java.pt.*;
