@@ -2,7 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,18 +18,18 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="51r-MC-9Ka">
-                        <rect key="frame" x="0.0" y="-3" width="320" height="50"/>
+                        <rect key="frame" x="16" y="12" width="288" height="20.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fw1-Pj-uFO">
-                                <rect key="frame" x="0.0" y="0.0" width="213.5" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vacina" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fw1-Pj-uFO">
+                                <rect key="frame" x="0.0" y="0.0" width="192" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="color_ter"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uZ-9b-keX">
-                                <rect key="frame" x="213.5" y="0.0" width="106.5" height="50"/>
+                                <rect key="frame" x="192" y="0.0" width="96" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="color_text"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -37,11 +38,17 @@
                         </constraints>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" name="color_sec"/>
                 <constraints>
                     <constraint firstItem="51r-MC-9Ka" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="B0E-Ox-YSL"/>
                     <constraint firstItem="51r-MC-9Ka" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KzN-eK-UEg"/>
-                    <constraint firstItem="51r-MC-9Ka" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="gpc-qT-WY8"/>
+                    <constraint firstItem="51r-MC-9Ka" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.9" id="gpc-qT-WY8"/>
                 </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusV">
+                        <real key="value" value="4"/>
+                    </userDefinedRuntimeAttribute>
+                </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
@@ -51,4 +58,15 @@
             <point key="canvasLocation" x="139" y="89"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <namedColor name="color_sec">
+            <color red="0.80400002002716064" green="0.81999999284744263" blue="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="color_ter">
+            <color red="0.14900000393390656" green="0.17299999296665192" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="color_text">
+            <color red="0.33725490196078434" green="0.35686274509803922" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

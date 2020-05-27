@@ -37,7 +37,7 @@ class VaccineHandler {
                                 .error(description: message))
                         } else {
                             completion(VaccineOneResponse
-                                .error(description: "Answer is false"))
+                                .error(description: answer.message ?? ""))
                         }
                         return
                 }
@@ -97,7 +97,7 @@ class VaccineHandler {
                                 .error(description: message))
                         } else {
                             completion(VaccineOneResponse
-                                .error(description: "Answer is false"))
+                                .error(description: answer.message ?? ""))
                         }
                         return
                 }

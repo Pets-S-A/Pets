@@ -16,6 +16,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var personName: UILabel!
     @IBOutlet weak var personImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var imagePetView: UIImageView!
+
     var petsDelegate = PetsDelegate()
     var petsDataSource = PetsDataSource()
 
@@ -25,6 +27,7 @@ class MainViewController: UIViewController {
 
         setUp()
         preLoad()
+        reloadImage()
     }
 
     func setUp() {
@@ -36,6 +39,13 @@ class MainViewController: UIViewController {
         personName.text = CommonData.shared.user.person?.name
         if let imageUrl = CommonData.shared.user.person?.image {
             self.personImage.imageFromWeb(withURL: imageUrl)
+        }
+    }
+    func reloadImage() {
+        if self.petsDataSource.pets.count > 0 {
+            imagePetView.isHidden = true
+        } else {
+            imagePetView.isHidden = false
         }
     }
 
@@ -56,8 +66,7 @@ class MainViewController: UIViewController {
     func registerEvents() {
         EventManager.shared.listenTo(eventName: "reloadCommonData") {
             DispatchQueue.main.async {
-                self.petsDataSource.reloadWithCommonData(delegate: self.petsDelegate)
-            }
+                self.petsDataSource.reloadWithCommonData(delegate: self.petsDelegate)            }
         }
         EventManager.shared.listenTo(eventName: "reloadDeletePet") {
             DispatchQueue.main.async {

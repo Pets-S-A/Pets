@@ -36,7 +36,7 @@ class PetHandler {
                         let pet = answer.content,
                         result
                         else {
-                            completion(PetOneResponse.error(description: "Answer is false"))
+                            completion(PetOneResponse.error(description: answer.message ?? ""))
                             return
                     }
                     completion(PetOneResponse.success(answer: pet))
@@ -95,8 +95,26 @@ class PetHandler {
         completion: (PetOneResponse) -> Void) {
         completion(PetOneResponse.error(description: "Not implementation"))
     }
-    static func update(pet: Pet, withCompletion completion: (PetOneResponse) -> Void) {
-        completion(PetOneResponse.error(description: "Not implementation"))
+    static func update(pet: Pet, withCompletion completion: @escaping (PetOneResponse) -> Void) {
+        APIRequests.postRequest(url: "\(BASE_URL)/update",
+            params: pet.dictionaryRepresentation,
+            decodableType: ServerAnswer<Pet>.self) { (response) in
+                switch response {
+                case .result(let answer as ServerAnswer<Pet>):
+                    guard let result = answer.success,
+                        let pet = answer.content,
+                        result
+                        else {
+                            completion(PetOneResponse.error(description: answer.message ?? ""))
+                            return
+                    }
+                    completion(PetOneResponse.success(answer: pet))
+                case .error(let error):
+                    completion(PetOneResponse.error(description: error.localizedDescription))
+                default:
+                    completion(PetOneResponse.error(description: "Error to convert data"))
+                }
+        }
     }
     public static func delete(id: String, completion: @escaping (PetOneResponse) -> Void) {
         APIRequests.getRequest(url: "\(BASE_URL)/delete/\(id)", decodableType: ServerAnswer<Pet>.self) { (response) in

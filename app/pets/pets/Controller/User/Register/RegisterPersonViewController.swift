@@ -65,10 +65,10 @@ class RegisterPersonViewController: UIViewController {
                 }
             case .error(let description):
                 DispatchQueue.main.async {
-                    UIAlert.show(controller: self,
-                                 title: "Não foi possível fazer criar um usuário!",
-                                 message: description) { (_) in }
                     self.removeSpinner()
+                    self.showCustomAlert(title: "Não foi possível fazer criar um usuário!",
+                                         message: description,
+                                         isOneButton: true) { (_) in }
                 }
             }
         }
@@ -87,9 +87,10 @@ class RegisterPersonViewController: UIViewController {
                 }
             case .error(let description):
                 DispatchQueue.main.async {
-                    UIAlert.show(controller: self, title: "Não foi possível fazer atualizar o usuário!",
-                                 message: description) { (_) in }
                     self.removeSpinner()
+                    self.showCustomAlert(title: "Não foi possível fazer atualizar o usuário!",
+                                         message: description,
+                                         isOneButton: true) { (_) in }
                 }
             }
         }
@@ -113,14 +114,16 @@ class RegisterPersonViewController: UIViewController {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        self.showAlert(title: "Erro ao subir a imagem", message: "Sem descrição!")
+                        self.showCustomAlert(title: "Erro ao subir a imagem",
+                                             message: "Sem descrição!", isOneButton: true) { (_) in }
                         self.removeSpinner()
                     }
                 }
 
             case .error(let description):
                 DispatchQueue.main.async {
-                    self.showAlert(title: "Erro ao subir a imagem", message: description)
+                    self.showCustomAlert(title: "Erro ao subir a imagem",
+                                         message: description, isOneButton: true) { (_) in }
                     self.removeSpinner()
                 }
             }

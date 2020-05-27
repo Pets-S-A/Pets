@@ -58,6 +58,9 @@ module.exports = {
       if (!body.personID) {
         throw new Error('personID is required');
       }
+      if (body._id === '') {
+        body._id = undefined;
+      }
       const pet = await PetModel.create(body);
       const person = await PersonModel.findById(body.personID);
       await person.addPet(pet, next);
@@ -82,9 +85,10 @@ module.exports = {
       if (!body._id) {
         throw new Error('Id is required');
       }
+      const pet = await PetModel.findByIdAndUpdate(body._id, {$set: body}, {'new': true});
       res.json({
         success: true,
-        content: await PetModel.findByIdAndUpdate(body._id, body),
+        content: pet,
       });
     } catch (error) {
       res.status(HttpStatus.badRequest).json({

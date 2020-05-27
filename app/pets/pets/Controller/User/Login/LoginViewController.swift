@@ -10,8 +10,7 @@ import UIKit
 import AuthenticationServices
 
 class LoginViewController: UIViewController {
-
-    @IBOutlet weak var authorizationButton: ASAuthorizationAppleIDButton!
+    let authorizationAppleIDButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,10 +50,9 @@ class LoginViewController: UIViewController {
                     if description == "Usuário não encontrado!" {
                         self.create(user: self.formatterUser(email: email, name: name, password: password))
                     } else {
-                        UIAlert.show(controller: self,
-                                     title: "Não foi possível fazer login!",
-                                     message: description) { (_) in }
                         self.removeSpinner()
+                        self.showCustomAlert(title: "Não foi possível fazer login!",
+                                             message: description, isOneButton: true) { (_) in }
                     }
                 }
             }
@@ -71,9 +69,9 @@ class LoginViewController: UIViewController {
                 }
             case .error(let description):
                 DispatchQueue.main.async {
-                    UIAlert.show(controller: self, title: "Não foi possível criar um Usuário!",
-                                 message: description) { (_) in }
                     self.removeSpinner()
+                    self.showCustomAlert(title: "Não foi possível criar um Usuário!",
+                                         message: description, isOneButton: true) { (_) in }
                 }
             }
         }
@@ -86,8 +84,21 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: ASAuthorizationControllerDelegate {
     func setUpSignInAppleButton() {
-        authorizationButton.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
-        authorizationButton.cornerRadius = 10
+        authorizationAppleIDButton.addTarget(
+            self,
+            action: #selector(handleAppleIdRequest),
+            for: .touchUpInside
+        )
+        authorizationAppleIDButton.cornerRadius = 10
+        self.view.addSubview(authorizationAppleIDButton)
+
+        authorizationAppleIDButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            authorizationAppleIDButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            authorizationAppleIDButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100),
+            authorizationAppleIDButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8),
+            authorizationAppleIDButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
     @objc func handleAppleIdRequest() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -129,10 +140,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 }
             case.error(let description):
                 DispatchQueue.main.async {
-                    UIAlert.show(controller: self,
-                                 title: "Não foi possível fazer login!",
-                                 message: description) { (_) in }
                     self.removeSpinner()
+                    self.showCustomAlert(title: "Não foi possível fazer login!",
+                                         message: description, isOneButton: true) { (_) in }
                 }
             }
         }

@@ -90,8 +90,20 @@ class UserHandler {
         completion(UserOneResponse.error(description: "Not implementation"))
 
     }
-    public static func delete(id: Int, completion: @escaping (UserOneResponse) -> Void) {
-        completion(UserOneResponse.error(description: "Not implementation"))
-
+    static func delete(id: Int, completion: @escaping (UserOneResponse) -> Void) {
+        APIRequests.getRequest(url: "\(BASE_URL)/delete/\(id)", decodableType: ServerAnswer<User>.self) { (response) in
+                switch response {
+                case .result(let answer as ServerAnswer<User>):
+                    if let content = answer.content {
+                        completion(UserOneResponse.success(answer: content))
+                    } else {
+                        completion(UserOneResponse.error(description: "Don't have content"))
+                    }
+                case .error(let error):
+                    completion(UserOneResponse.error(description: error.localizedDescription))
+                default:
+                    completion(UserOneResponse.error(description: "Error to convert data"))
+                }
+        }
     }
 }

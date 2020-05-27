@@ -48,7 +48,8 @@ class CreateVaccineViewController: UIViewController {
             switch response {
             case .error(let description):
                 DispatchQueue.main.async {
-                    self.showAlert(title: "Error", message: description)
+                    self.showCustomAlert(title: "Error",
+                                         message: description, isOneButton: true) { (_) in }
                 }
             case .success(let answer):
                 DispatchQueue.main.async {
@@ -67,7 +68,7 @@ class CreateVaccineViewController: UIViewController {
             switch response {
             case .error(let description):
                 DispatchQueue.main.async {
-                    self.showAlert(title: "Error", message: description)
+                    self.showCustomAlert(title: "Error", message: description, isOneButton: true) { (_) in }
                 }
             case .success(let answer):
                 DispatchQueue.main.async {

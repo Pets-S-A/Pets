@@ -27,6 +27,7 @@ class PetsDataSource: NSObject, UICollectionViewDataSource {
                     delegate.pets = pets
                     if let view = self.viewController as? MainViewController {
                         view.collectionView.reloadData()
+                        view.reloadImage()
                     }
                 }
             }
@@ -41,6 +42,7 @@ class PetsDataSource: NSObject, UICollectionViewDataSource {
             delegate.pets = pets
             if let view = self.viewController as? MainViewController {
                 view.collectionView.reloadData()
+                view.reloadImage()
             }
         }
     }
