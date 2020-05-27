@@ -54,8 +54,9 @@ class CreateVaccineViewController: UIViewController {
             case .success(let answer):
                 DispatchQueue.main.async {
                     self.createNotification()
-                    self.pet.addVaccine(vaccine: answer)
-                    EventManager.shared.trigger(eventName: "reloadCommonData")
+                    let pet = self.pet.addVaccine(vaccine: answer)
+                    EventManager.shared.trigger(eventName: "reloadCreatePetCommonData",
+                                                information: pet)
                     self.back()
                 }
             }

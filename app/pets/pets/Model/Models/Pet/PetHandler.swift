@@ -18,6 +18,11 @@ enum PetOneResponse: Error {
     case error(description: String)
 }
 
+enum PetDeleteOneResponse: Error {
+    case success(description: String)
+    case error(description: String)
+}
+
 enum PetShareResponse: Error {
     case success(answer: String)
     case error(description: String)
@@ -116,20 +121,14 @@ class PetHandler {
                 }
         }
     }
-    public static func delete(id: String, completion: @escaping (PetOneResponse) -> Void) {
+    public static func delete(id: String, completion: @escaping (PetDeleteOneResponse) -> Void) {
         APIRequests.getRequest(url: "\(BASE_URL)/delete/\(id)", decodableType: ServerAnswer<Pet>.self) { (response) in
                 switch response {
-                case .result(let answer as ServerAnswer<Pet>):
-                    if let content = answer.content {
-                        completion(PetOneResponse.success(answer: content))
-                    } else {
-                        completion(PetOneResponse.error(description: "Don't have content"))
-                    }
+                case .result(_):
+                    completion(PetDeleteOneResponse.success(description: "Pet deletado com sucesso!"))
                 case .error(let error):
-                    completion(PetOneResponse.error(description: error.localizedDescription))
-                default:
-                    completion(PetOneResponse.error(description: "Error to convert data"))
-                }
+                    completion(PetDeleteOneResponse.error(description: error.localizedDescription))
+            }
         }
     }
 }
