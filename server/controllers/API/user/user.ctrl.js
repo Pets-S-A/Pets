@@ -1,4 +1,4 @@
-const {UserModel} = require('../../../models');
+const {UserModel, PersonModel} = require('../../../models');
 const HttpStatus = require('../../../HttpStatus');
 const {validateBody} = require('../../../utils');
 
@@ -57,9 +57,12 @@ module.exports = {
       if (!params.id) {
         throw new Error('Id is required');
       }
+      const user = await UserModel.findById(params.id);
+      const person = await PersonModel.findById(user.person.id);
+      user.delete();
+      person.delete();
       res.json({
         success: true,
-        content: await UserModel.findByIdAndDelete(params.id),
       });
     } catch (error) {
       res.status(HttpStatus.badRequest).json({

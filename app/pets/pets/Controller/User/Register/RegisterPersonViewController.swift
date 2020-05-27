@@ -10,9 +10,10 @@ import UIKit
 
 class RegisterPersonViewController: UIViewController {
 
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nameText: UITextField!
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var nameText: UITextField!
+    @IBOutlet private weak var button: UIButton!
+    @IBOutlet private weak var deleteButton: UIButton!
     private var imageName = ""
     public var isProfileEdition = false
     public var imageProfile: UIImage?
@@ -25,6 +26,7 @@ class RegisterPersonViewController: UIViewController {
 
     func setUp() {
         loadPreview()
+        setUpDelete()
     }
 
     private func loadPreview() {
@@ -36,6 +38,13 @@ class RegisterPersonViewController: UIViewController {
         if isProfileEdition {
             button.setTitle("Atualizar", for: .normal)
             self.imageView.image = imageProfile
+        }
+    }
+
+    func setUpDelete() {
+        if isProfileEdition {
+            deleteButton.isHidden = false
+            deleteButton.addTarget(self, action: #selector(deleteUser), for: .touchUpInside)
         }
     }
 
@@ -95,6 +104,30 @@ class RegisterPersonViewController: UIViewController {
             }
         }
     }
+    @objc private
+    func deleteUser() {
+        self.showCustomAlert(title: "Deletar Conta",
+                             message: "Essa ação não terá retorno, tem certaza que deseja conntinuar?",
+                             isOneButton: false) { (answer) in
+            if answer {
+                self.showSpinner(onView: self.view)
+                UserHandler.delete { (response) in
+                    DispatchQueue.main.async {
+                        self.removeSpinner()
+                        switch response {
+                        case .success:
+                            self.performSegue(withIdentifier: "toLogin", sender: nil)
+                        case .error(let description):
+                            self.showCustomAlert(title: "Algo deu errado",
+                                                 message: description,
+                                                 isOneButton: true) { (_) in }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
 
     func uploadImage() {
         let date = Date().description.getFirst()
@@ -141,15 +174,10 @@ class RegisterPersonViewController: UIViewController {
     @IBAction func finishRegister() {
         showSpinner(onView: view)
         DispatchQueue.main.async {
-            if self.imageHasChange {
-                self.uploadImage()
-            } else {
-                if self.isProfileEdition {
-                    self.uploadImage()
-                } else {
-                    self.createPerson()
-                }
-            }
+            self.uploadImage()
         }
+    }
+    @IBAction func exitButtonAction(_ sender: Any) {
+        self.performSegue(withIdentifier: "toLogin", sender: nil)
     }
 }

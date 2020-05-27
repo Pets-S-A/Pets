@@ -17,6 +17,10 @@ enum UserOneResponse: Error {
     case success(answer: User)
     case error(description: String)
 }
+enum UserDeleteOneResponse: Error {
+    case success(description: String)
+    case error(description: String)
+}
 
 enum UserTokenResponse: Error {
     case success(answer: User, token: String)
@@ -90,19 +94,14 @@ class UserHandler {
         completion(UserOneResponse.error(description: "Not implementation"))
 
     }
-    static func delete(id: Int, completion: @escaping (UserOneResponse) -> Void) {
-        APIRequests.getRequest(url: "\(BASE_URL)/delete/\(id)", decodableType: ServerAnswer<User>.self) { (response) in
+    static func delete(completion: @escaping (UserDeleteOneResponse) -> Void) {
+        APIRequests.getRequest(url: "\(BASE_URL)/delete/\(CommonData.shared.user._id ?? "batata")",
+                               decodableType: ServerAnswer<User>.self) { (response) in
                 switch response {
-                case .result(let answer as ServerAnswer<User>):
-                    if let content = answer.content {
-                        completion(UserOneResponse.success(answer: content))
-                    } else {
-                        completion(UserOneResponse.error(description: "Don't have content"))
-                    }
+                case .result(let answer):
+                    completion(UserDeleteOneResponse.success(description: "\(answer as Any)"))
                 case .error(let error):
-                    completion(UserOneResponse.error(description: error.localizedDescription))
-                default:
-                    completion(UserOneResponse.error(description: "Error to convert data"))
+                    completion(UserDeleteOneResponse.error(description: error.localizedDescription))
                 }
         }
     }
