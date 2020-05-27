@@ -124,7 +124,8 @@ class PetHandler {
     public static func delete(id: String, completion: @escaping (PetDeleteOneResponse) -> Void) {
         APIRequests.getRequest(url: "\(BASE_URL)/delete/\(id)", decodableType: ServerAnswer<Pet>.self) { (response) in
                 switch response {
-                case .result(_):
+                case .result(let answer):
+                    print(answer)
                     completion(PetDeleteOneResponse.success(description: "Pet deletado com sucesso!"))
                 case .error(let error):
                     completion(PetDeleteOneResponse.error(description: error.localizedDescription))
