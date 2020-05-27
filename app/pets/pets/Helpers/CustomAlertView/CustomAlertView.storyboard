@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Custom Alert View-->
+        <scene sceneID="f0w-AK-UA0">
+            <objects>
+                <viewController storyboardIdentifier="CustomAlertID" id="5qB-hH-Ehe" customClass="CustomAlertView" customModule="CustomAlertView" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CfM-M4-jgH"/>
+                        <viewControllerLayoutGuide type="bottom" id="zN1-pg-1Av"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rnd-uJ-m6N">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_alert_bg" translatesAutoresizingMaskIntoConstraints="NO" id="WzL-EO-XC7">
+                                <rect key="frame" x="-10" y="-10" width="434" height="916"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ9-uq-apH">
+                                <rect key="frame" x="-10" y="-10" width="434" height="916"/>
+                                <connections>
+                                    <action selector="onTapCancelButton:" destination="5qB-hH-Ehe" eventType="touchUpInside" id="O8k-cU-NhA"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Rt-JJ-whg">
+                                <rect key="frame" x="41" y="269" width="332" height="268.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_alert" translatesAutoresizingMaskIntoConstraints="NO" id="Ann-G1-03T">
+                                        <rect key="frame" x="0.0" y="0.0" width="332" height="268.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COP-ea-fjb">
+                                        <rect key="frame" x="58" y="64" width="216" height="24"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Esse medium fala sobre as principais causas de errarmos quando fazemos as contas..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlm-if-mQ6">
+                                        <rect key="frame" x="58" y="96" width="216" height="58"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="Dzg-Yw-93m">
+                                        <rect key="frame" x="38.5" y="176" width="255" height="51"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TDP-DH-2i8">
+                                                <rect key="frame" x="0.0" y="0.0" width="137.5" height="51"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_alert_button_01" translatesAutoresizingMaskIntoConstraints="NO" id="adn-2Y-1kr">
+                                                        <rect key="frame" x="0.0" y="0.0" width="137.5" height="51"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </imageView>
+                                                    <button opaque="NO" clearsContextBeforeDrawing="NO" tag="1" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAz-X4-Ouv">
+                                                        <rect key="frame" x="21" y="0.0" width="96" height="51"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Confimar">
+                                                            <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="onTapOkButton:" destination="5qB-hH-Ehe" eventType="touchUpInside" id="mcp-N5-Ubx"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="adn-2Y-1kr" secondAttribute="bottom" id="9uS-SY-Rdc"/>
+                                                    <constraint firstAttribute="trailing" secondItem="adn-2Y-1kr" secondAttribute="trailing" id="DL0-PD-5B5"/>
+                                                    <constraint firstItem="rAz-X4-Ouv" firstAttribute="centerY" secondItem="TDP-DH-2i8" secondAttribute="centerYWithinMargins" id="GfX-H5-xFM"/>
+                                                    <constraint firstItem="rAz-X4-Ouv" firstAttribute="height" secondItem="TDP-DH-2i8" secondAttribute="height" id="XSW-Jc-EF8"/>
+                                                    <constraint firstItem="adn-2Y-1kr" firstAttribute="leading" secondItem="TDP-DH-2i8" secondAttribute="leading" id="XkC-xE-Uyq"/>
+                                                    <constraint firstItem="adn-2Y-1kr" firstAttribute="top" secondItem="TDP-DH-2i8" secondAttribute="top" id="ZDb-vE-aEX"/>
+                                                    <constraint firstItem="rAz-X4-Ouv" firstAttribute="centerX" secondItem="TDP-DH-2i8" secondAttribute="centerXWithinMargins" id="cFT-xv-ZJm"/>
+                                                    <constraint firstItem="rAz-X4-Ouv" firstAttribute="width" secondItem="TDP-DH-2i8" secondAttribute="width" multiplier="0.7" id="d4U-gn-lRh"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SnQ-kZ-GPq">
+                                                <rect key="frame" x="117.5" y="0.0" width="137.5" height="51"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_alert_button_00" translatesAutoresizingMaskIntoConstraints="NO" id="yHi-Ss-ceE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="137.5" height="51"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIu-lM-EVt">
+                                                        <rect key="frame" x="20.5" y="11" width="96" height="28.5"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                        <state key="normal" title="Cancelar">
+                                                            <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="onTapCancelButton:" destination="5qB-hH-Ehe" eventType="touchUpInside" id="b17-Xd-27U"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="iIu-lM-EVt" firstAttribute="width" secondItem="SnQ-kZ-GPq" secondAttribute="width" multiplier="0.7" id="DV1-5W-m2i"/>
+                                                    <constraint firstItem="iIu-lM-EVt" firstAttribute="centerX" secondItem="SnQ-kZ-GPq" secondAttribute="centerX" id="L8c-jb-jWP"/>
+                                                    <constraint firstAttribute="trailing" secondItem="yHi-Ss-ceE" secondAttribute="trailing" id="Oio-JN-Siq"/>
+                                                    <constraint firstItem="yHi-Ss-ceE" firstAttribute="leading" secondItem="SnQ-kZ-GPq" secondAttribute="leading" id="TK7-Am-HZT"/>
+                                                    <constraint firstItem="iIu-lM-EVt" firstAttribute="height" secondItem="SnQ-kZ-GPq" secondAttribute="height" multiplier="0.555556" id="Tl1-Wy-0cW"/>
+                                                    <constraint firstItem="iIu-lM-EVt" firstAttribute="centerY" secondItem="SnQ-kZ-GPq" secondAttribute="centerY" id="f0v-fu-xAu"/>
+                                                    <constraint firstAttribute="bottom" secondItem="yHi-Ss-ceE" secondAttribute="bottom" id="h2h-Pt-vzv"/>
+                                                    <constraint firstItem="yHi-Ss-ceE" firstAttribute="top" secondItem="SnQ-kZ-GPq" secondAttribute="top" id="mu8-gF-Knz"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="TDP-DH-2i8" firstAttribute="width" secondItem="SnQ-kZ-GPq" secondAttribute="width" id="8hG-cf-hMs"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Dzg-Yw-93m" firstAttribute="centerY" secondItem="9Rt-JJ-whg" secondAttribute="centerY" multiplier="1.5" id="4Me-Bc-dgo"/>
+                                    <constraint firstItem="Ann-G1-03T" firstAttribute="centerX" secondItem="9Rt-JJ-whg" secondAttribute="centerX" id="5LQ-b4-O2u"/>
+                                    <constraint firstItem="Dzg-Yw-93m" firstAttribute="centerX" secondItem="9Rt-JJ-whg" secondAttribute="centerX" id="BCq-a7-qRb"/>
+                                    <constraint firstAttribute="width" secondItem="9Rt-JJ-whg" secondAttribute="height" multiplier="331:268" id="FKX-Y8-BaI"/>
+                                    <constraint firstItem="COP-ea-fjb" firstAttribute="top" secondItem="9Rt-JJ-whg" secondAttribute="top" constant="64" id="HwR-zW-dTl"/>
+                                    <constraint firstItem="nlm-if-mQ6" firstAttribute="top" secondItem="COP-ea-fjb" secondAttribute="bottom" constant="8" id="MHg-9D-sgt"/>
+                                    <constraint firstAttribute="height" constant="268.5" id="XEQ-V6-Yzp"/>
+                                    <constraint firstItem="nlm-if-mQ6" firstAttribute="centerX" secondItem="9Rt-JJ-whg" secondAttribute="centerX" id="YvQ-q9-YLu"/>
+                                    <constraint firstItem="Dzg-Yw-93m" firstAttribute="width" secondItem="9Rt-JJ-whg" secondAttribute="width" multiplier="0.768" id="d7x-yx-5p4"/>
+                                    <constraint firstItem="Ann-G1-03T" firstAttribute="width" secondItem="9Rt-JJ-whg" secondAttribute="width" id="ldk-xp-7OZ"/>
+                                    <constraint firstItem="Dzg-Yw-93m" firstAttribute="height" secondItem="9Rt-JJ-whg" secondAttribute="height" multiplier="0.189918" id="mjC-vI-P2w"/>
+                                    <constraint firstItem="nlm-if-mQ6" firstAttribute="width" secondItem="Ann-G1-03T" secondAttribute="width" multiplier="0.65" id="rp5-DF-zsn"/>
+                                    <constraint firstItem="COP-ea-fjb" firstAttribute="width" secondItem="nlm-if-mQ6" secondAttribute="width" id="wiu-sw-l6C"/>
+                                    <constraint firstItem="Ann-G1-03T" firstAttribute="centerY" secondItem="9Rt-JJ-whg" secondAttribute="centerY" id="yu2-Gl-f6m"/>
+                                    <constraint firstItem="Ann-G1-03T" firstAttribute="height" secondItem="9Rt-JJ-whg" secondAttribute="height" id="zWe-Oh-M5Q"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZQ9-uq-apH" firstAttribute="width" secondItem="WzL-EO-XC7" secondAttribute="width" id="1ey-dw-Hoq"/>
+                            <constraint firstItem="WzL-EO-XC7" firstAttribute="top" secondItem="rnd-uJ-m6N" secondAttribute="top" constant="-10" id="21k-nh-8FO"/>
+                            <constraint firstItem="9Rt-JJ-whg" firstAttribute="centerX" secondItem="rnd-uJ-m6N" secondAttribute="centerX" id="2Ci-AC-ZMl"/>
+                            <constraint firstItem="ZQ9-uq-apH" firstAttribute="centerY" secondItem="WzL-EO-XC7" secondAttribute="centerY" id="8Tx-Nc-hhh"/>
+                            <constraint firstItem="ZQ9-uq-apH" firstAttribute="centerX" secondItem="WzL-EO-XC7" secondAttribute="centerX" id="GBQ-We-530"/>
+                            <constraint firstAttribute="trailing" secondItem="WzL-EO-XC7" secondAttribute="trailing" constant="-10" id="HsF-uv-pgk"/>
+                            <constraint firstItem="9Rt-JJ-whg" firstAttribute="centerY" secondItem="rnd-uJ-m6N" secondAttribute="centerY" multiplier="0.9" id="KvG-ro-dMj"/>
+                            <constraint firstAttribute="bottom" secondItem="WzL-EO-XC7" secondAttribute="bottom" constant="-10" id="LFA-kG-p5m"/>
+                            <constraint firstItem="COP-ea-fjb" firstAttribute="centerX" secondItem="rnd-uJ-m6N" secondAttribute="centerX" id="RDc-dZ-Ye2"/>
+                            <constraint firstItem="WzL-EO-XC7" firstAttribute="leading" secondItem="rnd-uJ-m6N" secondAttribute="leading" constant="-10" id="TDL-zy-YOC"/>
+                            <constraint firstItem="ZQ9-uq-apH" firstAttribute="height" secondItem="WzL-EO-XC7" secondAttribute="height" id="UFd-Vq-xvR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wMk-4V-vue"/>
+                    </view>
+                    <connections>
+                        <outlet property="alertView" destination="9Rt-JJ-whg" id="nrX-rs-Cfm"/>
+                        <outlet property="cancelButton" destination="iIu-lM-EVt" id="t6o-9P-6Ti"/>
+                        <outlet property="cancelButtonView" destination="SnQ-kZ-GPq" id="g02-aG-gc2"/>
+                        <outlet property="messageLabel" destination="nlm-if-mQ6" id="JuI-Rd-GcJ"/>
+                        <outlet property="okButton" destination="rAz-X4-Ouv" id="xLG-UK-fUG"/>
+                        <outlet property="titleLabel" destination="COP-ea-fjb" id="vc4-vA-7AT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lzK-dD-1TP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1124" y="138.91625615763547"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="card_alert" width="334" height="258"/>
+        <image name="card_alert_bg" width="414" height="896"/>
+        <image name="card_alert_button_00" width="154" height="54"/>
+        <image name="card_alert_button_01" width="154" height="54"/>
+    </resources>
+</document>

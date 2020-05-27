@@ -26,7 +26,8 @@ struct Pet: Codable {
             "agressive": agressive,
             "image": image ?? "",
             "breed": breed,
-            "personID": CommonData.shared.user.person?._id ?? ""
+            "personID": CommonData.shared.user.person?._id ?? "",
+            "_id": _id
         ]
     }
 

@@ -1,27 +1,43 @@
 <section txt="c">
 	<grid>
+		{{#if vet}}
+		<form action="/vet/update" method="post">
+		{{else}}
 		<form action="/vet/create" method="post">
+		{{/if}}
 			<div col="1/2">
 				<card>
-					<h3>Register</h3>
+					{{#if vet}}
+					<h3>Atualize seus dados</h3>
+					{{else}}
+					<h3>Novo cadastro</h3>
+					{{/if}}
 					<blockquote>
 						<label txt="l">Informações pessoais</label>
-						<input type="name" xx class="body" name="name" id="name" placeholder="Nome" value="" required>
-						<input type="text" xx class="body" name="clinic" placeholder="Qual o nome da sua clínica?"
+						<input type="name" xx class="body" name="name" id="name" placeholder="Nome" value="{{vet.name}}"
 							required>
-						<input type="text" xx class="body" name="crmv" placeholder="Qual o seu CRMV?" required>
+						<input type="text" xx class="body" value="{{vet.clinic}}" name="clinic"
+							placeholder="Qual o nome da sua clínica?" required>
+						<input type="text" xx class="body" value="{{vet.crmv}}" name="crmv"
+							placeholder="Qual o seu CRMV?" required>
 					</blockquote>
+					{{#if vet}}
+					<button btn>Atualizar</button>
 
+					{{else}}
 					<blockquote>
 						<label txt="l">Informações para Login</label>
-						<input type="email" xx class="body" name="email" id="email" placeholder="E-mail" required>
+						<input type="email" xx class="body" value="{{vet.email}}" name="email" id="email"
+							placeholder="E-mail" required>
+
 						<input type="password" xx class="body" name="password" id="senhaID" placeholder="Senha"
 							required>
 						<input type="password" xx class="body" name="password2" id="senhaID"
 							placeholder="Repita a Senha" required>
-					</blockquote>
 
+					</blockquote>
 					<button btn>Criar</button>
+					{{/if}}
 				</card>
 			</div>
 		</form>

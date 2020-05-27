@@ -81,7 +81,8 @@ class VaccineCellDataSource: NSObject, UITableViewDataSource {
                         }
                         self.tableView?.deleteRows(at: [indexPath], with: .fade)
                     case .error(let description):
-                        self.viewController?.showAlert(title: "Error", message: description)
+                        self.viewController?.showCustomAlert(title: "Error",
+                                                             message: description, isOneButton: true) { (_) in }
                     }
                 }
 

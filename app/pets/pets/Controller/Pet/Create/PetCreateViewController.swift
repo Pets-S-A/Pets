@@ -28,7 +28,11 @@ class PetCreateViewController: UIViewController {
     var agressive = false
     var imageName = ""
 
+    var isUpdate = false
+
     var user: User!
+    var pet: Pet?
+    var petUIImage: UIImage?
 
     var mainDelegate: MainProtocol?
 
@@ -41,6 +45,7 @@ class PetCreateViewController: UIViewController {
         configGender()
         configAge()
         setupKeyboard()
+        preSetUp()
     }
 
     func configGender() {
@@ -51,6 +56,21 @@ class PetCreateViewController: UIViewController {
     func configAge() {
         petAge.delegate = ageDelegate
         petAge.dataSource = ageDataSource
+    }
+
+    func preSetUp() {
+        if let pet = pet {
+            petImage.image = petUIImage
+            petName.text = pet.name
+            petBreed.text = pet.breed
+            if let indexAge = ageDataSource.options.firstIndex(of: pet.age) {
+                petAge.selectRow(indexAge, inComponent: 0, animated: true)
+            }
+            if let indexGender = genderDataSource.options.firstIndex(of: pet.age) {
+                petAge.selectRow(indexGender, inComponent: 0, animated: true)
+            }
+            petAgressive.isOn = pet.agressive
+        }
     }
 
     // MARK: - Actions
@@ -65,14 +85,22 @@ class PetCreateViewController: UIViewController {
             switch response {
             case .success(let result):
                 if result {
-                    self.createPet()
+                    if self.isUpdate {
+                        self.updatePet()
+                    } else {
+                        self.createPet()
+                    }
                 } else {
-                    self.showAlert(title: "Erro ao subir a imagem", message: "Sem descrição!")
+                    self.showCustomAlert(title: "Erro ao subir a imagem",
+                                         message: "Verifique sua conexão com a internet e tente novamente",
+                                         isOneButton: true) { (_) in }
                     self.removeSpinner()
                 }
 
             case .error(let description):
-                self.showAlert(title: "Erro ao subir a imagem", message: description)
+                self.showCustomAlert(title: "Erro ao subir a imagem",
+                                     message: description,
+                                     isOneButton: true) { (_) in }
                 self.removeSpinner()
             }
         }
@@ -85,10 +113,10 @@ class PetCreateViewController: UIViewController {
                 switch response {
                 case .error(let description):
                     DispatchQueue.main.async {
-                        UIAlert.show(controller: self,
-                                     title: "Não foi possível cadastrar o pet, tente novamente!",
-                                     message: description) { (_) in }
                         self.removeSpinner()
+                        self.showCustomAlert(title: "Erro ao cadastrar o Pet",
+                                             message: description,
+                                             isOneButton: true) { (_) in }
                     }
                 case .success(let pet):
                     DispatchQueue.main.async {
@@ -97,10 +125,47 @@ class PetCreateViewController: UIViewController {
                             pets.append(pet)
                             CommonData.shared.user.person?.pets = pets
                         }
-                        UIAlert.show(controller: self, title: "Pet cadastrado com sucesso!", message: "") { (_) in
+                        self.removeSpinner()
+                        self.showCustomAlert(title: "Pet cadastrado com sucesso!",
+                                            message: "Agora você pode adicionar vacinas para ele.",
+                                            isOneButton: true) { (_) in
+                            self.dismiss(animated: true, completion: nil)
                             self.dismiss(animated: true, completion: nil)
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    func updatePet() {
+        DispatchQueue.main.async {
+            PetHandler.update(pet: self.formatPet()) { (response) in
+                switch response {
+                case .error(let description):
+                    DispatchQueue.main.async {
                         self.removeSpinner()
+                        self.showCustomAlert(title: "Erro ao atualizar o Pet",
+                                             message: description,
+                                             isOneButton: true) { (_) in }
+                    }
+                case .success(let pet):
+                    DispatchQueue.main.async {
+                        if
+                            var pets = CommonData.shared.user.person?.pets,
+                            let index = pets.firstIndex(where: { $0._id == pet._id }) {
+                            pets[index] = pet
+                            CommonData.shared.user.person?.pets = pets
+                            EventManager.shared.trigger(eventName: "reloadCommonData")
+                            EventManager.shared.trigger(eventName: "reloadImagePet", information: self.petImage.image)
+                        }
+                        self.removeSpinner()
+                        self.showCustomAlert(title: "Pet atualizado com sucesso!",
+                                            message: "Agora você pode adicionar vacinas para ele.",
+                                            isOneButton: true) { (_) in
+                            self.dismiss(animated: true, completion: nil)
+                            self.dismiss(animated: true, completion: nil)
+                        }
                     }
                 }
             }
@@ -113,7 +178,7 @@ class PetCreateViewController: UIViewController {
     // MARK: - Ultils
     func formatPet() -> Pet {
 
-        let pet = Pet(_id: "",
+        let pet = Pet(_id: self.pet?._id ?? "",
                       name: self.petName.text ?? "",
                       age: self.ageSelected,
                       gender: self.genderSelected,

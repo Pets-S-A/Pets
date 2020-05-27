@@ -10,9 +10,10 @@ import UIKit
 
 class RegisterPersonViewController: UIViewController {
 
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nameText: UITextField!
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var nameText: UITextField!
+    @IBOutlet private weak var button: UIButton!
+    @IBOutlet private weak var deleteButton: UIButton!
     private var imageName = ""
     public var isProfileEdition = false
     public var imageProfile: UIImage?
@@ -25,6 +26,7 @@ class RegisterPersonViewController: UIViewController {
 
     func setUp() {
         loadPreview()
+        setUpDelete()
     }
 
     private func loadPreview() {
@@ -36,6 +38,13 @@ class RegisterPersonViewController: UIViewController {
         if isProfileEdition {
             button.setTitle("Atualizar", for: .normal)
             self.imageView.image = imageProfile
+        }
+    }
+
+    func setUpDelete() {
+        if isProfileEdition {
+            deleteButton.isHidden = false
+            deleteButton.addTarget(self, action: #selector(deleteUser), for: .touchUpInside)
         }
     }
 
@@ -65,10 +74,10 @@ class RegisterPersonViewController: UIViewController {
                 }
             case .error(let description):
                 DispatchQueue.main.async {
-                    UIAlert.show(controller: self,
-                                 title: "Não foi possível fazer criar um usuário!",
-                                 message: description) { (_) in }
                     self.removeSpinner()
+                    self.showCustomAlert(title: "Não foi possível fazer criar um usuário!",
+                                         message: description,
+                                         isOneButton: true) { (_) in }
                 }
             }
         }
@@ -87,9 +96,34 @@ class RegisterPersonViewController: UIViewController {
                 }
             case .error(let description):
                 DispatchQueue.main.async {
-                    UIAlert.show(controller: self, title: "Não foi possível fazer atualizar o usuário!",
-                                 message: description) { (_) in }
                     self.removeSpinner()
+                    self.showCustomAlert(title: "Não foi possível fazer atualizar o usuário!",
+                                         message: description,
+                                         isOneButton: true) { (_) in }
+                }
+            }
+        }
+    }
+    @objc private
+    func deleteUser() {
+        self.showCustomAlert(title: "Deletar Conta",
+                             message: "Essa ação não terá retorno, tem certaza que deseja conntinuar?",
+                             isOneButton: false) { (answer) in
+            if answer {
+                self.showSpinner(onView: self.view)
+                UserHandler.delete { (response) in
+                    DispatchQueue.main.async {
+                        self.removeSpinner()
+                        switch response {
+                        case .success:
+                            self.performSegue(withIdentifier: "toLogin", sender: nil)
+                        case .error(let description):
+                            self.showCustomAlert(title: "Algo deu errado",
+                                                 message: description,
+                                                 isOneButton: true) { (_) in }
+                        }
+                    }
+
                 }
             }
         }
@@ -113,14 +147,16 @@ class RegisterPersonViewController: UIViewController {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        self.showAlert(title: "Erro ao subir a imagem", message: "Sem descrição!")
+                        self.showCustomAlert(title: "Erro ao subir a imagem",
+                                             message: "Sem descrição!", isOneButton: true) { (_) in }
                         self.removeSpinner()
                     }
                 }
 
             case .error(let description):
                 DispatchQueue.main.async {
-                    self.showAlert(title: "Erro ao subir a imagem", message: description)
+                    self.showCustomAlert(title: "Erro ao subir a imagem",
+                                         message: description, isOneButton: true) { (_) in }
                     self.removeSpinner()
                 }
             }
@@ -138,15 +174,10 @@ class RegisterPersonViewController: UIViewController {
     @IBAction func finishRegister() {
         showSpinner(onView: view)
         DispatchQueue.main.async {
-            if self.imageHasChange {
-                self.uploadImage()
-            } else {
-                if self.isProfileEdition {
-                    self.uploadImage()
-                } else {
-                    self.createPerson()
-                }
-            }
+            self.uploadImage()
         }
+    }
+    @IBAction func exitButtonAction(_ sender: Any) {
+        self.performSegue(withIdentifier: "toLogin", sender: nil)
     }
 }

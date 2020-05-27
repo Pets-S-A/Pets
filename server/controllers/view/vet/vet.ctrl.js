@@ -1,5 +1,7 @@
 const {UserModel, VetModel, PetModel} = require('../../../models');
 const {validateBody, validatePassword} = require('../../../utils');
+const config = require('../../../config');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   getRegister: async (req, res, next) => {
@@ -31,6 +33,24 @@ module.exports = {
       return next(err);
     }
   },
+  getPerfilInfo: async (req, res, next) => {
+    try {
+      const token = req.cookies.auth;
+      const response = await jwt.verify(token, config.JWTSecret);
+      const userID = response.user;
+      const user = await UserModel.findById(userID);
+      if (!user) {
+        throw new Error('User not found!');
+      }
+      const vet = user.vet;
+      if (!vet) {
+        throw new Error('Vet not found!');
+      }
+      res.render('vet/register/register.view.hbs', {isAuth: true, vet});
+    } catch (err) {
+      return next(err);
+    }
+  },
   create: async (req, res, next) => {
     try {
       const body = req.body || {};
@@ -55,6 +75,34 @@ module.exports = {
 
       res.render('index', {
         message: 'Cadastro realizado com sucesso!',
+      });
+    } catch (error) {
+      return next(error);
+    }
+  },
+  update: async (req, res, next) => {
+    try {
+      const body = req.body || {};
+      const token = req.cookies.auth;
+      const response = await jwt.verify(token, config.JWTSecret);
+      const userID = response.user;
+      const user = await UserModel.findById(userID);
+      if (!user) {
+        throw new Error('User not found!');
+      }
+      const vet = await VetModel.findById(user.vet._id);
+      if (!vet) {
+        throw new Error('Vet not found!');
+      }
+      vet.name = body.name;
+      vet.clinic = body.clinic;
+      vet.crmv = body.crmv;
+
+      await vet.save();
+
+      res.render('vet/dashboard/dashboard.view.hbs', {
+        message: 'Cadastro atualizado com sucesso!',
+        isAuth: true,
       });
     } catch (error) {
       return next(error);

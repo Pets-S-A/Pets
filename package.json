@@ -5,7 +5,6 @@
     "test": "cd server && npm ci && npm test",
     "coverage": "cd server && npm run coverage",
     "lint": "cd server && eslint . && npm run coverage"
-
   },
   "devDependencies": {
     "husky": "^4.2.5",

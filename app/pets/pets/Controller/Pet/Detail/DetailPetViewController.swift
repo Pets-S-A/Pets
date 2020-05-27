@@ -66,6 +66,14 @@ class DetailPetViewController: UIViewController {
                 vaccineCellDelegate: self.vaccineCellDelegate)
             }
         }
+        EventManager.shared.listenTo(eventName: "reloadImagePet") { (answer) in
+            DispatchQueue.main.async {
+                if let image = answer as? UIImage {
+                    self.petImage = image
+                }
+                self.intialSetUp()
+            }
+        }
     }
     func delete() {
         showSpinner(onView: view)
@@ -76,11 +84,14 @@ class DetailPetViewController: UIViewController {
                 case .success(let answer):
                     answer.delete()
                     EventManager.shared.trigger(eventName: "reloadDeletePet")
-                    UIAlert.show(controller: self, title: "Pet deletado com sucesso!", message: "") { (_) in
+                    self.showCustomAlert(title: "Pet deletado",
+                                         message: "Seu Pet foi deletado com sucesso!",
+                                         isOneButton: true) { (_) in
+                        self.dismiss(animated: true, completion: nil)
                         self.dismiss(animated: true, completion: nil)
                     }
                 case .error(let description):
-                    self.showAlert(title: "Error", message: description)
+                    self.showCustomAlert(title: "Error", message: description, isOneButton: true) { (_) in }
                 }
             }
         }
@@ -92,18 +103,17 @@ class DetailPetViewController: UIViewController {
                 self.removeSpinner()
                 switch response {
                 case .success(let answer):
-                    self.showAlert(title: "Compartilhe!", message: answer)
+                    self.showCustomAlert(title: "Compartilhe!", message: answer, isOneButton: true) { (_) in }
                 case .error(let description):
-                    self.showAlert(title: "Error", message: description)
+                    self.showCustomAlert(title: "Error", message: description, isOneButton: true) { (_) in }
                 }
             }
         }
     }
     @IBAction func deletePet() {
-        UIAlert.show(controller: self,
-                     title: "Alerta!",
-                     message: "Tem certeza que deseja deletar?",
-                     alertAction1: "Deletar") { (answer) in
+        self.showCustomAlert(title: "Atenção",
+                             message: "Essa operação é irrevercivel, tem certeza que deseja deletar?",
+                             isOneButton: false) { (answer) in
             switch answer {
             case true:
                 self.delete()
@@ -119,6 +129,10 @@ class DetailPetViewController: UIViewController {
             if let vaccine = sender as? Vaccine {
                 view.vaccine = vaccine
             }
+        } else if let view = segue.destination as? PetCreateViewController {
+            view.pet = pet
+            view.petUIImage = imageView.image
+            view.isUpdate = true
         }
     }
 }

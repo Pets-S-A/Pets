@@ -13,7 +13,7 @@ module.exports = {
     try {
       const token = req.cookies.auth;
       if (token) {
-        const response = await jwt.verify(req.cookies.auth, config.JWTSecret);
+        const response = await jwt.verify(token, config.JWTSecret);
         if (response) {
           // let userID = response.user;
           res.render('vet/dashboard/dashboard.view.hbs', {isAuth: true});
