@@ -2,42 +2,104 @@
 	<grid>
 		{{#if vet}}
 		<form action="/vet/update" method="post">
-		{{else}}
-		<form action="/vet/create" method="post">
-		{{/if}}
+			{{else}}
+			<form action="/vet/create" method="post">
+				{{/if}}
+				<div col="1/2">
+					<card>
+						{{#if vet}}
+						<h3>Atualize seus dados</h3>
+						{{else}}
+						<h3>Novo cadastro</h3>
+						{{/if}}
+						<blockquote>
+							<label txt="l">Informações pessoais</label>
+							<input type="name" xx class="body" name="name" id="name" placeholder="Nome"
+								value="{{vet.name}}" required>
+							<input type="text" xx class="body" value="{{vet.clinic}}" name="clinic"
+								placeholder="Qual o nome da sua clínica?" required>
+							<input type="text" xx class="body" value="{{vet.crmv}}" name="crmv"
+								placeholder="Qual o seu CRMV?" required>
+						</blockquote>
+						{{#if vet}}
+						<button btn>Atualizar</button>
+						{{else}}
+						<blockquote>
+							<label txt="l">Informações para Login</label>
+							<input type="email" xx class="body" value="{{vet.email}}" name="email" id="email"
+								placeholder="E-mail" required>
+
+							<input type="password" xx class="body" name="password" id="senhaID" placeholder="Senha"
+								required>
+							<input type="password" xx class="body" name="password2" id="senhaID"
+								placeholder="Repita a Senha" required>
+						</blockquote>
+						<button btn>Criar</button>
+						{{/if}}
+					</card>
+
+
+				</div>
+			</form>
 			<div col="1/2">
 				<card>
 					{{#if vet}}
-					<h3>Atualize seus dados</h3>
-					{{else}}
-					<h3>Novo cadastro</h3>
-					{{/if}}
+					<h3>Atualize sua Senha</h3>
 					<blockquote>
-						<label txt="l">Informações pessoais</label>
-						<input type="name" xx class="body" name="name" id="name" placeholder="Nome" value="{{vet.name}}"
-							required>
-						<input type="text" xx class="body" value="{{vet.clinic}}" name="clinic"
-							placeholder="Qual o nome da sua clínica?" required>
-						<input type="text" xx class="body" value="{{vet.crmv}}" name="crmv"
-							placeholder="Qual o seu CRMV?" required>
+						<label txt="l">Senha atual</label>
+						<input type="password" xx class="body" name="oldPassword" id="oldPassword" placeholder="Coloque sua senha atual" value="">
+						<br>
+						<label txt="l">Nova senha</label>
+						<input type="password" xx class="body" value="" id="password1" placeholder="Preencha a nova senha">
+						<label txt="l">Repita a nova senha</label>
+						<input type="password" xx class="body" value="" id="password2" placeholder="Repida a nova senha">
 					</blockquote>
-					{{#if vet}}
-					<button btn>Atualizar</button>
-					{{else}}
-					<blockquote>
-						<label txt="l">Informações para Login</label>
-						<input type="email" xx class="body" value="{{vet.email}}" name="email" id="email"
-							placeholder="E-mail" required>
-
-						<input type="password" xx class="body" name="password" id="senhaID" placeholder="Senha"
-							required>
-						<input type="password" xx class="body" name="password2" id="senhaID"
-							placeholder="Repita a Senha" required>
-					</blockquote>
-					<button btn>Criar</button>
+					<a btn onclick="mudarSenha()">Atualizar</a>
 					{{/if}}
 				</card>
 			</div>
-		</form>
 	</grid>
 </section>
+
+<script>
+	function mudarSenha() {
+		const password1 = $('#password1').val()
+		const password2 = $('#password2').val()
+		const oldPassword = $('#oldPassword').val()
+
+		if (password1 == '' || password2 == '' || oldPassword == '') {
+			Swal.fire({
+				icon: 'error',
+				title: 'Preencha as informacoes corretamente!'
+			})
+			return
+		}
+		if (password1 !== password2) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Nova senha nao conferem!'
+			})
+			return
+		}
+		Swal.showLoading()
+
+		$.post( "/vet/update/password", { oldPassword, password1 })
+		.done(async function( data ) {
+			
+			await Swal.fire({
+				icon: 'success',
+				title: 'Senha atualizada com sucesso!'
+			})
+			location.reload()
+		})
+		.fail(error => {
+			console.log(error)
+			Swal.fire({
+				icon: 'error',
+				title: 'Ops...',
+				text: error.statusText
+			})
+		})
+		console.log('foi')
+	}
+</script>
