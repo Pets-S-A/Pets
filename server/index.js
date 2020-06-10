@@ -65,7 +65,7 @@ app.use('/', viewUserRouterUnprotected);
 app.use(async (error, req, res, next) => {
   res.locals.message = error.message;
   res.locals.error = req.app.get('env') === 'development' ? error : {};
-  res.status(500);
+  res.status(400);
   const err = error;
   err.error = JSON.stringify(err.errors);
   await ErrorModel.create(err);
