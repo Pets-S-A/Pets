@@ -144,4 +144,42 @@ module.exports = {
       return next(error);
     }
   },
+  deleleAccount: async (req, res, next) => {
+    try {
+      const body = req.params || {};
+      const password = body.password || '';
+
+      if (password) {
+        return res.status(HttpStatus.badRequest).json({
+          success: false,
+          message: 'Campo vazio!',
+        });
+      }
+      const token = req.cookies.auth;
+      const response = await jwt.verify(token, config.JWTSecret);
+      const userID = response.user;
+      const user = await UserModel.findById(userID);
+      if (!user) {
+        return res.status(HttpStatus.badRequest).json({
+          success: false,
+          message: 'Usuario nao encontrado!',
+        });
+      }
+      const compare = await bcrypt.compare(oldPassword, user.password);
+
+      if (!compare) {
+        return res.status(HttpStatus.badRequest).json({
+          success: false,
+          message: 'Senha não confere!',
+        });
+      }
+      await user.remove();
+      res.clearCookie('auth');
+      res.json({
+        success: true,
+      });
+    } catch (error) {
+      return next(error);
+    }
+  },
 };

@@ -47,17 +47,33 @@
 					<h3>Atualize sua Senha</h3>
 					<blockquote>
 						<label txt="l">Senha atual</label>
-						<input type="password" xx class="body" name="oldPassword" id="oldPassword" placeholder="Coloque sua senha atual" value="">
+						<input type="password" xx class="body" name="oldPassword" id="oldPassword"
+							placeholder="Coloque sua senha atual" value="">
 						<br>
 						<label txt="l">Nova senha</label>
-						<input type="password" xx class="body" value="" id="password1" placeholder="Preencha a nova senha">
+						<input type="password" xx class="body" value="" id="password1"
+							placeholder="Preencha a nova senha">
 						<label txt="l">Repita a nova senha</label>
-						<input type="password" xx class="body" value="" id="password2" placeholder="Repida a nova senha">
+						<input type="password" xx class="body" value="" id="password2"
+							placeholder="Repida a nova senha">
 					</blockquote>
 					<a btn onclick="mudarSenha()">Atualizar</a>
 					{{/if}}
 				</card>
 			</div>
+
+
+	</grid>
+	<br>
+	<grid>
+		<div col="1/2">
+			<card style="border-style: solid;border-color: #ea0000;">
+				{{#if vet}}
+				<h3>Zona Perigosa</h3>
+				<a btn style="border-style: solid;border-color: #ea0000;" onclick="deletarConta()">Deletar</a>
+				{{/if}}
+			</card>
+		</div>
 	</grid>
 </section>
 
@@ -83,23 +99,61 @@
 		}
 		Swal.showLoading()
 
-		$.post( "/vet/update/password", { oldPassword, password1 })
-		.done(async function( data ) {
-			
-			await Swal.fire({
-				icon: 'success',
-				title: 'Senha atualizada com sucesso!'
+		$.post("/vet/update/password", { oldPassword, password1 })
+			.done(async function (data) {
+
+				await Swal.fire({
+					icon: 'success',
+					title: 'Senha atualizada com sucesso!'
+				})
+				location.reload()
 			})
-			location.reload()
-		})
-		.fail(error => {
-			console.log(error)
-			Swal.fire({
-				icon: 'error',
-				title: 'Ops...',
-				text: error.statusText
+			.fail(error => {
+				console.log(error)
+				Swal.fire({
+					icon: 'error',
+					title: 'Ops...',
+					text: error.statusText
+				})
 			})
-		})
 		console.log('foi')
+	}
+
+	function deletarConta() {
+		Swal.fire({
+			icon: 'error',
+			title: 'Perigo',
+			html: '<h4>Deseja realmente deletar sua conta? Se Sim, insira a sua sena atual abaixo!</h4>',
+			input: 'text',
+			inputAttributes: {
+				autocapitalize: 'off'
+			},
+			showCancelButton: true,
+			confirmButtonText: 'Deletar',
+			showLoaderOnConfirm: true,
+			preConfirm: (password) => {
+				return fetch(`/vet/delete/account/${password}`)
+					.then(response => {
+						if (!response.ok) {
+							throw new Error(response.statusText)
+						}
+						return response.json()
+					})
+					.catch(error => {
+						Swal.showValidationMessage(
+							`Request failed: ${error}`
+						)
+					})
+			},
+			allowOutsideClick: () => !Swal.isLoading()
+		}).then(async (result) => {
+			if (result.value) {
+				await Swal.fire({
+					icon: 'success',
+					title: `Conta deletada com sucesso!`
+				})
+				window.location.href='/'
+			}
+		})
 	}
 </script>
