@@ -53,6 +53,16 @@ class DetailPetViewController: UIViewController {
                                                  vaccineCellDelegate: self.vaccineCellDelegate)
             }
         }
+        EventManager.shared.listenTo(eventName: "updatePet") { pet in
+            DispatchQueue.main.async {
+                guard let pet = pet as? Pet else {
+                    fatalError("Not is Pet")
+                }
+                self.pet = pet
+                self.vaccineCellDataSource.fetch(pet: self.pet,
+                                                 vaccineCellDelegate: self.vaccineCellDelegate)
+            }
+        }
         EventManager.shared.listenTo(eventName: "reloadCreatePetCommonData") { (answer) in
             DispatchQueue.main.async {
                 guard let pet = answer as? Pet else {

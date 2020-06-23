@@ -39,6 +39,7 @@ class PetsDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDelegate
 
     @objc
     func toDetail(row: Int, image: UIImage?) {
+        print(pets[row]._id)
         self.viewController?.performSegue(withIdentifier: "toDetail",
                                           sender: (pets[row], image))
     }
