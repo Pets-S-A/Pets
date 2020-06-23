@@ -15,7 +15,7 @@ const searchPet = async () => {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: response.message,
+        text: 'Não foi encontrado nenhum pet com esse ID',
       });
     }
   }).catch((error) => {
@@ -23,7 +23,7 @@ const searchPet = async () => {
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: 'Something went wrong!',
+      text: 'Alguma coisa está errada!',
     });
   });
 };

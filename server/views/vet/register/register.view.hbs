@@ -65,16 +65,18 @@
 
 	</grid>
 	<br>
+	{{#if vet}}
 	<grid>
 		<div col="1/2">
 			<card style="border-style: solid;border-color: #ea0000;">
-				{{#if vet}}
+				
 				<h3>Zona Perigosa</h3>
 				<a btn style="border-style: solid;border-color: #ea0000;" onclick="deletarConta()">Deletar</a>
-				{{/if}}
+				
 			</card>
 		</div>
 	</grid>
+	{{/if}}
 </section>
 
 <script>
@@ -123,7 +125,7 @@
 		Swal.fire({
 			icon: 'error',
 			title: 'Perigo',
-			html: '<h4>Deseja realmente deletar sua conta? Se Sim, insira a sua sena atual abaixo!</h4>',
+			html: '<h4>Deseja realmente deletar sua conta? Se Sim, insira a sua senha atual abaixo!</h4>',
 			input: 'password',
 			inputAttributes: {
 				autocapitalize: 'off'
