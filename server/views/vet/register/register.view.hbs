@@ -65,16 +65,18 @@
 
 	</grid>
 	<br>
+	{{#if vet}}
 	<grid>
 		<div col="1/2">
 			<card style="border-style: solid;border-color: #ea0000;">
-				{{#if vet}}
+				
 				<h3>Zona Perigosa</h3>
 				<a btn style="border-style: solid;border-color: #ea0000;" onclick="deletarConta()">Deletar</a>
-				{{/if}}
+				
 			</card>
 		</div>
 	</grid>
+	{{/if}}
 </section>
 
 <script>
