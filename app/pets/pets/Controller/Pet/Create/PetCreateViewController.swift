@@ -119,6 +119,7 @@ class PetCreateViewController: UIViewController {
                                              isOneButton: true) { (_) in }
                     }
                 case .success(let pet):
+                    print(pet._id)
                     DispatchQueue.main.async {
                         self.mainDelegate?.reloadData()
                         if var pets = CommonData.shared.user.person?.pets {
@@ -156,7 +157,8 @@ class PetCreateViewController: UIViewController {
                             let index = pets.firstIndex(where: { $0._id == pet._id }) {
                             pets[index] = pet
                             CommonData.shared.user.person?.pets = pets
-                            EventManager.shared.trigger(eventName: "reloadCommonData")
+                            EventManager.shared.trigger(eventName: "updatePet",
+                                                        information: pet)
                             EventManager.shared.trigger(eventName: "reloadImagePet", information: self.petImage.image)
                         }
                         self.removeSpinner()
