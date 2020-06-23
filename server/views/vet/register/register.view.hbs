@@ -124,7 +124,7 @@
 			icon: 'error',
 			title: 'Perigo',
 			html: '<h4>Deseja realmente deletar sua conta? Se Sim, insira a sua sena atual abaixo!</h4>',
-			input: 'text',
+			input: 'password',
 			inputAttributes: {
 				autocapitalize: 'off'
 			},
@@ -132,27 +132,37 @@
 			confirmButtonText: 'Deletar',
 			showLoaderOnConfirm: true,
 			preConfirm: (password) => {
+				if (password == '') {
+					Swal.fire({
+						icon: 'error',
+						title: 'Preencha o campo de senha!'
+					})
+					return
+				}
 				return fetch(`/vet/delete/account/${password}`)
 					.then(response => {
-						if (!response.ok) {
-							throw new Error(response.statusText)
-						}
 						return response.json()
 					})
 					.catch(error => {
 						Swal.showValidationMessage(
-							`Request failed: ${error}`
+							`Houve um Erro: ${error.message}`
 						)
 					})
 			},
 			allowOutsideClick: () => !Swal.isLoading()
 		}).then(async (result) => {
-			if (result.value) {
+			console.log(result.value.message)
+			if (result.value.success) {
 				await Swal.fire({
 					icon: 'success',
 					title: `Conta deletada com sucesso!`
 				})
 				window.location.href='/'
+			} else {
+				await Swal.fire({
+					icon: 'error',
+					title: `${result.value.message}`
+				})
 			}
 		})
 	}

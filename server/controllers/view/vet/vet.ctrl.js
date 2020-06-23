@@ -1,5 +1,6 @@
 const {UserModel, VetModel, PetModel} = require('../../../models');
 const {validateBody, validatePassword} = require('../../../utils');
+const HttpStatus = require('../../../HttpStatus');
 const config = require('../../../config');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -149,8 +150,8 @@ module.exports = {
       const body = req.params || {};
       const password = body.password || '';
 
-      if (password) {
-        return res.status(HttpStatus.badRequest).json({
+      if (!password) {
+        return res.status(HttpStatus.forbidden).json({
           success: false,
           message: 'Campo vazio!',
         });
@@ -160,15 +161,15 @@ module.exports = {
       const userID = response.user;
       const user = await UserModel.findById(userID);
       if (!user) {
-        return res.status(HttpStatus.badRequest).json({
+        return res.status(HttpStatus.forbidden).json({
           success: false,
           message: 'Usuario nao encontrado!',
         });
       }
-      const compare = await bcrypt.compare(oldPassword, user.password);
+      const compare = await bcrypt.compare(password, user.password);
 
       if (!compare) {
-        return res.status(HttpStatus.badRequest).json({
+        return res.status(HttpStatus.forbidden).json({
           success: false,
           message: 'Senha não confere!',
         });
