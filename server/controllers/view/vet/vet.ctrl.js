@@ -1,7 +1,9 @@
 const {UserModel, VetModel, PetModel} = require('../../../models');
 const {validateBody, validatePassword} = require('../../../utils');
+const HttpStatus = require('../../../HttpStatus');
 const config = require('../../../config');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 module.exports = {
   getRegister: async (req, res, next) => {
@@ -103,6 +105,79 @@ module.exports = {
       res.render('vet/dashboard/dashboard.view.hbs', {
         message: 'Cadastro atualizado com sucesso!',
         isAuth: true,
+      });
+    } catch (error) {
+      return next(error);
+    }
+  },
+  updatePassword: async (req, res, next) => {
+    try {
+      const body = req.body || {};
+      const oldPassword = body.oldPassword || '';
+      const newPassword = body.password1 || '';
+
+      if (oldPassword == '' || newPassword == '') {
+        throw new Error('Senhas nao conferem');
+      }
+      const token = req.cookies.auth;
+      const response = await jwt.verify(token, config.JWTSecret);
+      const userID = response.user;
+      const user = await UserModel.findById(userID);
+      if (!user) {
+        throw new Error('Usuario nao encontrado');
+      }
+      const compare = await bcrypt.compare(oldPassword, user.password);
+
+      if (!compare) {
+        return res.status(HttpStatus.badRequest).json({
+          success: false,
+          message: 'Senha não confere!',
+        });
+      }
+      user.password = newPassword;
+      user.password = await user.hash(next);
+      await user.save();
+
+      res.json({
+        success: true,
+      });
+    } catch (error) {
+      return next(error);
+    }
+  },
+  deleleAccount: async (req, res, next) => {
+    try {
+      const body = req.params || {};
+      const password = body.password || '';
+
+      if (!password) {
+        return res.status(HttpStatus.forbidden).json({
+          success: false,
+          message: 'Campo vazio!',
+        });
+      }
+      const token = req.cookies.auth;
+      const response = await jwt.verify(token, config.JWTSecret);
+      const userID = response.user;
+      const user = await UserModel.findById(userID);
+      if (!user) {
+        return res.status(HttpStatus.forbidden).json({
+          success: false,
+          message: 'Usuario nao encontrado!',
+        });
+      }
+      const compare = await bcrypt.compare(password, user.password);
+
+      if (!compare) {
+        return res.status(HttpStatus.forbidden).json({
+          success: false,
+          message: 'Senha não confere!',
+        });
+      }
+      await user.remove();
+      res.clearCookie('auth');
+      res.json({
+        success: true,
       });
     } catch (error) {
       return next(error);
